@@ -3,15 +3,15 @@
     "hero": {
       "type": "niche-hero",
       "settings": {
-        "eyebrow": "",
+        "eyebrow": "Sunshine West Workshop & Parts Store",
         "heading": "Most Trusted Mechanics in",
         "heading_accent": "Sunshine West.",
         "subtext": "Honest servicing, repairs and quality second-hand parts. Servicing Sunshine West and Melbourne's western suburbs.",
-        "button_label_1": "",
+        "button_label_1": "Book a Service",
         "button_link_1": "/pages/contact",
-        "button_label_2": "",
+        "button_label_2": "Shop Parts",
         "button_link_2": "/collections/all",
-        "trust_items": "",
+        "trust_items": "All Makes & Models | Log Book Servicing | Warranty Safe | Second-Hand Parts",
         "overlay": 62
       }
     },
