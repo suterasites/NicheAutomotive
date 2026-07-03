@@ -172,7 +172,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <img src="{{ 'niche-logo-white.png' | asset_url }}" alt="{{ shop.name | escape }}" class="header__heading-logo motion-reduce" width="160" style="width:160px;max-width:100%;height:auto;">{% comment %}fallback logo{% endcomment %}
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -215,7 +215,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <img src="{{ 'niche-logo-white.png' | asset_url }}" alt="{{ shop.name | escape }}" class="header__heading-logo motion-reduce" width="160" style="width:160px;max-width:100%;height:auto;">{% comment %}fallback logo{% endcomment %}
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
