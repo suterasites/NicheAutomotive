@@ -1,7 +1,9 @@
 {%- comment -%}
-  Niche Automotive - Services grid (v3).
-  Self-contained, Dawn-compatible. Real inline SVG icons per service, hover-lift cards,
-  red accent reveal. All CSS scoped by section.id.
+  Niche Automotive - Services (v4, image cards).
+  Two-column header (label + big heading | description + links), then a row of 5
+  photo cards (image + title + arrow) with a "View All Services" link. Niche red palette.
+  The 5 cards are hardcoded with baked photo assets so the section renders reliably
+  regardless of stored customiser settings. All CSS scoped by section.id.
 {%- endcomment -%}
 
 {%- style -%}
@@ -9,140 +11,126 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
     background: {{ section.settings.bg_color }};
-    color: {{ section.settings.text_color }};
+    color: #0f0f0f;
   }
   .n-svc-{{ section.id }} .n-svc__wrap { max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem; }
-  .n-svc-{{ section.id }} .n-svc__head { max-width: 52rem; margin: 0 0 2.6rem; }
-  .n-svc-{{ section.id }} .n-svc__eyebrow {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    font-size: 1.15rem; letter-spacing: 0.22em; text-transform: uppercase;
-    font-weight: 600; color: #e11b22; margin: 0 0 0.9rem;
+
+  /* header */
+  .n-svc-{{ section.id }} .n-svc__head {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2.5rem 3rem; align-items: end; margin: 0 0 2.8rem;
   }
-  .n-svc-{{ section.id }} .n-svc__eyebrow::before { content: ""; width: 30px; height: 2px; background: #e11b22; }
+  .n-svc-{{ section.id }} .n-svc__kicker { font-size: 1.35rem; font-weight: 600; color: #4a4a4e; margin: 0 0 1rem; }
+  .n-svc-{{ section.id }} .n-svc__kicker span { color: #e11b22; }
   .n-svc-{{ section.id }} .n-svc__title {
-    font-family: var(--font-heading-family);
-    font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em;
-    font-size: clamp(1.9rem, 3.6vw, 2.8rem); line-height: 1.05; margin: 0 0 0.6rem;
+    font-family: var(--font-heading-family); color: #0f0f0f;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.005em;
+    font-size: clamp(3rem, 5.4vw, 5rem); line-height: 0.95; margin: 0;
   }
-  .n-svc-{{ section.id }} .n-svc__sub { margin: 0; font-size: 1.63rem; opacity: 0.72; line-height: 1.5; }
-  .n-svc-{{ section.id }} .n-svc__layout {
-    display: grid; grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.72fr); gap: 1.6rem; align-items: start;
+  .n-svc-{{ section.id }} .n-svc__aside { padding-bottom: 0.4rem; }
+  .n-svc-{{ section.id }} .n-svc__aside p { margin: 0 0 1.2rem; font-size: 1.55rem; line-height: 1.6; color: #4a4a4e; max-width: 40ch; }
+  .n-svc-{{ section.id }} .n-svc__links { display: flex; flex-wrap: wrap; gap: 1.2rem 2.2rem; }
+  .n-svc-{{ section.id }} .n-svc__link {
+    display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none;
+    color: #e11b22; font-weight: 700; font-size: 1.5rem; transition: gap 0.15s ease;
   }
-  .n-svc-{{ section.id }} .n-svc__feature {
-    position: sticky; top: 92px; align-self: start;
-    border-radius: 16px; overflow: hidden; height: clamp(440px, 62vh, 660px);
-    box-shadow: 0 24px 50px rgba(15,15,15,0.14);
+  .n-svc-{{ section.id }} .n-svc__link:hover { gap: 0.75rem; }
+  .n-svc-{{ section.id }} .n-svc__link svg { width: 16px; height: 16px; }
+
+  /* cards */
+  .n-svc-{{ section.id }} .n-svc__row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.1rem; }
+  .n-svc-{{ section.id }} .n-svc__card {
+    position: relative; display: block; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden;
+    text-decoration: none; background: #161616;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .n-svc-{{ section.id }} .n-svc__feature img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .n-svc-{{ section.id }} .n-svc__feature::before {
-    content: ""; position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(180deg, rgba(9,9,11,0) 42%, rgba(9,9,11,0.74) 100%);
+  .n-svc-{{ section.id }} .n-svc__card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(15,15,15,0.22); }
+  .n-svc-{{ section.id }} .n-svc__card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .n-svc-{{ section.id }} .n-svc__card:hover img { transform: scale(1.06); }
+  .n-svc-{{ section.id }} .n-svc__card::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(15,15,15,0) 42%, rgba(15,15,15,0.55) 72%, rgba(15,15,15,0.9) 100%);
   }
-  .n-svc-{{ section.id }} .n-svc__feature::after {
-    content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #e11b22; z-index: 2;
+  .n-svc-{{ section.id }} .n-svc__card-title {
+    position: absolute; left: 1.1rem; right: 3.8rem; bottom: 1.2rem; z-index: 2; color: #fff;
+    font-family: var(--font-heading-family); font-weight: 600; text-transform: uppercase;
+    font-size: 1.55rem; line-height: 1.14; letter-spacing: 0.02em;
   }
-  .n-svc-{{ section.id }} .n-svc__feature-cap { position: absolute; left: 1.6rem; right: 1.6rem; bottom: 1.6rem; z-index: 3; }
-  .n-svc-{{ section.id }} .n-svc__feature-cap .lbl {
-    display: inline-flex; align-items: center; gap: 0.5rem; font-size: 1.05rem; letter-spacing: 0.16em;
-    text-transform: uppercase; font-weight: 600; color: #ff5a60; margin: 0 0 0.45rem;
+  .n-svc-{{ section.id }} .n-svc__card-btn {
+    position: absolute; right: 1rem; bottom: 1rem; z-index: 2;
+    width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
+    background: rgba(255,255,255,0.16); color: #fff; transition: background 0.18s ease, transform 0.18s ease;
   }
-  .n-svc-{{ section.id }} .n-svc__feature-cap .lbl::before { content: ""; width: 22px; height: 2px; background: #e11b22; }
-  .n-svc-{{ section.id }} .n-svc__feature-cap p {
-    margin: 0; font-family: var(--font-heading-family); font-weight: 700; text-transform: uppercase;
-    font-size: 1.95rem; line-height: 1.05; letter-spacing: 0.01em; color: #fff;
-  }
-  .n-svc-{{ section.id }} .n-svc__grid {
-    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem;
-  }
-  .n-svc-{{ section.id }} .n-svc__item {
-    position: relative; display: flex; flex-direction: column;
-    background: {{ section.settings.card_color }};
-    border: 1px solid rgba(15,15,15,0.09); border-radius: 14px;
-    padding: 1.8rem 1.7rem; overflow: hidden; text-decoration: none; color: inherit;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  }
-  .n-svc-{{ section.id }} .n-svc__item::before {
-    content: ""; position: absolute; top: 0; left: 0; height: 3px; width: 0; background: #e11b22; transition: width 0.25s ease;
-  }
-  .n-svc-{{ section.id }} .n-svc__item:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(15,15,15,0.12); border-color: rgba(225,27,34,0.35); }
-  .n-svc-{{ section.id }} .n-svc__item:hover::before { width: 100%; }
-  .n-svc-{{ section.id }} .n-svc__icon {
-    width: 52px; height: 52px; border-radius: 12px; margin-bottom: 1.15rem;
-    display: grid; place-items: center;
-    background: rgba(225,27,34,0.10); color: #e11b22;
-    transition: background 0.18s ease, color 0.18s ease;
-  }
-  .n-svc-{{ section.id }} .n-svc__item:hover .n-svc__icon { background: #e11b22; color: #fff; }
-  .n-svc-{{ section.id }} .n-svc__arrow {
-    margin-top: auto; padding-top: 1.5rem; color: #e11b22; display: inline-flex;
-    opacity: 0.5; transition: transform 0.18s ease, opacity 0.18s ease;
-  }
-  .n-svc-{{ section.id }} .n-svc__item:hover .n-svc__arrow { opacity: 1; transform: translateX(5px); }
-  .n-svc-{{ section.id }} .n-svc__arrow svg { width: 22px; height: 22px; }
-  .n-svc-{{ section.id }} .n-svc__icon svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-  .n-svc-{{ section.id }} .n-svc__item h3 {
-    font-family: var(--font-heading-family);
-    font-size: 1.8rem; text-transform: uppercase; letter-spacing: 0.02em;
-    margin: 0 0 0.45rem; line-height: 1.15;
-  }
-  .n-svc-{{ section.id }} .n-svc__item p { margin: 0; font-size: 1.49rem; line-height: 1.5; opacity: 0.72; }
-  @media (max-width: 990px) {
-    .n-svc-{{ section.id }} .n-svc__layout { grid-template-columns: 1fr; gap: 1.25rem; }
-    .n-svc-{{ section.id }} .n-svc__feature { position: static; height: clamp(240px, 42vw, 340px); }
-    .n-svc-{{ section.id }} .n-svc__grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .n-svc-{{ section.id }} .n-svc__card:first-child .n-svc__card-btn { background: #e11b22; }
+  .n-svc-{{ section.id }} .n-svc__card:hover .n-svc__card-btn { background: #e11b22; transform: translateY(-2px); }
+  .n-svc-{{ section.id }} .n-svc__card-btn svg { width: 18px; height: 18px; }
+
+  @media (max-width: 900px) {
+    .n-svc-{{ section.id }} .n-svc__head { grid-template-columns: 1fr; align-items: start; gap: 1.4rem; }
     .n-svc-{{ section.id }} .n-svc__wrap { padding: 0 2rem; }
+    .n-svc-{{ section.id }} .n-svc__row {
+      grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: minmax(210px, 62%);
+      overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      margin: 0 -2rem; padding: 0 2rem 1rem; gap: 0.9rem;
+    }
+    .n-svc-{{ section.id }} .n-svc__card { scroll-snap-align: start; }
   }
-  @media (max-width: 600px) { .n-svc-{{ section.id }} .n-svc__grid { grid-template-columns: 1fr; } }
 {%- endstyle -%}
 
 <div class="n-svc-{{ section.id }}">
   <div class="n-svc__wrap">
+
     <div class="n-svc__head">
-      {%- if section.settings.eyebrow != blank -%}<span class="n-svc__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
-      {%- if section.settings.title != blank -%}<h2 class="n-svc__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
-      {%- if section.settings.subtitle != blank -%}<p class="n-svc__sub">{{ section.settings.subtitle | escape }}</p>{%- endif -%}
+      <div>
+        {%- if section.settings.kicker != blank -%}<p class="n-svc__kicker"><span>/</span> {{ section.settings.kicker | escape }}</p>{%- endif -%}
+        {%- if section.settings.title != blank -%}<h2 class="n-svc__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+      </div>
+      <div class="n-svc__aside">
+        {%- if section.settings.subtitle != blank -%}<p>{{ section.settings.subtitle | escape }}</p>{%- endif -%}
+        <div class="n-svc__links">
+          {%- if section.settings.viewall_label != blank -%}
+            <a class="n-svc__link" href="{{ section.settings.viewall_link | default: '/pages/services' }}">{{ section.settings.viewall_label | escape }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></a>
+          {%- endif -%}
+          {%- if section.settings.call_label != blank and section.settings.phone != blank -%}
+            <a class="n-svc__link" href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.call_label | escape }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></a>
+          {%- endif -%}
+        </div>
+      </div>
     </div>
 
-    <div class="n-svc__layout">
-      <div class="n-svc__feature">
-        {%- if section.settings.image != blank -%}
-          {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', sizes: '(max-width: 990px) 92vw, 33vw', widths: '500, 750, 1000' }}
-        {%- else -%}
-          <img src="{{ 'niche-services-feature.jpg' | asset_url }}" alt="Niche Automotive engine rebuild in Sunshine West" loading="lazy" width="1200" height="1200">
-        {%- endif -%}
-        {%- if section.settings.feature_caption != blank -%}
-          <div class="n-svc__feature-cap">
-            {%- if section.settings.feature_label != blank -%}<span class="lbl">{{ section.settings.feature_label | escape }}</span>{%- endif -%}
-            <p>{{ section.settings.feature_caption | escape }}</p>
-          </div>
-        {%- endif -%}
-      </div>
-      <div class="n-svc__grid">
-      {%- for block in section.blocks -%}
-        {%- assign svc_tag = 'div' -%}
-        {%- if block.settings.link != blank -%}{%- assign svc_tag = 'a' -%}{%- endif -%}
-        <{{ svc_tag }} class="n-svc__item"{% if block.settings.link != blank %} href="{{ block.settings.link }}"{% endif %} {{ block.shopify_attributes }}>
-          <div class="n-svc__icon">
-            {%- case block.settings.icon -%}
-              {%- when 'calendar' -%}<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="8.5 15.5 11 18 15.5 13.5"/></svg>
-              {%- when 'tag' -%}<svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-              {%- when 'search' -%}<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              {%- when 'wrench' -%}<svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-              {%- when 'gauge' -%}<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              {%- when 'engine' -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-              {%- when 'tyre' -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg>
-              {%- when 'target' -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>
-              {%- when 'shield' -%}<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              {%- else -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            {%- endcase -%}
-          </div>
-          <h3>{{ block.settings.title | escape }}</h3>
-          {%- if block.settings.text != blank -%}<p>{{ block.settings.text | escape }}</p>{%- endif -%}
-          <span class="n-svc__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-        </{{ svc_tag }}>
-      {%- endfor -%}
-      </div>
+    <div class="n-svc__row">
+      {%- assign arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>' -%}
+
+      <a class="n-svc__card" href="/pages/log-book-servicing">
+        <img src="{{ 'niche-svc-logbook.jpg' | asset_url }}" alt="Log book servicing at Niche Automotive" loading="lazy" width="820" height="820">
+        <span class="n-svc__card-title">Log Book Servicing</span>
+        <span class="n-svc__card-btn">{{ arrow }}</span>
+      </a>
+
+      <a class="n-svc__card" href="/pages/mechanical-repairs">
+        <img src="{{ 'niche-svc-repairs.jpg' | asset_url }}" alt="Mechanical repairs at Niche Automotive" loading="lazy" width="820" height="820">
+        <span class="n-svc__card-title">Mechanical Repairs</span>
+        <span class="n-svc__card-btn">{{ arrow }}</span>
+      </a>
+
+      <a class="n-svc__card" href="/pages/performance-upgrades">
+        <img src="{{ 'niche-svc-performance.jpg' | asset_url }}" alt="Performance upgrades at Niche Automotive" loading="lazy" width="820" height="547">
+        <span class="n-svc__card-title">Performance Upgrades</span>
+        <span class="n-svc__card-btn">{{ arrow }}</span>
+      </a>
+
+      <a class="n-svc__card" href="/pages/engine-builds">
+        <img src="{{ 'niche-svc-engine.jpg' | asset_url }}" alt="Engine builds and rebuilds at Niche Automotive" loading="lazy" width="820" height="820">
+        <span class="n-svc__card-title">Engine Builds &amp; Rebuilds</span>
+        <span class="n-svc__card-btn">{{ arrow }}</span>
+      </a>
+
+      <a class="n-svc__card" href="/pages/pre-purchase-inspections">
+        <img src="{{ 'niche-svc-inspection.jpg' | asset_url }}" alt="Pre-purchase inspections at Niche Automotive" loading="lazy" width="820" height="820">
+        <span class="n-svc__card-title">Pre-Purchase Inspections</span>
+        <span class="n-svc__card-btn">{{ arrow }}</span>
+      </a>
     </div>
+
   </div>
 </div>
 
@@ -152,57 +140,22 @@
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What We Do" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Services We Offer" },
     { "type": "text", "id": "title", "label": "Heading", "default": "Full-Service Workshop" },
-    { "type": "text", "id": "subtitle", "label": "Subheading", "default": "Honest, high-quality work across all makes and models, with clear pricing and no surprises." },
-    { "type": "header", "content": "Feature photo" },
-    { "type": "image_picker", "id": "image", "label": "Feature photo", "info": "Leave empty to use the built-in engine-rebuild photo." },
-    { "type": "text", "id": "feature_label", "label": "Photo label", "default": "In the workshop" },
-    { "type": "text", "id": "feature_caption", "label": "Photo caption", "default": "Every job, done properly." },
-    { "type": "range", "id": "columns", "min": 2, "max": 4, "step": 1, "label": "Columns (desktop)", "default": 3 },
+    { "type": "text", "id": "subtitle", "label": "Description", "default": "From routine servicing to full rebuilds, we cover all makes and models with honest work and fair, upfront pricing." },
+    { "type": "text", "id": "viewall_label", "label": "View-all label", "default": "View All Services" },
+    { "type": "url", "id": "viewall_link", "label": "View-all link" },
+    { "type": "text", "id": "call_label", "label": "Call label", "default": "Call the Workshop" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "0411 019 935" },
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#F5F6F8" },
-    { "type": "color", "id": "text_color", "label": "Text", "default": "#0F0F0F" },
-    { "type": "color", "id": "card_color", "label": "Card background", "default": "#FFFFFF" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 80 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 80 }
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 84 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 84 }
   ],
   "blocks": [
-    {
-      "type": "service",
-      "name": "Service",
-      "settings": [
-        { "type": "select", "id": "icon", "label": "Icon", "default": "wrench", "options": [
-          { "value": "calendar", "label": "Calendar (servicing)" },
-          { "value": "tag", "label": "Tag (pricing)" },
-          { "value": "search", "label": "Magnifier (inspection)" },
-          { "value": "wrench", "label": "Wrench (repairs)" },
-          { "value": "gauge", "label": "Gauge (performance)" },
-          { "value": "engine", "label": "Cog (engine)" },
-          { "value": "tyre", "label": "Tyre (wheels)" },
-          { "value": "target", "label": "Target (diagnostics)" },
-          { "value": "shield", "label": "Shield (safety)" }
-        ] },
-        { "type": "text", "id": "title", "label": "Service name", "default": "Service" },
-        { "type": "textarea", "id": "text", "label": "Short description" },
-        { "type": "url", "id": "link", "label": "Link (optional)" }
-      ]
-    }
+    { "type": "service", "name": "Service (legacy, unused)", "settings": [
+      { "type": "text", "id": "title", "label": "Service name" }
+    ] }
   ],
-  "presets": [
-    {
-      "name": "Niche Services",
-      "blocks": [
-        { "type": "service", "settings": { "icon": "calendar", "title": "Log Book Servicing", "text": "Manufacturer-schedule servicing that keeps your warranty intact." } },
-        { "type": "service", "settings": { "icon": "tag", "title": "Fixed Price Servicing", "text": "Clear, upfront pricing with no surprises." } },
-        { "type": "service", "settings": { "icon": "search", "title": "Pre-Purchase Inspections", "text": "Know exactly what you are buying before you commit." } },
-        { "type": "service", "settings": { "icon": "wrench", "title": "Mechanical Repairs", "text": "Diagnosis and repairs across all makes and models." } },
-        { "type": "service", "settings": { "icon": "gauge", "title": "Performance Upgrades", "text": "Get more out of your car with the right upgrades." } },
-        { "type": "service", "settings": { "icon": "engine", "title": "Engine Builds & Rebuilds", "text": "Full engine builds and rebuilds done right." } },
-        { "type": "service", "settings": { "icon": "tyre", "title": "Wheels & Tyres", "text": "Fitting, balancing and replacement." } },
-        { "type": "service", "settings": { "icon": "target", "title": "Diagnostic Scans", "text": "Pinpoint faults fast with proper diagnostic equipment." } },
-        { "type": "service", "settings": { "icon": "shield", "title": "Brakes, Suspension & More", "text": "Brake, suspension, battery and cooling system services." } }
-      ]
-    }
-  ]
+  "presets": [ { "name": "Niche Services" } ]
 }
 {% endschema %}
