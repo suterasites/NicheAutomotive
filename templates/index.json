@@ -1,30 +1,38 @@
 {
   "sections": {
-    "image_banner": {
+    "hero": {
       "type": "image-banner",
       "blocks": {
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
+            "heading": "Most Trusted Mechanics in Sunshine West",
             "heading_size": "h0"
           }
         },
-        "button": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Honest servicing and repairs, plus quality second-hand parts. Book your car in or shop the store.</p>",
+            "text_style": "body"
+          }
+        },
+        "buttons": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
+            "button_label_1": "Shop Parts",
             "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_style_secondary_1": false,
+            "button_label_2": "Book a Service",
+            "button_link_2": "/pages/contact",
+            "button_style_secondary_2": true
           }
         }
       },
       "block_order": [
         "heading",
-        "button"
+        "text",
+        "buttons"
       ],
       "settings": {
         "image_overlay_opacity": 40,
@@ -36,40 +44,183 @@
         "color_scheme": "scheme-3",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
-        "show_text_below": false
+        "show_text_below": true
       }
     },
-    "featured_collection": {
+    "services": {
+      "type": "multicolumn",
+      "blocks": {
+        "c1": {
+          "type": "column",
+          "settings": {
+            "title": "Log Book Servicing",
+            "text": "<p>Manufacturer-schedule servicing that keeps your warranty intact.</p>"
+          }
+        },
+        "c2": {
+          "type": "column",
+          "settings": {
+            "title": "Fixed Price Servicing",
+            "text": "<p>Clear, upfront pricing with no surprises.</p>"
+          }
+        },
+        "c3": {
+          "type": "column",
+          "settings": {
+            "title": "Pre-Purchase Inspections",
+            "text": "<p>Know exactly what you are buying before you commit.</p>"
+          }
+        },
+        "c4": {
+          "type": "column",
+          "settings": {
+            "title": "Mechanical Repairs",
+            "text": "<p>Diagnosis and repairs across all makes and models.</p>"
+          }
+        },
+        "c5": {
+          "type": "column",
+          "settings": {
+            "title": "Performance Upgrades",
+            "text": "<p>Get more out of your car with the right upgrades.</p>"
+          }
+        },
+        "c6": {
+          "type": "column",
+          "settings": {
+            "title": "Engine Builds & Rebuilds",
+            "text": "<p>Full engine builds and rebuilds done right.</p>"
+          }
+        },
+        "c7": {
+          "type": "column",
+          "settings": {
+            "title": "Wheels & Tyres",
+            "text": "<p>Fitting, balancing and replacement.</p>"
+          }
+        },
+        "c8": {
+          "type": "column",
+          "settings": {
+            "title": "Diagnostic Scans",
+            "text": "<p>Pinpoint faults fast with proper diagnostic equipment.</p>"
+          }
+        },
+        "c9": {
+          "type": "column",
+          "settings": {
+            "title": "Brakes, Suspension & More",
+            "text": "<p>Brake, suspension, battery and cooling system services.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9"
+      ],
+      "settings": {
+        "title": "Our Services",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "new-arrivals": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
+        "title": "Latest Parts",
+        "heading_size": "h1",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
-        "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
         "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "about": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why Niche Automotive",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A local Sunshine West mechanic with years of expertise. Honest advice, quality repairs, and a growing range of second-hand parts.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Stay in the Loop",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>New parts land regularly. Get the drop when fresh stock hits the store.</p>"
+          }
+        },
+        "email": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero",
+    "services",
+    "new-arrivals",
+    "about",
+    "newsletter"
   ]
 }
