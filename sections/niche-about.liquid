@@ -1,0 +1,110 @@
+{%- comment -%}
+  Niche Automotive - Why Us + call-now CTA.
+  Two-column: left = heading, copy, checklist. Right = red call-to-action card.
+  Self-contained, scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-abt-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    color: #0f0f0f;
+  }
+  .n-abt-{{ section.id }} .n-abt__wrap {
+    max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem;
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3.5rem; align-items: center;
+  }
+  .n-abt-{{ section.id }} .n-abt__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: #e11b22; margin: 0 0 0.9rem;
+  }
+  .n-abt-{{ section.id }} .n-abt__eyebrow::before { content: ""; width: 30px; height: 2px; background: #e11b22; }
+  .n-abt-{{ section.id }} .n-abt__title {
+    font-family: var(--font-heading-family);
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em;
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem); line-height: 1.05; margin: 0 0 1rem;
+  }
+  .n-abt-{{ section.id }} .n-abt__copy { font-size: 1.05rem; line-height: 1.6; opacity: 0.78; margin: 0 0 1.6rem; max-width: 48ch; }
+  .n-abt-{{ section.id }} .n-abt__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem 1.4rem; }
+  .n-abt-{{ section.id }} .n-abt__list li { display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 600; font-size: 0.98rem; }
+  .n-abt-{{ section.id }} .n-abt__list svg { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 1px; color: #e11b22; }
+  .n-abt-{{ section.id }} .n-abt__card {
+    background: #e11b22; color: #fff; border-radius: 16px; padding: 2.4rem 2.1rem; text-align: center;
+    box-shadow: 0 24px 50px rgba(225,27,34,0.25);
+  }
+  .n-abt-{{ section.id }} .n-abt__card-label { text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.75rem; font-weight: 600; opacity: 0.9; margin: 0 0 0.7rem; }
+  .n-abt-{{ section.id }} .n-abt__card h3 {
+    font-family: var(--font-heading-family);
+    text-transform: uppercase; font-weight: 700; letter-spacing: 0.01em;
+    font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.05; margin: 0 0 1.4rem;
+  }
+  .n-abt-{{ section.id }} .n-abt__phone {
+    display: block; font-family: var(--font-heading-family); font-weight: 700;
+    font-size: clamp(1.7rem, 3vw, 2.3rem); color: #fff; text-decoration: none; margin: 0 0 1.4rem; letter-spacing: 0.01em;
+  }
+  .n-abt-{{ section.id }} .n-abt__phone:hover { text-decoration: underline; }
+  .n-abt-{{ section.id }} .n-abt__btn {
+    display: inline-block; background: #fff; color: #e11b22; font-weight: 700; text-decoration: none;
+    padding: 0.95rem 2rem; border-radius: 2px; letter-spacing: 0.02em; transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .n-abt-{{ section.id }} .n-abt__btn:hover { transform: translateY(-2px); background: #111; color: #fff; }
+  .n-abt-{{ section.id }} .n-abt__addr { margin: 1.3rem 0 0; font-size: 0.9rem; opacity: 0.9; }
+  @media (max-width: 900px) {
+    .n-abt-{{ section.id }} .n-abt__wrap { grid-template-columns: 1fr; gap: 2.4rem; padding: 0 2rem; }
+  }
+  @media (max-width: 480px) {
+    .n-abt-{{ section.id }} .n-abt__list { grid-template-columns: 1fr; }
+  }
+{%- endstyle -%}
+
+<div class="n-abt-{{ section.id }}">
+  <div class="n-abt__wrap">
+    <div class="n-abt__body">
+      {%- if section.settings.eyebrow != blank -%}<span class="n-abt__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
+      {%- if section.settings.title != blank -%}<h2 class="n-abt__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+      {%- if section.settings.copy != blank -%}<p class="n-abt__copy">{{ section.settings.copy | escape }}</p>{%- endif -%}
+      {%- assign points = section.settings.points | split: '|' -%}
+      {%- if section.settings.points != blank -%}
+        <ul class="n-abt__list">
+          {%- for p in points -%}
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>{{ p | strip | escape }}</span></li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+    <div class="n-abt__card">
+      {%- if section.settings.card_label != blank -%}<p class="n-abt__card-label">{{ section.settings.card_label | escape }}</p>{%- endif -%}
+      {%- if section.settings.card_heading != blank -%}<h3>{{ section.settings.card_heading | escape }}</h3>{%- endif -%}
+      {%- if section.settings.phone != blank -%}<a class="n-abt__phone" href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone | escape }}</a>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}<a class="n-abt__btn" href="{{ section.settings.button_link | default: '/pages/contact' }}">{{ section.settings.button_label | escape }}</a>{%- endif -%}
+      {%- if section.settings.address != blank -%}<p class="n-abt__addr">{{ section.settings.address | escape }}</p>{%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche About + CTA",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why Niche Automotive" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Local, Honest, Done Right" },
+    { "type": "textarea", "id": "copy", "label": "Copy", "default": "A Sunshine West workshop built on straight answers and quality work. Whether you are booking a service or hunting a hard-to-find part, you get honest advice and a fair price every time." },
+    { "type": "text", "id": "points", "label": "Checklist (separate with | )", "default": "All makes & models | Fixed, upfront pricing | Warranty-safe servicing | Quality second-hand parts" },
+    { "type": "header", "content": "Call-now card" },
+    { "type": "text", "id": "card_label", "label": "Card label", "default": "Book your car in" },
+    { "type": "text", "id": "card_heading", "label": "Card heading", "default": "Talk to the Workshop" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "0411 019 935" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Send an Enquiry" },
+    { "type": "url", "id": "button_link", "label": "Button link", "default": "/pages/contact" },
+    { "type": "text", "id": "address", "label": "Address line", "default": "4/94 Boundary Road, Sunshine West VIC 3020" },
+    { "type": "header", "content": "Section" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#F5F6F8" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 80 }
+  ],
+  "presets": [ { "name": "Niche About + CTA" } ]
+}
+{% endschema %}

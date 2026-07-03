@@ -1,141 +1,44 @@
 {
   "sections": {
     "hero": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Most Trusted Mechanics in Sunshine West",
-            "heading_size": "h0"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Honest servicing and repairs, plus quality second-hand parts. Book your car in or shop the store.",
-            "text_style": "body"
-          }
-        },
-        "buttons": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop Parts",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "Book a Service",
-            "button_link_2": "/pages/contact",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "buttons"
-      ],
+      "type": "niche-hero",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": true
+        "eyebrow": "Sunshine West Workshop & Parts Store",
+        "heading": "Most Trusted Mechanics in",
+        "heading_accent": "Sunshine West",
+        "subtext": "Honest servicing and repairs across all makes and models, plus a growing range of quality second-hand parts. Book your car in or shop the store.",
+        "button_label_1": "Book a Service",
+        "button_link_1": "/pages/contact",
+        "button_label_2": "Shop Parts",
+        "button_link_2": "/collections/all",
+        "trust_items": "All Makes & Models | Log Book Servicing | Warranty Safe | Second-Hand Parts",
+        "overlay": 55
       }
     },
     "services": {
-      "type": "multicolumn",
+      "type": "niche-services",
       "blocks": {
-        "c1": {
-          "type": "column",
-          "settings": {
-            "title": "Log Book Servicing",
-            "text": "<p>Manufacturer-schedule servicing that keeps your warranty intact.</p>"
-          }
-        },
-        "c2": {
-          "type": "column",
-          "settings": {
-            "title": "Fixed Price Servicing",
-            "text": "<p>Clear, upfront pricing with no surprises.</p>"
-          }
-        },
-        "c3": {
-          "type": "column",
-          "settings": {
-            "title": "Pre-Purchase Inspections",
-            "text": "<p>Know exactly what you are buying before you commit.</p>"
-          }
-        },
-        "c4": {
-          "type": "column",
-          "settings": {
-            "title": "Mechanical Repairs",
-            "text": "<p>Diagnosis and repairs across all makes and models.</p>"
-          }
-        },
-        "c5": {
-          "type": "column",
-          "settings": {
-            "title": "Performance Upgrades",
-            "text": "<p>Get more out of your car with the right upgrades.</p>"
-          }
-        },
-        "c6": {
-          "type": "column",
-          "settings": {
-            "title": "Engine Builds & Rebuilds",
-            "text": "<p>Full engine builds and rebuilds done right.</p>"
-          }
-        },
-        "c7": {
-          "type": "column",
-          "settings": {
-            "title": "Wheels & Tyres",
-            "text": "<p>Fitting, balancing and replacement.</p>"
-          }
-        },
-        "c8": {
-          "type": "column",
-          "settings": {
-            "title": "Diagnostic Scans",
-            "text": "<p>Pinpoint faults fast with proper diagnostic equipment.</p>"
-          }
-        },
-        "c9": {
-          "type": "column",
-          "settings": {
-            "title": "Brakes, Suspension & More",
-            "text": "<p>Brake, suspension, battery and cooling system services.</p>"
-          }
-        }
+        "s1": { "type": "service", "settings": { "icon": "calendar", "title": "Log Book Servicing", "text": "Manufacturer-schedule servicing that keeps your warranty intact." } },
+        "s2": { "type": "service", "settings": { "icon": "tag", "title": "Fixed Price Servicing", "text": "Clear, upfront pricing with no surprises." } },
+        "s3": { "type": "service", "settings": { "icon": "search", "title": "Pre-Purchase Inspections", "text": "Know exactly what you are buying before you commit." } },
+        "s4": { "type": "service", "settings": { "icon": "wrench", "title": "Mechanical Repairs", "text": "Diagnosis and repairs across all makes and models." } },
+        "s5": { "type": "service", "settings": { "icon": "gauge", "title": "Performance Upgrades", "text": "Get more out of your car with the right upgrades." } },
+        "s6": { "type": "service", "settings": { "icon": "engine", "title": "Engine Builds & Rebuilds", "text": "Full engine builds and rebuilds done right." } },
+        "s7": { "type": "service", "settings": { "icon": "tyre", "title": "Wheels & Tyres", "text": "Fitting, balancing and replacement." } },
+        "s8": { "type": "service", "settings": { "icon": "target", "title": "Diagnostic Scans", "text": "Pinpoint faults fast with proper diagnostic equipment." } },
+        "s9": { "type": "service", "settings": { "icon": "shield", "title": "Brakes, Suspension & More", "text": "Brake, suspension, battery and cooling system services." } }
       },
-      "block_order": [
-        "c1",
-        "c2",
-        "c3",
-        "c4",
-        "c5",
-        "c6",
-        "c7",
-        "c8",
-        "c9"
-      ],
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9"],
       "settings": {
-        "title": "Our Services",
-        "heading_size": "h1",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 48,
-        "padding_bottom": 48
+        "eyebrow": "What We Do",
+        "title": "Full-Service Workshop",
+        "subtitle": "Honest, high-quality work across all makes and models, with clear pricing and no surprises.",
+        "columns": 3,
+        "bg_color": "#F5F6F8",
+        "text_color": "#0F0F0F",
+        "card_color": "#FFFFFF",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "new-arrivals": {
@@ -143,84 +46,74 @@
       "settings": {
         "title": "Latest Parts",
         "heading_size": "h1",
+        "description": "Fresh second-hand stock, added as it comes in.",
+        "show_description": true,
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
         "show_view_all": true,
         "columns_mobile": "2",
-        "padding_top": 48,
-        "padding_bottom": 48
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "categories": {
+      "type": "niche-categories",
+      "blocks": {
+        "b1": { "type": "category", "settings": { "icon": "engine", "title": "Engine", "link": "/collections/all" } },
+        "b2": { "type": "category", "settings": { "icon": "suspension", "title": "Suspension", "link": "/collections/all" } },
+        "b3": { "type": "category", "settings": { "icon": "brakes", "title": "Brakes", "link": "/collections/all" } },
+        "b4": { "type": "category", "settings": { "icon": "tyre", "title": "Wheels & Tyres", "link": "/collections/all" } },
+        "b5": { "type": "category", "settings": { "icon": "body", "title": "Body & Panels", "link": "/collections/all" } },
+        "b6": { "type": "category", "settings": { "icon": "electrical", "title": "Electrical", "link": "/collections/all" } },
+        "b7": { "type": "category", "settings": { "icon": "lighting", "title": "Lighting", "link": "/collections/all" } },
+        "b8": { "type": "category", "settings": { "icon": "fluids", "title": "Fluids & Filters", "link": "/collections/all" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8"],
+      "settings": {
+        "eyebrow": "Second-Hand Parts Store",
+        "title": "Shop Parts by Category",
+        "all_label": "View all parts",
+        "all_link": "/collections/all",
+        "columns": 4,
+        "bg_color": "#101114",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "about": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Why Niche Automotive",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>A local Sunshine West mechanic with years of expertise. Honest advice, quality repairs, and a growing range of second-hand parts.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
+      "type": "niche-about",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 40
+        "eyebrow": "Why Niche Automotive",
+        "title": "Local, Honest, Done Right",
+        "copy": "A Sunshine West workshop built on straight answers and quality work. Whether you are booking a service or hunting a hard-to-find part, you get honest advice and a fair price every time.",
+        "points": "All makes & models | Fixed, upfront pricing | Warranty-safe servicing | Quality second-hand parts",
+        "card_label": "Book your car in",
+        "card_heading": "Talk to the Workshop",
+        "phone": "0411 019 935",
+        "button_label": "Send an Enquiry",
+        "button_link": "/pages/contact",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "bg_color": "#F5F6F8",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "newsletter": {
       "type": "newsletter",
       "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Stay in the Loop",
-            "heading_size": "h1"
-          }
-        },
-        "paragraph": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>New parts land regularly. Get the drop when fresh stock hits the store.</p>"
-          }
-        },
-        "email": {
-          "type": "email_form",
-          "settings": {}
-        }
+        "heading": { "type": "heading", "settings": { "heading": "Stay in the Loop", "heading_size": "h1" } },
+        "paragraph": { "type": "paragraph", "settings": { "text": "<p>New parts land regularly. Get the drop when fresh stock hits the store.</p>" } },
+        "email": { "type": "email_form", "settings": {} }
       },
-      "block_order": [
-        "heading",
-        "paragraph",
-        "email"
-      ],
+      "block_order": ["heading", "paragraph", "email"],
       "settings": {
         "color_scheme": "scheme-1",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 40
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     }
   },
-  "order": [
-    "hero",
-    "services",
-    "new-arrivals",
-    "about",
-    "newsletter"
-  ]
+  "order": ["hero", "services", "new-arrivals", "categories", "about", "newsletter"]
 }

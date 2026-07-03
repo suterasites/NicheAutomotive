@@ -1,0 +1,165 @@
+{%- comment -%}
+  Niche Automotive - Custom hero.
+  Dark, premium automotive hero. Works with NO image (CSS-built dark background),
+  and upgrades automatically when a background photo is added in the editor.
+  Self-contained: all CSS scoped by section.id, no external assets.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-hero-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0f;
+    color: #ffffff;
+  }
+  .n-hero-{{ section.id }}__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  {%- if section.settings.image != blank -%}
+  .n-hero-{{ section.id }}__bg img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .n-hero-{{ section.id }}__scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(10,10,12,{{ section.settings.overlay | divided_by: 100.0 }}) 0%, rgba(10,10,12,0.55) 55%, rgba(10,10,12,0.9) 100%),
+      linear-gradient(90deg, rgba(10,10,12,0.85) 0%, rgba(10,10,12,0.35) 60%, rgba(10,10,12,0.15) 100%);
+  }
+  {%- else -%}
+  .n-hero-{{ section.id }}__scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      radial-gradient(90% 120% at 82% -10%, rgba(225,27,34,0.28) 0%, rgba(225,27,34,0) 45%),
+      radial-gradient(120% 120% at 15% 110%, #1b1c20 0%, #0d0d0f 60%);
+  }
+  .n-hero-{{ section.id }}__scrim::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 9px);
+    opacity: 0.6;
+  }
+  {%- endif -%}
+  .n-hero-{{ section.id }}__inner {
+    position: relative; z-index: 2;
+    max-width: {{ settings.page_width }}px;
+    margin: 0 auto;
+    padding: clamp(4.5rem, 11vw, 8rem) 2.5rem clamp(3.5rem, 9vw, 6.5rem);
+    display: flex; flex-direction: column; align-items: flex-start;
+    min-height: 78vh;
+    justify-content: center;
+  }
+  .n-hero-{{ section.id }}__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 600; color: #ff5a60; margin: 0 0 1.4rem;
+  }
+  .n-hero-{{ section.id }}__eyebrow::before {
+    content: ""; width: 34px; height: 2px; background: #e11b22; display: inline-block;
+  }
+  .n-hero-{{ section.id }}__title {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.98;
+    letter-spacing: 0.01em;
+    font-size: clamp(2.6rem, 6.4vw, 5rem);
+    margin: 0 0 1.4rem;
+    max-width: 16ch;
+  }
+  .n-hero-{{ section.id }}__title .accent { color: #e11b22; }
+  .n-hero-{{ section.id }}__sub {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.82);
+    max-width: 46ch;
+    margin: 0 0 2.2rem;
+  }
+  .n-hero-{{ section.id }}__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+  .n-hero-{{ section.id }}__btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 1rem 1.9rem; font-weight: 600; font-size: 0.98rem;
+    letter-spacing: 0.02em; text-decoration: none; border-radius: 2px;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .n-hero-{{ section.id }}__btn--primary { background: #e11b22; color: #fff; }
+  .n-hero-{{ section.id }}__btn--primary:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-hero-{{ section.id }}__btn--ghost {
+    background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4);
+  }
+  .n-hero-{{ section.id }}__btn--ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+  .n-hero-{{ section.id }}__trust {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.4rem;
+    margin: 2.6rem 0 0; padding: 0; list-style: none;
+    font-size: 0.85rem; color: rgba(255,255,255,0.7);
+  }
+  .n-hero-{{ section.id }}__trust li { display: inline-flex; align-items: center; gap: 0.55rem; }
+  .n-hero-{{ section.id }}__trust li::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%; background: #e11b22; display: inline-block;
+  }
+  @media (max-width: 749px) {
+    .n-hero-{{ section.id }}__inner { min-height: 70vh; padding-left: 2rem; padding-right: 2rem; }
+    .n-hero-{{ section.id }}__cta { width: 100%; }
+    .n-hero-{{ section.id }}__btn { flex: 1 1 auto; }
+  }
+{%- endstyle -%}
+
+<div class="n-hero-{{ section.id }}">
+  <div class="n-hero-{{ section.id }}__bg">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 2200 | image_tag: loading: 'eager', sizes: '100vw', widths: '750, 1100, 1500, 1900, 2200' }}
+    {%- endif -%}
+  </div>
+  <div class="n-hero-{{ section.id }}__scrim"></div>
+  <div class="n-hero-{{ section.id }}__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="n-hero-{{ section.id }}__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+    {%- endif -%}
+    <h1 class="n-hero-{{ section.id }}__title">
+      {{ section.settings.heading | escape }}
+      {%- if section.settings.heading_accent != blank %} <span class="accent">{{ section.settings.heading_accent | escape }}</span>{%- endif -%}
+    </h1>
+    {%- if section.settings.subtext != blank -%}
+      <p class="n-hero-{{ section.id }}__sub">{{ section.settings.subtext | escape }}</p>
+    {%- endif -%}
+    <div class="n-hero-{{ section.id }}__cta">
+      {%- if section.settings.button_label_1 != blank -%}
+        <a class="n-hero-{{ section.id }}__btn n-hero-{{ section.id }}__btn--primary" href="{{ section.settings.button_link_1 | default: '#' }}">{{ section.settings.button_label_1 | escape }}</a>
+      {%- endif -%}
+      {%- if section.settings.button_label_2 != blank -%}
+        <a class="n-hero-{{ section.id }}__btn n-hero-{{ section.id }}__btn--ghost" href="{{ section.settings.button_link_2 | default: '#' }}">{{ section.settings.button_label_2 | escape }}</a>
+      {%- endif -%}
+    </div>
+    {%- assign trust = section.settings.trust_items | split: '|' -%}
+    {%- if trust.size > 0 and section.settings.trust_items != blank -%}
+      <ul class="n-hero-{{ section.id }}__trust">
+        {%- for item in trust -%}
+          <li>{{ item | strip | escape }}</li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image (optional)", "info": "Leave empty for the dark branded background. Best: a wide, darker workshop/car photo." },
+    { "type": "range", "id": "overlay", "min": 0, "max": 90, "step": 5, "unit": "%", "label": "Image darken", "default": 55 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Sunshine West Workshop & Parts Store" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Most Trusted Mechanics in" },
+    { "type": "text", "id": "heading_accent", "label": "Heading (red highlight)", "default": "Sunshine West" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Honest servicing and repairs across all makes and models, plus a growing range of quality second-hand parts. Book your car in or shop the store." },
+    { "type": "text", "id": "button_label_1", "label": "Button 1 label", "default": "Book a Service" },
+    { "type": "url", "id": "button_link_1", "label": "Button 1 link", "default": "/pages/contact" },
+    { "type": "text", "id": "button_label_2", "label": "Button 2 label", "default": "Shop Parts" },
+    { "type": "url", "id": "button_link_2", "label": "Button 2 link", "default": "/collections/all" },
+    { "type": "text", "id": "trust_items", "label": "Trust strip (separate with | )", "default": "All Makes & Models | Log Book Servicing | Warranty Safe | Second-Hand Parts" }
+  ],
+  "presets": [ { "name": "Niche Hero" } ]
+}
+{% endschema %}
