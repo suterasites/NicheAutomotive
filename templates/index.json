@@ -46,7 +46,7 @@
       "settings": {
         "title": "Latest Parts",
         "heading_size": "h1",
-        "description": "Fresh second-hand stock, added as it comes in.",
+        "description": "<p>Fresh second-hand stock, added as it comes in.</p>",
         "show_description": true,
         "products_to_show": 8,
         "columns_desktop": 4,
