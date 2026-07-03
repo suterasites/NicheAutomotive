@@ -15,6 +15,24 @@
         "overlay": 55
       }
     },
+    "intro": {
+      "type": "niche-intro",
+      "settings": {
+        "badge_text": "Sunshine West's trusted local workshop",
+        "eyebrow": "About Niche Automotive",
+        "heading": "Proper Mechanical Work, Done Locally",
+        "body1": "Niche Automotive is a Sunshine West workshop built on honest advice and quality workmanship. From routine log book servicing to full engine rebuilds, we look after all makes and models and treat every car like it's our own.",
+        "body2": "Alongside the workshop, we stock a growing range of quality second-hand parts, so whether you need a service booked in or a hard-to-find part tracked down, you're in the right place.",
+        "points": "All makes & models | Fixed, upfront pricing | Warranty-safe servicing | Honest advice, every time",
+        "signature_name": "Gorgi",
+        "signature_role": "Niche Automotive",
+        "button_label": "More About Us",
+        "button_link": "/pages/about",
+        "bg_color": "#FFFFFF",
+        "padding_top": 92,
+        "padding_bottom": 92
+      }
+    },
     "services": {
       "type": "niche-services",
       "blocks": {
@@ -115,5 +133,5 @@
       }
     }
   },
-  "order": ["hero", "services", "new-arrivals", "categories", "about", "newsletter"]
+  "order": ["hero", "intro", "services", "new-arrivals", "categories", "about", "newsletter"]
 }
