@@ -25,8 +25,34 @@
     font-size: clamp(1.9rem, 3.6vw, 2.8rem); line-height: 1.05; margin: 0 0 0.6rem;
   }
   .n-svc-{{ section.id }} .n-svc__sub { margin: 0; font-size: 1.63rem; opacity: 0.72; line-height: 1.5; }
+  .n-svc-{{ section.id }} .n-svc__layout {
+    display: grid; grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.72fr); gap: 1.6rem; align-items: start;
+  }
+  .n-svc-{{ section.id }} .n-svc__feature {
+    position: sticky; top: 92px; align-self: start;
+    border-radius: 16px; overflow: hidden; height: clamp(440px, 62vh, 660px);
+    box-shadow: 0 24px 50px rgba(15,15,15,0.14);
+  }
+  .n-svc-{{ section.id }} .n-svc__feature img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .n-svc-{{ section.id }} .n-svc__feature::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(9,9,11,0) 42%, rgba(9,9,11,0.74) 100%);
+  }
+  .n-svc-{{ section.id }} .n-svc__feature::after {
+    content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #e11b22; z-index: 2;
+  }
+  .n-svc-{{ section.id }} .n-svc__feature-cap { position: absolute; left: 1.6rem; right: 1.6rem; bottom: 1.6rem; z-index: 3; }
+  .n-svc-{{ section.id }} .n-svc__feature-cap .lbl {
+    display: inline-flex; align-items: center; gap: 0.5rem; font-size: 1.05rem; letter-spacing: 0.16em;
+    text-transform: uppercase; font-weight: 600; color: #ff5a60; margin: 0 0 0.45rem;
+  }
+  .n-svc-{{ section.id }} .n-svc__feature-cap .lbl::before { content: ""; width: 22px; height: 2px; background: #e11b22; }
+  .n-svc-{{ section.id }} .n-svc__feature-cap p {
+    margin: 0; font-family: var(--font-heading-family); font-weight: 700; text-transform: uppercase;
+    font-size: 1.95rem; line-height: 1.05; letter-spacing: 0.01em; color: #fff;
+  }
   .n-svc-{{ section.id }} .n-svc__grid {
-    display: grid; grid-template-columns: repeat({{ section.settings.columns }}, minmax(0, 1fr)); gap: 1.25rem;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem;
   }
   .n-svc-{{ section.id }} .n-svc__item {
     position: relative; display: flex; flex-direction: column;
@@ -60,7 +86,12 @@
     margin: 0 0 0.45rem; line-height: 1.15;
   }
   .n-svc-{{ section.id }} .n-svc__item p { margin: 0; font-size: 1.49rem; line-height: 1.5; opacity: 0.72; }
-  @media (max-width: 990px) { .n-svc-{{ section.id }} .n-svc__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .n-svc-{{ section.id }} .n-svc__wrap { padding: 0 2rem; } }
+  @media (max-width: 990px) {
+    .n-svc-{{ section.id }} .n-svc__layout { grid-template-columns: 1fr; gap: 1.25rem; }
+    .n-svc-{{ section.id }} .n-svc__feature { position: static; height: clamp(240px, 42vw, 340px); }
+    .n-svc-{{ section.id }} .n-svc__grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .n-svc-{{ section.id }} .n-svc__wrap { padding: 0 2rem; }
+  }
   @media (max-width: 600px) { .n-svc-{{ section.id }} .n-svc__grid { grid-template-columns: 1fr; } }
 {%- endstyle -%}
 
@@ -72,7 +103,21 @@
       {%- if section.settings.subtitle != blank -%}<p class="n-svc__sub">{{ section.settings.subtitle | escape }}</p>{%- endif -%}
     </div>
 
-    <div class="n-svc__grid">
+    <div class="n-svc__layout">
+      <div class="n-svc__feature">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', sizes: '(max-width: 990px) 92vw, 33vw', widths: '500, 750, 1000' }}
+        {%- else -%}
+          <img src="{{ 'niche-services-feature.jpg' | asset_url }}" alt="Niche Automotive engine rebuild in Sunshine West" loading="lazy" width="1200" height="1200">
+        {%- endif -%}
+        {%- if section.settings.feature_caption != blank -%}
+          <div class="n-svc__feature-cap">
+            {%- if section.settings.feature_label != blank -%}<span class="lbl">{{ section.settings.feature_label | escape }}</span>{%- endif -%}
+            <p>{{ section.settings.feature_caption | escape }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="n-svc__grid">
       {%- for block in section.blocks -%}
         {%- assign svc_tag = 'div' -%}
         {%- if block.settings.link != blank -%}{%- assign svc_tag = 'a' -%}{%- endif -%}
@@ -96,6 +141,7 @@
           <span class="n-svc__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </{{ svc_tag }}>
       {%- endfor -%}
+      </div>
     </div>
   </div>
 </div>
@@ -109,6 +155,10 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What We Do" },
     { "type": "text", "id": "title", "label": "Heading", "default": "Full-Service Workshop" },
     { "type": "text", "id": "subtitle", "label": "Subheading", "default": "Honest, high-quality work across all makes and models, with clear pricing and no surprises." },
+    { "type": "header", "content": "Feature photo" },
+    { "type": "image_picker", "id": "image", "label": "Feature photo", "info": "Leave empty to use the built-in engine-rebuild photo." },
+    { "type": "text", "id": "feature_label", "label": "Photo label", "default": "In the workshop" },
+    { "type": "text", "id": "feature_caption", "label": "Photo caption", "default": "Every job, done properly." },
     { "type": "range", "id": "columns", "min": 2, "max": 4, "step": 1, "label": "Columns (desktop)", "default": 3 },
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#F5F6F8" },
     { "type": "color", "id": "text_color", "label": "Text", "default": "#0F0F0F" },
