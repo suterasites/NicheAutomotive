@@ -1,0 +1,175 @@
+{% comment %}
+  Niche Automotive - self-contained hardcoded mega menu. (build 1)
+  Shows the full planned site structure so Gorgi can see every page the site will include,
+  without needing a Shopify Navigation menu built in admin.
+  Reuses Dawn's <header-menu><details class="mega-menu"> shell so the theme's open/close
+  JS, animation and full-width positioning all work. All bespoke styling is scoped to .nmm-*.
+{% endcomment %}
+
+{%- style -%}
+  .nmm-content { background: #0e0e10 !important; }
+  .nmm-content::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 120% at 88% -20%, rgba(225,27,34,0.18) 0%, rgba(225,27,34,0) 55%);
+  }
+  .nmm-content { border-top: 1px solid rgba(255,255,255,0.08); }
+  .nmm-inner {
+    position: relative; z-index: 1;
+    max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem;
+    display: grid; grid-template-columns: 1fr 320px; gap: 3rem; align-items: stretch;
+  }
+  .nmm-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+    color: #ff5a60; margin: 0 0 1.4rem;
+  }
+  .nmm-eyebrow::before { content: ""; width: 26px; height: 2px; background: #e11b22; }
+  .nmm-grid { display: grid; gap: 0.5rem 1.4rem; list-style: none; margin: 0; padding: 0; }
+  .nmm-grid--svc { grid-template-columns: repeat(3, 1fr); }
+  .nmm-grid--parts { grid-template-columns: repeat(4, 1fr); }
+  .nmm-link {
+    display: flex; align-items: flex-start; gap: 0.85rem;
+    padding: 0.7rem 0.8rem; border-radius: 10px; text-decoration: none;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .nmm-link:hover { background: rgba(255,255,255,0.05); }
+  .nmm-ico {
+    flex: 0 0 auto; width: 38px; height: 38px; border-radius: 9px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(225,27,34,0.12); transition: background 0.15s ease;
+  }
+  .nmm-link:hover .nmm-ico { background: #e11b22; }
+  .nmm-ico svg { width: 19px; height: 19px; fill: none; stroke: #ff5a60; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.15s ease; }
+  .nmm-link:hover .nmm-ico svg { stroke: #fff; }
+  .nmm-txt { display: flex; flex-direction: column; gap: 0.15rem; padding-top: 0.1rem; }
+  .nmm-t { font-family: var(--font-heading-family); font-weight: 600; font-size: 0.98rem; color: #fff; letter-spacing: 0.01em; line-height: 1.15; }
+  .nmm-d { font-size: 0.8rem; line-height: 1.35; color: rgba(255,255,255,0.55); }
+  .nmm-grid--parts .nmm-link { align-items: center; }
+  .nmm-grid--parts .nmm-t { font-size: 0.95rem; }
+
+  /* right rail card */
+  .nmm-rail { display: flex; }
+  .nmm-card {
+    display: flex; flex-direction: column; justify-content: center;
+    width: 100%; border-radius: 14px; padding: 1.9rem 1.7rem;
+    background: linear-gradient(160deg, #e11b22 0%, #b3141a 100%);
+    box-shadow: 0 20px 40px rgba(225,27,34,0.22);
+  }
+  .nmm-card--dark { background: #17171b; border: 1px solid rgba(255,255,255,0.1); box-shadow: none; }
+  .nmm-card-label { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.85); margin: 0 0 0.5rem; }
+  .nmm-card h4 { font-family: var(--font-heading-family); text-transform: uppercase; font-weight: 700; font-size: 1.35rem; line-height: 1.05; color: #fff; margin: 0 0 0.9rem; letter-spacing: 0.01em; }
+  .nmm-card p { font-size: 0.85rem; line-height: 1.45; color: rgba(255,255,255,0.8); margin: 0 0 1.2rem; }
+  .nmm-phone { display: block; font-family: var(--font-heading-family); font-weight: 700; font-size: 1.5rem; color: #fff; text-decoration: none; margin: 0 0 1.1rem; letter-spacing: 0.01em; }
+  .nmm-phone:hover { text-decoration: underline; }
+  .nmm-btn { display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; background: #fff; color: #111; font-weight: 700; font-size: 0.9rem; text-decoration: none; padding: 0.75rem 1.4rem; border-radius: 3px; transition: transform 0.15s ease; }
+  .nmm-btn:hover { transform: translateY(-2px); }
+  .nmm-card--dark .nmm-btn { background: #e11b22; color: #fff; }
+
+  @media (max-width: 1100px) {
+    .nmm-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .nmm-rail { display: none; }
+    .nmm-grid--svc { grid-template-columns: repeat(2, 1fr); }
+  }
+{%- endstyle -%}
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list">
+
+    {%- comment -%} Home {%- endcomment -%}
+    <li>
+      <a href="{{ routes.root_url }}" class="header__menu-item list-menu__item link link--text focus-inset">
+        <span>Home</span>
+      </a>
+    </li>
+
+    {%- comment -%} Services mega {%- endcomment -%}
+    <li>
+      <header-menu>
+        <details id="Details-NicheMenu-Services" class="mega-menu">
+          <summary id="NicheMenu-services" class="header__menu-item list-menu__item link focus-inset">
+            <span>Services</span>
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </summary>
+          <div id="NicheMega-Services" class="mega-menu__content nmm-content motion-reduce global-settings-popup" tabindex="-1">
+            <div class="nmm-inner">
+              <div>
+                <span class="nmm-eyebrow">What We Do</span>
+                <ul class="nmm-grid nmm-grid--svc" role="list">
+                  <li><a class="nmm-link" href="/pages/log-book-servicing"><span class="nmm-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="8.5 15.5 11 18 15.5 13.5"/></svg></span><span class="nmm-txt"><span class="nmm-t">Log Book Servicing</span><span class="nmm-d">Warranty-safe scheduled servicing</span></span></a></li>
+                  <li><a class="nmm-link" href="/pages/fixed-price-servicing"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span><span class="nmm-txt"><span class="nmm-t">Fixed Price Servicing</span><span class="nmm-d">Clear, upfront pricing</span></span></a></li>
+                  <li><a class="nmm-link" href="/pages/mechanical-repairs"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Mechanical Repairs</span><span class="nmm-d">All makes and models</span></span></a></li>
+                  <li><a class="nmm-link" href="/pages/pre-purchase-inspections"><span class="nmm-ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><span class="nmm-txt"><span class="nmm-t">Pre-Purchase Inspections</span><span class="nmm-d">Know before you buy</span></span></a></li>
+                  <li><a class="nmm-link" href="/pages/performance-upgrades"><span class="nmm-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nmm-txt"><span class="nmm-t">Performance Upgrades</span><span class="nmm-d">Get more from your car</span></span></a></li>
+                  <li><a class="nmm-link" href="/pages/engine-builds"><span class="nmm-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Engine Builds & Rebuilds</span><span class="nmm-d">Full builds done right</span></span></a></li>
+                  <li><a class="nmm-link" href="/pages/wheels-tyres"><span class="nmm-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg></span><span class="nmm-txt"><span class="nmm-t">Wheels & Tyres</span><span class="nmm-d">Fitting and balancing</span></span></a></li>
+                  <li><a class="nmm-link" href="/pages/diagnostics"><span class="nmm-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span class="nmm-txt"><span class="nmm-t">Diagnostic Scans</span><span class="nmm-d">Pinpoint faults fast</span></span></a></li>
+                  <li><a class="nmm-link" href="/pages/brakes-suspension"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Brakes & Suspension</span><span class="nmm-d">Brakes, batteries, cooling</span></span></a></li>
+                </ul>
+              </div>
+              <div class="nmm-rail">
+                <div class="nmm-card">
+                  <p class="nmm-card-label">Book your car in</p>
+                  <h4>Talk to the Workshop</h4>
+                  <a class="nmm-phone" href="tel:0411019935">0411 019 935</a>
+                  <a class="nmm-btn" href="/pages/contact">Book a Service</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </header-menu>
+    </li>
+
+    {%- comment -%} Shop Parts mega {%- endcomment -%}
+    <li>
+      <header-menu>
+        <details id="Details-NicheMenu-Parts" class="mega-menu">
+          <summary id="NicheMenu-parts" class="header__menu-item list-menu__item link focus-inset">
+            <span>Shop Parts</span>
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </summary>
+          <div id="NicheMega-Parts" class="mega-menu__content nmm-content motion-reduce global-settings-popup" tabindex="-1">
+            <div class="nmm-inner">
+              <div>
+                <span class="nmm-eyebrow">Second-Hand Parts Store</span>
+                <ul class="nmm-grid nmm-grid--parts" role="list">
+                  <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M4 13v-2h2l1.5-2H10V7h4v2h3l3 3v3h-2v3h-3l-2-2H9l-2 2H4v-4H2v-2z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Engine</span></span></a></li>
+                  <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><path d="M8 6l8 3M8 10l8 3M8 14l8 3"/></svg></span><span class="nmm-txt"><span class="nmm-t">Suspension</span></span></a></li>
+                  <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="3" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="21" y2="12"/></svg></span><span class="nmm-txt"><span class="nmm-t">Brakes</span></span></a></li>
+                  <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/><line x1="12" y1="3" x2="12" y2="6.3"/><line x1="12" y1="17.7" x2="12" y2="21"/><line x1="3" y1="12" x2="6.3" y2="12"/><line x1="17.7" y1="12" x2="21" y2="12"/></svg></span><span class="nmm-txt"><span class="nmm-t">Wheels & Tyres</span></span></a></li>
+                  <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M3 13l2.5-5A3 3 0 0 1 8.2 6h7.6a3 3 0 0 1 2.7 2l2.5 5"/><path d="M2 13h20v4a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/><circle cx="6.5" cy="16" r="0.6"/><circle cx="17.5" cy="16" r="0.6"/></svg></span><span class="nmm-txt"><span class="nmm-t">Body & Panels</span></span></a></li>
+                  <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 10 22 20 9 13 9 13 2"/></svg></span><span class="nmm-txt"><span class="nmm-t">Electrical</span></span></a></li>
+                  <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Lighting</span></span></a></li>
+                  <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Fluids & Filters</span></span></a></li>
+                </ul>
+              </div>
+              <div class="nmm-rail">
+                <div class="nmm-card nmm-card--dark">
+                  <p class="nmm-card-label">Can't find it?</p>
+                  <h4>We'll Source the Part</h4>
+                  <p>New stock lands regularly. Tell us what you need and we'll track it down.</p>
+                  <a class="nmm-btn" href="/collections/all">View All Parts</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </header-menu>
+    </li>
+
+    {%- comment -%} About {%- endcomment -%}
+    <li>
+      <a href="/pages/about" class="header__menu-item list-menu__item link link--text focus-inset">
+        <span>About</span>
+      </a>
+    </li>
+
+    {%- comment -%} Contact {%- endcomment -%}
+    <li>
+      <a href="/pages/contact" class="header__menu-item list-menu__item link link--text focus-inset">
+        <span>Contact</span>
+      </a>
+    </li>
+
+  </ul>
+</nav>
