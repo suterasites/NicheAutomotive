@@ -21,118 +21,71 @@
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
-              {%- for link in section.settings.menu.links -%}
-                <li>
-                  {%- if link.links != blank -%}
-                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
-                      <summary
-                        id="HeaderDrawer-{{ link.handle }}"
-                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
-                      >
-                        {{ link.title | escape }}
-                        <span class="svg-wrapper">
-                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                        </span>
-                        <span class="svg-wrapper">
-                          {{- 'icon-caret.svg' | inline_asset_content -}}
-                        </span>
-                      </summary>
-                      <div
-                        id="link-{{ link.handle | escape }}"
-                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
-                        tabindex="-1"
-                      >
-                        <div class="menu-drawer__inner-submenu">
-                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                            <span class="svg-wrapper">
-                              {{- 'icon-arrow.svg' | inline_asset_content -}}
-                            </span>
-                            {{ link.title | escape }}
-                          </button>
-                          <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                            {%- for childlink in link.links -%}
-                              <li>
-                                {%- if childlink.links == blank -%}
-                                  <a
-                                    id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
-                                    href="{{ childlink.url }}"
-                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
-                                    {% if childlink.current %}
-                                      aria-current="page"
-                                    {% endif %}
-                                  >
-                                    {{ childlink.title | escape }}
-                                  </a>
-                                {%- else -%}
-                                  <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
-                                    <summary
-                                      id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
-                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
-                                    >
-                                      {{ childlink.title | escape }}
-                                      <span class="svg-wrapper">
-                                        {{- 'icon-arrow.svg' | inline_asset_content -}}
-                                      </span>
-                                      <span class="svg-wrapper">
-                                        {{- 'icon-caret.svg' | inline_asset_content -}}
-                                      </span>
-                                    </summary>
-                                    <div
-                                      id="childlink-{{ childlink.handle | escape }}"
-                                      class="menu-drawer__submenu has-submenu gradient motion-reduce"
-                                    >
-                                      <button
-                                        class="menu-drawer__close-button link link--text focus-inset"
-                                        aria-expanded="true"
-                                      >
-                                        <span class="svg-wrapper">
-                                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                                        </span>
-                                        {{ childlink.title | escape }}
-                                      </button>
-                                      <ul
-                                        class="menu-drawer__menu list-menu"
-                                        role="list"
-                                        tabindex="-1"
-                                      >
-                                        {%- for grandchildlink in childlink.links -%}
-                                          <li>
-                                            <a
-                                              id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                              href="{{ grandchildlink.url }}"
-                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
-                                              {% if grandchildlink.current %}
-                                                aria-current="page"
-                                              {% endif %}
-                                            >
-                                              {{ grandchildlink.title | escape }}
-                                            </a>
-                                          </li>
-                                        {%- endfor -%}
-                                      </ul>
-                                    </div>
-                                  </details>
-                                {%- endif -%}
-                              </li>
-                            {%- endfor -%}
-                          </ul>
-                        </div>
-                      </div>
-                    </details>
-                  {%- else -%}
-                    <a
-                      id="HeaderDrawer-{{ link.handle }}"
-                      href="{{ link.url }}"
-                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
-                      {% if link.current %}
-                        aria-current="page"
-                      {% endif %}
-                    >
-                      {{ link.title | escape }}
-                    </a>
-                  {%- endif -%}
-                </li>
-              {%- endfor -%}
+              {%- comment -%} Niche: hardcoded drawer menu, mirrors the desktop mega menu {%- endcomment -%}
+              <li>
+                <a href="{{ routes.root_url }}" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">Home</a>
+              </li>
+              <li>
+                <details id="Details-menu-drawer-menu-item-services">
+                  <summary id="HeaderDrawer-services" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                    Services
+                    <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+                    <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+                  </summary>
+                  <div id="link-services" class="menu-drawer__submenu has-submenu gradient motion-reduce" tabindex="-1">
+                    <div class="menu-drawer__inner-submenu">
+                      <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                        <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+                        Services
+                      </button>
+                      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                        <li><a href="/pages/log-book-servicing" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Log Book Servicing</a></li>
+                        <li><a href="/pages/fixed-price-servicing" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Fixed Price Servicing</a></li>
+                        <li><a href="/pages/mechanical-repairs" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Mechanical Repairs</a></li>
+                        <li><a href="/pages/pre-purchase-inspections" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Pre-Purchase Inspections</a></li>
+                        <li><a href="/pages/performance-upgrades" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Performance Upgrades</a></li>
+                        <li><a href="/pages/engine-builds" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Engine Builds &amp; Rebuilds</a></li>
+                        <li><a href="/pages/wheels-tyres" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Wheels &amp; Tyres</a></li>
+                        <li><a href="/pages/diagnostics" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Diagnostic Scans</a></li>
+                        <li><a href="/pages/brakes-suspension" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Brakes &amp; Suspension</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </details>
+              </li>
+              <li>
+                <details id="Details-menu-drawer-menu-item-parts">
+                  <summary id="HeaderDrawer-shop-parts" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                    Shop Parts
+                    <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+                    <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+                  </summary>
+                  <div id="link-shop-parts" class="menu-drawer__submenu has-submenu gradient motion-reduce" tabindex="-1">
+                    <div class="menu-drawer__inner-submenu">
+                      <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                        <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+                        Shop Parts
+                      </button>
+                      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                        <li><a href="/collections/all" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Engine</a></li>
+                        <li><a href="/collections/all" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Suspension</a></li>
+                        <li><a href="/collections/all" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Brakes</a></li>
+                        <li><a href="/collections/all" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Wheels &amp; Tyres</a></li>
+                        <li><a href="/collections/all" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Body &amp; Panels</a></li>
+                        <li><a href="/collections/all" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Electrical</a></li>
+                        <li><a href="/collections/all" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Lighting</a></li>
+                        <li><a href="/collections/all" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Fluids &amp; Filters</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </details>
+              </li>
+              <li>
+                <a href="/pages/about" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">About</a>
+              </li>
+              <li>
+                <a href="/pages/contact" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">Contact</a>
+              </li>
             </ul>
           </nav>
           <div class="menu-drawer__utility-links">
