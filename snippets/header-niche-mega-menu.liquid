@@ -10,6 +10,7 @@
 
 {%- style -%}
   .nmm-parent { position: static; }
+  .header__inline-menu .header__menu-item { font-size: 1.6rem; }
 
   .nmm-trigger {
     -webkit-appearance: none; appearance: none;
@@ -58,7 +59,7 @@
   }
   .nmm-eyebrow {
     display: inline-flex; align-items: center; gap: 0.6rem;
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+    font-size: 1.12rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
     color: #ff5a60; margin: 0 0 1.4rem;
   }
   .nmm-eyebrow::before { content: ""; width: 26px; height: 2px; background: #e11b22; }
@@ -80,10 +81,10 @@
   .nmm-ico svg { width: 19px; height: 19px; fill: none; stroke: #ff5a60; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.15s ease; }
   .nmm-link:hover .nmm-ico svg { stroke: #fff; }
   .nmm-txt { display: flex; flex-direction: column; gap: 0.15rem; padding-top: 0.1rem; }
-  .nmm-t { font-family: var(--font-heading-family); font-weight: 600; font-size: 0.98rem; color: #fff; letter-spacing: 0.01em; line-height: 1.15; }
-  .nmm-d { font-size: 0.8rem; line-height: 1.35; color: rgba(255,255,255,0.55); }
+  .nmm-t { font-family: var(--font-heading-family); font-weight: 600; font-size: 1.52rem; color: #fff; letter-spacing: 0.01em; line-height: 1.15; }
+  .nmm-d { font-size: 1.24rem; line-height: 1.35; color: rgba(255,255,255,0.55); }
   .nmm-grid--parts .nmm-link { align-items: center; }
-  .nmm-grid--parts .nmm-t { font-size: 0.95rem; }
+  .nmm-grid--parts .nmm-t { font-size: 1.47rem; }
 
   /* right rail card */
   .nmm-rail { display: flex; }
@@ -94,12 +95,12 @@
     box-shadow: 0 20px 40px rgba(225,27,34,0.22);
   }
   .nmm-card--dark { background: #17171b; border: 1px solid rgba(255,255,255,0.1); box-shadow: none; }
-  .nmm-card-label { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.85); margin: 0 0 0.5rem; }
-  .nmm-card h4 { font-family: var(--font-heading-family); text-transform: uppercase; font-weight: 700; font-size: 1.35rem; line-height: 1.05; color: #fff; margin: 0 0 0.9rem; letter-spacing: 0.01em; }
-  .nmm-card p { font-size: 0.85rem; line-height: 1.45; color: rgba(255,255,255,0.8); margin: 0 0 1.2rem; }
-  .nmm-phone { display: block; font-family: var(--font-heading-family); font-weight: 700; font-size: 1.5rem; color: #fff; text-decoration: none; margin: 0 0 1.1rem; letter-spacing: 0.01em; }
+  .nmm-card-label { text-transform: uppercase; letter-spacing: 0.14em; font-size: 1.05rem; font-weight: 600; color: rgba(255,255,255,0.85); margin: 0 0 0.5rem; }
+  .nmm-card h4 { font-family: var(--font-heading-family); text-transform: uppercase; font-weight: 700; font-size: 2.09rem; line-height: 1.05; color: #fff; margin: 0 0 0.9rem; letter-spacing: 0.01em; }
+  .nmm-card p { font-size: 1.32rem; line-height: 1.45; color: rgba(255,255,255,0.8); margin: 0 0 1.2rem; }
+  .nmm-phone { display: block; font-family: var(--font-heading-family); font-weight: 700; font-size: 2.33rem; color: #fff; text-decoration: none; margin: 0 0 1.1rem; letter-spacing: 0.01em; }
   .nmm-phone:hover { text-decoration: underline; }
-  .nmm-btn { display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; background: #fff; color: #111; font-weight: 700; font-size: 0.9rem; text-decoration: none; padding: 0.75rem 1.4rem; border-radius: 3px; transition: transform 0.15s ease; }
+  .nmm-btn { display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; background: #fff; color: #111; font-weight: 700; font-size: 1.4rem; text-decoration: none; padding: 0.75rem 1.4rem; border-radius: 3px; transition: transform 0.15s ease; }
   .nmm-btn:hover { transform: translateY(-2px); }
   .nmm-card--dark .nmm-btn { background: #e11b22; color: #fff; }
 
