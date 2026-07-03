@@ -56,7 +56,7 @@
   @media (max-width: 640px) { .niche-services-{{ section.id }} .niche-services__grid { grid-template-columns: 1fr; } }
 {%- endstyle -%}
 
-<div class="niche-services-{{ section.id }} color-{{ section.settings.color_scheme }}">
+<div class="niche-services-{{ section.id }}">
   <div class="page-width">
     {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
       <div class="niche-services__head">
