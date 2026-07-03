@@ -1,0 +1,130 @@
+{%- comment -%}
+  Niche Automotive - Services grid.
+  Self-contained, Dawn-compatible section. All styling is scoped inline, so it needs no
+  external CSS asset and will not clash with Dawn. Add via Edit code > Sections, then drop
+  the "Niche Services" section onto the homepage in the theme editor.
+{%- endcomment -%}
+
+{%- style -%}
+  .niche-services-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+  .niche-services-{{ section.id }} .niche-services__head {
+    text-align: center;
+    max-width: 46rem;
+    margin: 0 auto 3rem;
+  }
+  .niche-services-{{ section.id }} .niche-services__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.1;
+    margin: 0 0 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .niche-services-{{ section.id }} .niche-services__sub { margin: 0; opacity: 0.75; }
+  .niche-services-{{ section.id }} .niche-services__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .niche-services-{{ section.id }} .niche-services__item {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 1.6rem;
+    background: {{ section.settings.card_color }};
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .niche-services-{{ section.id }} .niche-services__item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+    border-color: {{ section.settings.accent_color }};
+  }
+  .niche-services-{{ section.id }} .niche-services__icon {
+    width: 46px; height: 46px; display: grid; place-items: center;
+    border-radius: 10px; margin-bottom: 1rem;
+    background: {{ section.settings.accent_color }}; color: #fff;
+    font-weight: 700; font-size: 1.1rem;
+  }
+  .niche-services-{{ section.id }} .niche-services__item h3 {
+    font-size: 1.1rem; margin: 0 0 0.4rem; text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .niche-services-{{ section.id }} .niche-services__item p { margin: 0; opacity: 0.8; font-size: 0.95rem; }
+  @media (max-width: 990px) { .niche-services-{{ section.id }} .niche-services__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 640px) { .niche-services-{{ section.id }} .niche-services__grid { grid-template-columns: 1fr; } }
+{%- endstyle -%}
+
+<div class="niche-services-{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+      <div class="niche-services__head">
+        {%- if section.settings.title != blank -%}
+          <h2 class="niche-services__title">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="niche-services__sub">{{ section.settings.subtitle | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="niche-services__grid">
+      {%- for block in section.blocks -%}
+        <div class="niche-services__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon_text != blank -%}
+            <div class="niche-services__icon">{{ block.settings.icon_text | escape }}</div>
+          {%- endif -%}
+          <h3>{{ block.settings.title | escape }}</h3>
+          {%- if block.settings.text != blank -%}<p>{{ block.settings.text | escape }}</p>{%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche Services",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Our Services" },
+    { "type": "text", "id": "subtitle", "label": "Subheading", "default": "Honest, affordable, high-quality work with no hidden fees" },
+    { "type": "range", "id": "columns", "min": 2, "max": 4, "step": 1, "label": "Columns (desktop)", "default": 3 },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#F4F5F7" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#0F0F0F" },
+    { "type": "color", "id": "card_color", "label": "Card background", "default": "#FFFFFF" },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#E11B22" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        { "type": "text", "id": "icon_text", "label": "Icon label (short, e.g. initials)", "default": "NA" },
+        { "type": "text", "id": "title", "label": "Service name", "default": "Service" },
+        { "type": "textarea", "id": "text", "label": "Short description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Niche Services",
+      "blocks": [
+        { "type": "service", "settings": { "icon_text": "LB", "title": "Log Book Servicing", "text": "Manufacturer-schedule servicing that keeps your warranty intact." } },
+        { "type": "service", "settings": { "icon_text": "FP", "title": "Fixed Price Servicing", "text": "Clear, upfront pricing with no surprises." } },
+        { "type": "service", "settings": { "icon_text": "PP", "title": "Pre-Purchase Inspections", "text": "Know exactly what you are buying before you commit." } },
+        { "type": "service", "settings": { "icon_text": "MR", "title": "Mechanical Repairs", "text": "Diagnosis and repairs across all makes and models." } },
+        { "type": "service", "settings": { "icon_text": "PU", "title": "Performance Upgrades", "text": "Get more out of your car with the right upgrades." } },
+        { "type": "service", "settings": { "icon_text": "EB", "title": "Engine Builds & Rebuilds", "text": "Full engine builds and rebuilds done right." } },
+        { "type": "service", "settings": { "icon_text": "WT", "title": "Wheels & Tyres", "text": "Fitting, balancing and replacement." } },
+        { "type": "service", "settings": { "icon_text": "DS", "title": "Diagnostic Scans", "text": "Pinpoint faults fast with proper diagnostic equipment." } },
+        { "type": "service", "settings": { "icon_text": "BS", "title": "Brakes, Suspension & More", "text": "Brake, suspension, battery and cooling system services." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
