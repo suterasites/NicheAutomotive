@@ -1,0 +1,134 @@
+{%- comment -%}
+  Niche Automotive - Contact + enquiry form. (build 1)
+  Dark two-column: info/contact details (left) + Shopify contact form (right).
+  Uses the native {% form 'contact' %} so submissions email the store. Scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-con-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    color: #ffffff;
+  }
+  .n-con-{{ section.id }} .n-con__wrap {
+    max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem;
+    display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 3.5rem; align-items: start;
+  }
+  .n-con-{{ section.id }} .n-con__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1.2rem; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: #ff5a60; margin: 0 0 1.1rem;
+  }
+  .n-con-{{ section.id }} .n-con__eyebrow::before { content: ""; width: 30px; height: 2px; background: #e11b22; }
+  .n-con-{{ section.id }} .n-con__title {
+    font-family: var(--font-heading-family); color: #fff; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(2.4rem, 4.2vw, 3.6rem); line-height: 1.0; margin: 0 0 1.2rem;
+  }
+  .n-con-{{ section.id }} .n-con__copy { font-size: 1.6rem; line-height: 1.6; color: rgba(255,255,255,0.72); margin: 0 0 2.2rem; max-width: 44ch; }
+  .n-con-{{ section.id }} .n-con__details { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.3rem; }
+  .n-con-{{ section.id }} .n-con__details li { display: flex; align-items: flex-start; gap: 0.9rem; font-size: 1.55rem; line-height: 1.4; }
+  .n-con-{{ section.id }} .n-con__details svg { flex: 0 0 auto; width: 22px; height: 22px; margin-top: 2px; color: #e11b22; }
+  .n-con-{{ section.id }} .n-con__details a { color: #fff; text-decoration: none; }
+  .n-con-{{ section.id }} .n-con__details a:hover { color: #ff5a60; }
+
+  .n-con-{{ section.id }} .n-con__form {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 18px; padding: 2.4rem 2.2rem;
+  }
+  .n-con-{{ section.id }} .n-con__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .n-con-{{ section.id }} .n-con__field { display: block; margin: 0 0 1rem; }
+  .n-con-{{ section.id }} .n-con__field input,
+  .n-con-{{ section.id }} .n-con__field textarea {
+    width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 9px; padding: 1.05rem 1.15rem; color: #fff; font-family: inherit; font-size: 1.5rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .n-con-{{ section.id }} .n-con__field textarea { min-height: 130px; resize: vertical; }
+  .n-con-{{ section.id }} .n-con__field input::placeholder,
+  .n-con-{{ section.id }} .n-con__field textarea::placeholder { color: rgba(255,255,255,0.5); }
+  .n-con-{{ section.id }} .n-con__field input:focus,
+  .n-con-{{ section.id }} .n-con__field textarea:focus { outline: none; border-color: #e11b22; background: rgba(255,255,255,0.09); }
+  .n-con-{{ section.id }} .n-con__btn {
+    display: inline-flex; align-items: center; justify-content: center; width: 100%;
+    background: #e11b22; color: #fff; border: 0; cursor: pointer; font-weight: 700; font-size: 1.55rem;
+    letter-spacing: 0.02em; padding: 1.15rem 1.8rem; border-radius: 9px; margin-top: 0.4rem;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .n-con-{{ section.id }} .n-con__btn:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-con-{{ section.id }} .n-con__success {
+    background: rgba(46,160,67,0.14); border: 1px solid rgba(46,160,67,0.5); color: #7ee08a;
+    border-radius: 9px; padding: 1rem 1.2rem; margin: 0 0 1.2rem; font-size: 1.45rem;
+  }
+  .n-con-{{ section.id }} .n-con__error { color: #ff9a9f; font-size: 1.4rem; margin: 0 0 1rem; }
+
+  @media (max-width: 860px) {
+    .n-con-{{ section.id }} .n-con__wrap { grid-template-columns: 1fr; gap: 2.4rem; padding: 0 2rem; }
+    .n-con-{{ section.id }} .n-con__row { grid-template-columns: 1fr; }
+  }
+{%- endstyle -%}
+
+<div class="n-con-{{ section.id }}">
+  <div class="n-con__wrap">
+
+    <div class="n-con__info">
+      {%- if section.settings.eyebrow != blank -%}<span class="n-con__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
+      {%- if section.settings.title != blank -%}<h2 class="n-con__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+      {%- if section.settings.copy != blank -%}<p class="n-con__copy">{{ section.settings.copy | escape }}</p>{%- endif -%}
+      <ul class="n-con__details">
+        {%- if section.settings.phone != blank -%}
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg><a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone | escape }}</a></li>
+        {%- endif -%}
+        {%- if section.settings.email != blank -%}
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg><a href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a></li>
+        {%- endif -%}
+        {%- if section.settings.address != blank -%}
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>{{ section.settings.address | escape }}</span></li>
+        {%- endif -%}
+        {%- if section.settings.hours != blank -%}
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg><span>{{ section.settings.hours | escape }}</span></li>
+        {%- endif -%}
+      </ul>
+    </div>
+
+    <div class="n-con__form">
+      {%- form 'contact' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="n-con__success">Thanks - your enquiry is in. We'll be in touch shortly.</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <p class="n-con__error">{{ form.errors | default_errors }}</p>
+        {%- endif -%}
+        <div class="n-con__row">
+          <label class="n-con__field"><input type="text" name="contact[name]" placeholder="Name" value="{{ form.name }}" required></label>
+          <label class="n-con__field"><input type="tel" name="contact[phone]" placeholder="Phone" value="{{ form.phone }}"></label>
+        </div>
+        <label class="n-con__field"><input type="email" name="contact[email]" placeholder="Email" value="{{ form.email }}" required></label>
+        <label class="n-con__field"><textarea name="contact[body]" placeholder="What do you need? (make/model, service or part)">{{ form.body }}</textarea></label>
+        <button type="submit" class="n-con__btn">{{ section.settings.button_label | default: 'Send Enquiry' | escape }}</button>
+      {%- endform -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche Contact",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Get In Touch" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Book Your Car In" },
+    { "type": "textarea", "id": "copy", "label": "Copy", "default": "Send through your details and what you need, and we'll get back to you to book you in or track down a part." },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "0411 019 935" },
+    { "type": "text", "id": "email", "label": "Email", "default": "info@nicheautomotive.com.au" },
+    { "type": "text", "id": "address", "label": "Address", "default": "4/94 Boundary Road, Sunshine West VIC 3020" },
+    { "type": "text", "id": "hours", "label": "Hours", "default": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Send Enquiry" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#101114" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 88 }
+  ],
+  "presets": [ { "name": "Niche Contact" } ]
+}
+{% endschema %}

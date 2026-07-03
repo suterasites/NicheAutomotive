@@ -117,6 +117,44 @@
         "padding_bottom": 80
       }
     },
+    "faq": {
+      "type": "niche-faq",
+      "blocks": {
+        "q1": { "type": "faq", "settings": { "question": "What areas do you service?", "answer": "We're based in Sunshine West and look after customers right across Melbourne's western suburbs." } },
+        "q2": { "type": "faq", "settings": { "question": "Do you work on all makes and models?", "answer": "Yes. From daily drivers to weekend projects, we service and repair all makes and models." } },
+        "q3": { "type": "faq", "settings": { "question": "Will a service affect my new car warranty?", "answer": "No. Our log book servicing follows the manufacturer's schedule, so your new car warranty stays intact." } },
+        "q4": { "type": "faq", "settings": { "question": "Do you sell second-hand parts?", "answer": "Yes. We stock a growing range of quality second-hand parts and can help track down hard-to-find items." } },
+        "q5": { "type": "faq", "settings": { "question": "Do you give upfront pricing?", "answer": "Always. We provide clear, upfront quotes before any work starts, so there are no surprises." } },
+        "q6": { "type": "faq", "settings": { "question": "How do I book my car in?", "answer": "Give us a call on 0411 019 935 or send an enquiry through the contact form and we'll get you sorted." } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": {
+        "eyebrow": "FAQ",
+        "title": "Frequently Asked Questions",
+        "intro": "Everything you need to know before you book your car in or shop the parts store.",
+        "cta_text": "Still have a question? Call us on",
+        "phone": "0411 019 935",
+        "bg_color": "#FFFFFF",
+        "padding_top": 84,
+        "padding_bottom": 84
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    },
     "newsletter": {
       "type": "newsletter",
       "blocks": {
@@ -133,5 +171,5 @@
       }
     }
   },
-  "order": ["hero", "intro", "services", "new-arrivals", "categories", "about", "newsletter"]
+  "order": ["hero", "intro", "services", "new-arrivals", "categories", "about", "faq", "contact", "newsletter"]
 }
