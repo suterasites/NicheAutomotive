@@ -23,9 +23,9 @@
   .n-hero-{{ section.id }}__scrim {
     position: absolute; inset: 0; z-index: 1;
     background:
-      radial-gradient(80% 110% at 85% -10%, rgba(225,27,34,0.32) 0%, rgba(225,27,34,0) 42%),
-      linear-gradient(90deg, rgba(9,9,11,0.92) 0%, rgba(9,9,11,0.60) 46%, rgba(9,9,11,0.28) 100%),
-      linear-gradient(180deg, rgba(9,9,11,{{ section.settings.overlay | divided_by: 100.0 }}) 0%, rgba(9,9,11,0.42) 50%, rgba(9,9,11,0.90) 100%);
+      radial-gradient(80% 110% at 85% -10%, rgba(225,27,34,0.30) 0%, rgba(225,27,34,0) 42%),
+      linear-gradient(90deg, rgba(9,9,11,0.97) 0%, rgba(9,9,11,0.88) 28%, rgba(9,9,11,0.60) 58%, rgba(9,9,11,0.22) 100%),
+      linear-gradient(180deg, rgba(9,9,11,{{ section.settings.overlay | divided_by: 100.0 }}) 0%, rgba(9,9,11,0.42) 50%, rgba(9,9,11,0.92) 100%);
   }
   .n-hero-{{ section.id }}__inner {
     position: relative; z-index: 2;
@@ -47,12 +47,14 @@
   .n-hero-{{ section.id }}__title {
     font-family: var(--font-heading-family);
     font-weight: 700;
+    color: #ffffff;
     text-transform: uppercase;
     line-height: 0.98;
     letter-spacing: 0.01em;
     font-size: clamp(2.6rem, 6.4vw, 5rem);
     margin: 0 0 1.4rem;
     max-width: 16ch;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.45);
   }
   .n-hero-{{ section.id }}__title .accent { color: #e11b22; }
   .n-hero-{{ section.id }}__sub {
