@@ -91,21 +91,60 @@
     </div>
 
     <div class="n-con__form">
-      {%- form 'contact' -%}
-        {%- if form.posted_successfully? -%}
-          <p class="n-con__success">Thanks - your enquiry is in. We'll be in touch shortly.</p>
-        {%- endif -%}
-        {%- if form.errors -%}
-          <p class="n-con__error">{{ form.errors | default_errors }}</p>
-        {%- endif -%}
-        <div class="n-con__row">
-          <label class="n-con__field"><input type="text" name="contact[name]" placeholder="Name" value="{{ form.name }}" required></label>
-          <label class="n-con__field"><input type="tel" name="contact[phone]" placeholder="Phone" value="{{ form.phone }}"></label>
-        </div>
-        <label class="n-con__field"><input type="email" name="contact[email]" placeholder="Email" value="{{ form.email }}" required></label>
-        <label class="n-con__field"><textarea name="contact[body]" placeholder="What do you need? (make/model, service or part)">{{ form.body }}</textarea></label>
-        <button type="submit" class="n-con__btn">{{ section.settings.button_label | default: 'Send Enquiry' | escape }}</button>
-      {%- endform -%}
+      {%- assign fs = section.settings.formspree_endpoint | strip -%}
+      {%- assign btn_label = section.settings.button_label | default: 'Send Enquiry' -%}
+      {%- if fs != blank -%}
+        {%- if fs contains 'formspree.io' -%}{%- assign fs_action = fs -%}{%- else -%}{%- assign fs_action = 'https://formspree.io/f/' | append: fs -%}{%- endif -%}
+        <form id="n-con-fs-{{ section.id }}" class="n-con__fsform" action="{{ fs_action }}" method="POST">
+          <div class="n-con__row">
+            <label class="n-con__field"><input type="text" name="name" placeholder="Name" required></label>
+            <label class="n-con__field"><input type="tel" name="phone" placeholder="Phone"></label>
+          </div>
+          <label class="n-con__field"><input type="email" name="email" placeholder="Email" required></label>
+          <label class="n-con__field"><textarea name="message" placeholder="What do you need? (make/model, service or part)"></textarea></label>
+          <input type="hidden" name="_subject" value="New enquiry - Niche Automotive website">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+          <p class="n-con__success" hidden>Thanks - your enquiry is in. We'll be in touch shortly.</p>
+          <button type="submit" class="n-con__btn">{{ btn_label | escape }}</button>
+        </form>
+        <script>
+          (function () {
+            var f = document.getElementById('n-con-fs-{{ section.id }}');
+            if (!f || f.dataset.bound) return;
+            f.dataset.bound = '1';
+            var btn = f.querySelector('button[type="submit"]');
+            var ok = f.querySelector('.n-con__success');
+            var label = {{ btn_label | json }};
+            var phone = {{ section.settings.phone | default: '' | json }};
+            f.addEventListener('submit', function (e) {
+              e.preventDefault();
+              if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+              fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } })
+                .then(function (r) {
+                  if (r.ok) { f.reset(); if (ok) ok.hidden = false; if (btn) { btn.disabled = false; btn.textContent = 'Sent'; } }
+                  else { if (btn) { btn.disabled = false; btn.textContent = label; } alert('Sorry, something went wrong. Please call us' + (phone ? ' on ' + phone : '') + '.'); }
+                })
+                .catch(function () { if (btn) { btn.disabled = false; btn.textContent = label; } alert('Network error - please call us' + (phone ? ' on ' + phone : '') + '.'); });
+            });
+          })();
+        </script>
+      {%- else -%}
+        {%- form 'contact' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="n-con__success">Thanks - your enquiry is in. We'll be in touch shortly.</p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <p class="n-con__error">{{ form.errors | default_errors }}</p>
+          {%- endif -%}
+          <div class="n-con__row">
+            <label class="n-con__field"><input type="text" name="contact[name]" placeholder="Name" value="{{ form.name }}" required></label>
+            <label class="n-con__field"><input type="tel" name="contact[phone]" placeholder="Phone" value="{{ form.phone }}"></label>
+          </div>
+          <label class="n-con__field"><input type="email" name="contact[email]" placeholder="Email" value="{{ form.email }}" required></label>
+          <label class="n-con__field"><textarea name="contact[body]" placeholder="What do you need? (make/model, service or part)">{{ form.body }}</textarea></label>
+          <button type="submit" class="n-con__btn">{{ btn_label | escape }}</button>
+        {%- endform -%}
+      {%- endif -%}
     </div>
 
   </div>
@@ -125,6 +164,8 @@
     { "type": "text", "id": "address", "label": "Address", "default": "4/94 Boundary Road, Sunshine West VIC 3020" },
     { "type": "text", "id": "hours", "label": "Hours", "default": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm" },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Send Enquiry" },
+    { "type": "header", "content": "Form delivery" },
+    { "type": "text", "id": "formspree_endpoint", "label": "Formspree endpoint (optional)", "info": "Paste your Formspree form URL or ID (e.g. https://formspree.io/f/abcd1234) to send enquiries via Formspree. Leave empty to use Shopify's built-in contact form." },
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#101114" },
     { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 88 },
     { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 88 }
