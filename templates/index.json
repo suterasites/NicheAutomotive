@@ -171,5 +171,5 @@
       }
     }
   },
-  "order": ["hero", "intro", "services", "new-arrivals", "categories", "about", "faq", "contact", "newsletter"]
+  "order": ["hero", "intro", "categories", "new-arrivals", "services", "about", "faq", "contact", "newsletter"]
 }

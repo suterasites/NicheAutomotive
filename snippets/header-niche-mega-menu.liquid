@@ -26,6 +26,11 @@
   .nmm-parent.is-open .nmm-trigger span,
   .nmm-parent:focus-within .nmm-trigger span { text-decoration: underline; text-underline-offset: 0.3rem; }
 
+  /* Shop Parts: accented as the store entry point so it's the obvious place to buy */
+  .header__inline-menu .nmm-trigger--parts { color: #e11b22; }
+  .header__inline-menu .nmm-trigger--parts span { font-weight: 700; }
+  .header__inline-menu .nmm-trigger--parts:hover { color: #c3141b; }
+
   /* full-width panel anchored to the relative .header-wrapper */
   .nmm-content {
     position: absolute; left: 0; right: 0; top: 100%;
@@ -157,7 +162,7 @@
 
     {%- comment -%} Shop Parts mega {%- endcomment -%}
     <li class="nmm-parent">
-      <button type="button" class="header__menu-item list-menu__item link focus-inset nmm-trigger" aria-expanded="false">
+      <button type="button" class="header__menu-item list-menu__item link focus-inset nmm-trigger nmm-trigger--parts" aria-expanded="false">
         <span>Shop Parts</span>
         {{- 'icon-caret.svg' | inline_asset_content -}}
       </button>
