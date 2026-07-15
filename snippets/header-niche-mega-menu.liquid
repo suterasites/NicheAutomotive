@@ -26,10 +26,9 @@
   .nmm-parent.is-open .nmm-trigger span,
   .nmm-parent:focus-within .nmm-trigger span { text-decoration: underline; text-underline-offset: 0.3rem; }
 
-  /* Shop Parts: accented as the store entry point so it's the obvious place to buy */
-  .header__inline-menu .nmm-trigger--parts { color: #e11b22; }
-  .header__inline-menu .nmm-trigger--parts span { font-weight: 700; }
-  .header__inline-menu .nmm-trigger--parts:hover { color: #c3141b; }
+  /* Current page: brand-red highlight (only the active nav item) */
+  .header__inline-menu .header__menu-item[aria-current="page"],
+  .header__inline-menu .header__menu-item[aria-current="page"] > span { color: #e11b22; }
 
   /* full-width panel anchored to the relative .header-wrapper */
   .nmm-content {
@@ -148,19 +147,26 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  assign nmm_store = false
+  if request.page_type == 'collection' or request.page_type == 'product' or request.page_type == 'list-collections'
+    assign nmm_store = true
+  endif
+-%}
+
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
 
     {%- comment -%} Home {%- endcomment -%}
     <li>
-      <a href="{{ routes.root_url }}" class="header__menu-item list-menu__item link link--text focus-inset">
+      <a href="{{ routes.root_url }}" class="header__menu-item list-menu__item link link--text focus-inset"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>
         <span>Home</span>
       </a>
     </li>
 
     {%- comment -%} Services mega {%- endcomment -%}
     <li class="nmm-parent">
-      <button type="button" class="header__menu-item list-menu__item link focus-inset nmm-trigger" aria-expanded="false">
+      <button type="button" class="header__menu-item list-menu__item link focus-inset nmm-trigger" aria-expanded="false"{% if request.path contains '/pages/services' %} aria-current="page"{% endif %}>
         <span>Services</span>
         {{- 'icon-caret.svg' | inline_asset_content -}}
       </button>
@@ -216,7 +222,7 @@
 
     {%- comment -%} Shop Parts mega {%- endcomment -%}
     <li class="nmm-parent">
-      <button type="button" class="header__menu-item list-menu__item link focus-inset nmm-trigger nmm-trigger--parts" aria-expanded="false">
+      <button type="button" class="header__menu-item list-menu__item link focus-inset nmm-trigger nmm-trigger--parts" aria-expanded="false"{% if nmm_store %} aria-current="page"{% endif %}>
         <span>Shop Parts</span>
         {{- 'icon-caret.svg' | inline_asset_content -}}
       </button>
@@ -249,14 +255,14 @@
 
     {%- comment -%} About {%- endcomment -%}
     <li>
-      <a href="/pages/about" class="header__menu-item list-menu__item link link--text focus-inset">
+      <a href="/pages/about" class="header__menu-item list-menu__item link link--text focus-inset"{% if request.path contains '/pages/about' %} aria-current="page"{% endif %}>
         <span>About</span>
       </a>
     </li>
 
     {%- comment -%} Contact {%- endcomment -%}
     <li>
-      <a href="/pages/contact" class="header__menu-item list-menu__item link link--text focus-inset">
+      <a href="/pages/contact" class="header__menu-item list-menu__item link link--text focus-inset"{% if request.path contains '/pages/contact' %} aria-current="page"{% endif %}>
         <span>Contact</span>
       </a>
     </li>
