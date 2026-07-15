@@ -166,10 +166,10 @@
 
     {%- comment -%} Services mega {%- endcomment -%}
     <li class="nmm-parent">
-      <button type="button" class="header__menu-item list-menu__item link focus-inset nmm-trigger" aria-expanded="false"{% if request.path contains '/pages/services' %} aria-current="page"{% endif %}>
+      <a href="/pages/services" class="header__menu-item list-menu__item link focus-inset nmm-trigger" aria-haspopup="true" aria-expanded="false"{% if request.path contains '/pages/services' %} aria-current="page"{% endif %}>
         <span>Services</span>
         {{- 'icon-caret.svg' | inline_asset_content -}}
-      </button>
+      </a>
       <div class="nmm-content motion-reduce">
         <div class="nmm-inner nmm-inner--build">
           <div class="nmm-build__top">
@@ -293,7 +293,7 @@
         }
         parent.addEventListener('mouseenter', open);
         parent.addEventListener('mouseleave', scheduleClose);
-        if (trigger) {
+        if (trigger && trigger.tagName !== 'A') {
           trigger.addEventListener('click', function (e) {
             e.preventDefault();
             parent.classList.contains('is-open') ? scheduleClose() : open();
