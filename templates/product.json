@@ -16,6 +16,12 @@
         "price": {
           "type": "price"
         },
+        "part_details": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'niche-part-details', product: product %}"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -47,6 +53,7 @@
         "vendor",
         "title",
         "price",
+        "part_details",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
@@ -79,7 +86,7 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "You may also like",
+        "heading": "More Parts",
         "heading_size": "h2",
         "products_to_show": 4,
         "columns_desktop": 4,

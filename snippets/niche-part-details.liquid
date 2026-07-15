@@ -1,0 +1,63 @@
+{%- comment -%}
+  Niche Automotive - Part Details panel for the product page.
+  Renders a clean spec table on the (light) parts-store product page.
+  Sources, in order of preference:
+    - Part Number  -> variant SKU (built-in)   OR  custom.part_number metafield
+    - Make         -> product.vendor (built-in)
+    - Category     -> product.type (built-in)
+    - Condition    -> custom.condition metafield
+    - Suits        -> custom.fits metafield        (what car the part suits)
+    - Comes From   -> custom.donor_vehicle metafield (the car it was pulled from)
+    - Availability -> product.available (qty 1 parts read In stock / Sold)
+  Empty rows are hidden. Accepts: product.
+{%- endcomment -%}
+
+{%- if product -%}
+  {%- liquid
+    assign v = product.selected_or_first_available_variant
+    assign part_no = v.sku
+    if part_no == blank
+      assign part_no = product.metafields.custom.part_number.value
+    endif
+    assign make = product.vendor
+    assign category = product.type
+    assign condition = product.metafields.custom.condition.value
+    assign fits = product.metafields.custom.fits.value
+    assign donor = product.metafields.custom.donor_vehicle.value
+  -%}
+
+  {%- style -%}
+    .niche-pd { margin: 1.6rem 0; border: 1px solid #e6e7ea; border-radius: 12px; overflow: hidden; }
+    .niche-pd__title {
+      font-family: var(--font-heading-family); text-transform: uppercase; font-weight: 700;
+      letter-spacing: 0.02em; font-size: 1.4rem; color: #0f0f0f; margin: 0;
+      padding: 1rem 1.4rem; background: #f5f6f8; border-left: 3px solid #e11b22;
+    }
+    .niche-pd__grid { margin: 0; padding: 0.3rem 1.4rem 0.6rem; }
+    .niche-pd__grid > div {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1.6rem;
+      padding: 0.8rem 0; border-bottom: 1px solid #eef0f2;
+    }
+    .niche-pd__grid > div:last-child { border-bottom: 0; }
+    .niche-pd__grid dt { margin: 0; font-size: 1.38rem; color: #6a6a6e; white-space: nowrap; }
+    .niche-pd__grid dd { margin: 0; font-size: 1.4rem; font-weight: 600; color: #0f0f0f; text-align: right; }
+    .niche-pd__in { color: #1a7f37; }
+    .niche-pd__out { color: #e11b22; }
+  {%- endstyle -%}
+
+  <div class="niche-pd">
+    <p class="niche-pd__title">Part Details</p>
+    <dl class="niche-pd__grid">
+      {%- if part_no != blank -%}<div><dt>Part Number</dt><dd>{{ part_no | escape }}</dd></div>{%- endif -%}
+      {%- if make != blank -%}<div><dt>Make</dt><dd>{{ make | escape }}</dd></div>{%- endif -%}
+      {%- if category != blank -%}<div><dt>Category</dt><dd>{{ category | escape }}</dd></div>{%- endif -%}
+      {%- if condition != blank -%}<div><dt>Condition</dt><dd>{{ condition | escape }}</dd></div>{%- endif -%}
+      {%- if fits != blank -%}<div><dt>Suits</dt><dd>{{ fits | escape }}</dd></div>{%- endif -%}
+      {%- if donor != blank -%}<div><dt>Comes From</dt><dd>{{ donor | escape }}</dd></div>{%- endif -%}
+      <div>
+        <dt>Availability</dt>
+        <dd class="{% if product.available %}niche-pd__in{% else %}niche-pd__out{% endif %}">{% if product.available %}In stock{% else %}Sold{% endif %}</dd>
+      </div>
+    </dl>
+  </div>
+{%- endif -%}
