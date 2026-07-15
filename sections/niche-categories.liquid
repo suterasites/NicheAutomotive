@@ -40,12 +40,7 @@
     background: #17181c; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px;
     overflow: hidden; transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
   }
-  .n-cat-{{ section.id }} .n-cat__tile::after {
-    content: ""; position: absolute; right: -30%; top: -60%; width: 150%; height: 150%;
-    background: radial-gradient(closest-side, rgba(225,27,34,0.16), rgba(225,27,34,0)); opacity: 0; transition: opacity 0.22s ease;
-  }
   .n-cat-{{ section.id }} .n-cat__tile:hover { transform: translateY(-4px); border-color: rgba(225,27,34,0.6); background: #1c1d22; }
-  .n-cat-{{ section.id }} .n-cat__tile:hover::after { opacity: 1; }
   .n-cat-{{ section.id }} .n-cat__ico { width: 40px; height: 40px; color: #ff5a60; position: relative; z-index: 1; }
   .n-cat-{{ section.id }} .n-cat__ico svg { width: 40px; height: 40px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
   .n-cat-{{ section.id }} .n-cat__label { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; }
