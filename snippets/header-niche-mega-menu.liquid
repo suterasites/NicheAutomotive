@@ -109,10 +109,42 @@
   .nmm-btn:hover { transform: translateY(-2px); }
   .nmm-card--dark .nmm-btn { background: #e11b22; color: #fff; }
 
+  /* Services dropdown - image-card layout (no icons) */
+  .nmm-inner--build { display: block; }
+  .nmm-build__top { display: grid; grid-template-columns: 264px 1fr; gap: 2.8rem; align-items: start; }
+  .nmm-build__intro { padding-right: 2.4rem; border-right: 1px solid rgba(255,255,255,0.1); }
+  .nmm-build__title { font-family: var(--font-heading-family); text-transform: uppercase; font-weight: 700; font-size: 2.2rem; line-height: 1.04; letter-spacing: 0.01em; color: #fff; margin: 0 0 0.9rem; }
+  .nmm-build__lead { font-size: 1.34rem; line-height: 1.5; color: rgba(255,255,255,0.6); margin: 0 0 1.5rem; }
+  .nmm-build__all { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.4rem; color: #ff5a60; text-decoration: none; }
+  .nmm-build__all svg { width: 16px; height: 16px; transition: transform 0.15s ease; }
+  .nmm-build__all:hover svg { transform: translateX(3px); }
+  .nmm-build__cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.1rem; }
+  .nmm-bcard { display: block; text-decoration: none; }
+  .nmm-bcard__img { display: block; overflow: hidden; border-radius: 11px; aspect-ratio: 3 / 2; background: #161616; }
+  .nmm-bcard__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .nmm-bcard:hover .nmm-bcard__img img { transform: scale(1.06); }
+  .nmm-bcard__t { display: block; font-family: var(--font-heading-family); font-weight: 600; font-size: 1.5rem; color: #fff; letter-spacing: 0.01em; margin: 0.9rem 0 0.2rem; line-height: 1.15; transition: color 0.15s ease; }
+  .nmm-bcard:hover .nmm-bcard__t { color: #ff5a60; }
+  .nmm-bcard__d { display: block; font-size: 1.2rem; line-height: 1.35; color: rgba(255,255,255,0.5); }
+  .nmm-build__foot { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 2.6rem; padding-top: 1.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+  .nmm-build__links { display: flex; flex-wrap: wrap; align-items: center; gap: 1.9rem; }
+  .nmm-build__links a { font-size: 1.38rem; font-weight: 500; color: rgba(255,255,255,0.72); text-decoration: none; transition: color 0.15s ease; }
+  .nmm-build__links a:hover { color: #fff; }
+  .nmm-build__cta { display: inline-flex; align-items: center; gap: 0.5rem; background: #e11b22; color: #fff; font-weight: 700; font-size: 1.42rem; text-decoration: none; padding: 0.85rem 1.65rem; border-radius: 999px; white-space: nowrap; transition: background 0.15s ease, transform 0.15s ease; }
+  .nmm-build__cta:hover { background: #c3141b; transform: translateY(-2px); }
+  .nmm-build__cta svg { width: 16px; height: 16px; }
+
   @media (max-width: 1100px) {
     .nmm-inner { grid-template-columns: 1fr; gap: 2rem; }
     .nmm-rail { display: none; }
     .nmm-grid--svc { grid-template-columns: repeat(2, 1fr); }
+    .nmm-build__top { grid-template-columns: 1fr; gap: 1.6rem; }
+    .nmm-build__intro { border-right: 0; padding-right: 0; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .nmm-build__cards { grid-template-columns: repeat(3, 1fr); }
+    .nmm-build__foot { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 700px) {
+    .nmm-build__cards { grid-template-columns: repeat(2, 1fr); }
   }
 {%- endstyle -%}
 
@@ -133,24 +165,50 @@
         {{- 'icon-caret.svg' | inline_asset_content -}}
       </button>
       <div class="nmm-content motion-reduce">
-        <div class="nmm-inner">
-          <div>
-            <span class="nmm-eyebrow">What We Do</span>
-            <ul class="nmm-grid nmm-grid--svc" role="list">
-              <li><a class="nmm-link" href="/pages/services#svc-servicing"><span class="nmm-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="8.5 15.5 11 18 15.5 13.5"/></svg></span><span class="nmm-txt"><span class="nmm-t">Servicing</span><span class="nmm-d">Log book & general servicing</span></span></a></li>
-              <li><a class="nmm-link" href="/pages/services#svc-performance-upgrades"><span class="nmm-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nmm-txt"><span class="nmm-t">Performance Upgrades</span><span class="nmm-d">Get more from your car</span></span></a></li>
-              <li><a class="nmm-link" href="/pages/services#svc-engine-builds-rebuilds"><span class="nmm-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Engine Builds & Rebuilds</span><span class="nmm-d">Full builds & rebuilds</span></span></a></li>
-              <li><a class="nmm-link" href="/pages/services#svc-engine-conversions"><span class="nmm-ico"><svg viewBox="0 0 24 24"><polyline points="17 2 21 6 17 10"/><path d="M3 12V9a3 3 0 0 1 3-3h15"/><polyline points="7 22 3 18 7 14"/><path d="M21 12v3a3 3 0 0 1-3 3H3"/></svg></span><span class="nmm-txt"><span class="nmm-t">Engine Conversions</span><span class="nmm-d">Complete engine swaps</span></span></a></li>
-              <li><a class="nmm-link" href="/pages/services#svc-restoration"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Restoration</span><span class="nmm-d">Project cars brought back</span></span></a></li>
-            </ul>
-          </div>
-          <div class="nmm-rail">
-            <div class="nmm-card">
-              <p class="nmm-card-label">Book your car in</p>
-              <h4>Talk to the Workshop</h4>
-              <a class="nmm-phone" href="tel:0411019935">0411 019 935</a>
-              <a class="nmm-btn" href="/pages/contact">Book a Service</a>
+        <div class="nmm-inner nmm-inner--build">
+          <div class="nmm-build__top">
+            <div class="nmm-build__intro">
+              <span class="nmm-eyebrow">What We Do</span>
+              <h3 class="nmm-build__title">Servicing to full rebuilds.</h3>
+              <p class="nmm-build__lead">Performance, engine work and restorations, all done in-house on all makes and models.</p>
+              <a class="nmm-build__all" href="/pages/services">View all services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             </div>
+            <div class="nmm-build__cards">
+              <a class="nmm-bcard" href="/pages/services#svc-servicing">
+                <span class="nmm-bcard__img"><img src="{{ 'niche-svc-logbook.jpg' | asset_url }}" alt="Servicing at Niche Automotive" loading="lazy" width="600" height="400"></span>
+                <span class="nmm-bcard__t">Servicing</span>
+                <span class="nmm-bcard__d">Log book & general servicing</span>
+              </a>
+              <a class="nmm-bcard" href="/pages/services#svc-performance-upgrades">
+                <span class="nmm-bcard__img"><img src="{{ 'niche-svc-performance.jpg' | asset_url }}" alt="Performance upgrades at Niche Automotive" loading="lazy" width="600" height="400"></span>
+                <span class="nmm-bcard__t">Performance Upgrades</span>
+                <span class="nmm-bcard__d">Get more from your car</span>
+              </a>
+              <a class="nmm-bcard" href="/pages/services#svc-engine-builds-rebuilds">
+                <span class="nmm-bcard__img"><img src="{{ 'niche-svc-engine.jpg' | asset_url }}" alt="Engine builds and rebuilds at Niche Automotive" loading="lazy" width="600" height="400"></span>
+                <span class="nmm-bcard__t">Engine Builds & Rebuilds</span>
+                <span class="nmm-bcard__d">Full builds & rebuilds</span>
+              </a>
+              <a class="nmm-bcard" href="/pages/services#svc-engine-conversions">
+                <span class="nmm-bcard__img"><img src="{{ 'niche-svc-repairs.jpg' | asset_url }}" alt="Engine conversions at Niche Automotive" loading="lazy" width="600" height="400"></span>
+                <span class="nmm-bcard__t">Engine Conversions</span>
+                <span class="nmm-bcard__d">Complete engine swaps</span>
+              </a>
+              <a class="nmm-bcard" href="/pages/services#svc-restoration">
+                <span class="nmm-bcard__img"><img src="{{ 'niche-services-feature.jpg' | asset_url }}" alt="Restoration at Niche Automotive" loading="lazy" width="600" height="400"></span>
+                <span class="nmm-bcard__t">Restoration</span>
+                <span class="nmm-bcard__d">Project cars brought back</span>
+              </a>
+            </div>
+          </div>
+          <div class="nmm-build__foot">
+            <div class="nmm-build__links">
+              <a href="/pages/services">All Services</a>
+              <a href="/collections/all">Shop Parts</a>
+              <a href="/pages/about">About</a>
+              <a href="/pages/contact">Contact</a>
+            </div>
+            <a class="nmm-build__cta" href="/pages/contact">Book a Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
       </div>
