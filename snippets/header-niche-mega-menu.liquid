@@ -48,6 +48,8 @@
     pointer-events: auto;
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
+  /* instant swap when moving straight from one open dropdown to another */
+  .nmm-parent.nmm-no-anim > .nmm-content { transition: none !important; }
   /* transparent bridge so the cursor can cross the header gap without closing */
   .nmm-content::after { content: ""; position: absolute; left: 0; right: 0; top: -3rem; height: 3rem; }
 
@@ -266,34 +268,52 @@
 
 <script>
   (function () {
-    var parents = document.querySelectorAll('.nmm-parent');
-    for (var i = 0; i < parents.length; i++) {
-      (function (parent) {
-        if (parent.dataset.nmmInit) return;
-        parent.dataset.nmmInit = '1';
-        var trigger = parent.querySelector('.nmm-trigger');
-        var timer;
-        function open() {
-          clearTimeout(timer);
-          parent.classList.add('is-open');
-          if (trigger) trigger.setAttribute('aria-expanded', 'true');
-        }
-        function scheduleClose() {
-          clearTimeout(timer);
-          timer = setTimeout(function () {
-            parent.classList.remove('is-open');
-            if (trigger) trigger.setAttribute('aria-expanded', 'false');
-          }, 220);
-        }
-        parent.addEventListener('mouseenter', open);
-        parent.addEventListener('mouseleave', scheduleClose);
-        if (trigger && trigger.tagName !== 'A') {
-          trigger.addEventListener('click', function (e) {
-            e.preventDefault();
-            parent.classList.contains('is-open') ? scheduleClose() : open();
-          });
-        }
-      })(parents[i]);
+    var parents = Array.prototype.slice.call(document.querySelectorAll('.nmm-parent'));
+    if (!parents.length || parents[0].dataset.nmmInit) return;
+    var closeTimer;
+
+    function setOpen(parent, on) {
+      parent.classList.toggle('is-open', on);
+      var t = parent.querySelector('.nmm-trigger');
+      if (t) t.setAttribute('aria-expanded', on ? 'true' : 'false');
     }
+    // toggle with the transition suppressed, so the change is instant
+    function setOpenInstant(parent, on) {
+      parent.classList.add('nmm-no-anim');
+      setOpen(parent, on);
+      void parent.offsetWidth;
+      parent.classList.remove('nmm-no-anim');
+    }
+    function openParent(parent) {
+      clearTimeout(closeTimer);
+      var switching = false;
+      for (var i = 0; i < parents.length; i++) {
+        if (parents[i] !== parent && parents[i].classList.contains('is-open')) {
+          switching = true;
+          setOpenInstant(parents[i], false);
+        }
+      }
+      if (switching) { setOpenInstant(parent, true); }
+      else { setOpen(parent, true); }
+    }
+    function scheduleClose() {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(function () {
+        for (var i = 0; i < parents.length; i++) setOpen(parents[i], false);
+      }, 180);
+    }
+
+    parents.forEach(function (parent) {
+      parent.dataset.nmmInit = '1';
+      var trigger = parent.querySelector('.nmm-trigger');
+      parent.addEventListener('mouseenter', function () { openParent(parent); });
+      parent.addEventListener('mouseleave', scheduleClose);
+      if (trigger && trigger.tagName !== 'A') {
+        trigger.addEventListener('click', function (e) {
+          e.preventDefault();
+          parent.classList.contains('is-open') ? scheduleClose() : openParent(parent);
+        });
+      }
+    });
   })();
 </script>
