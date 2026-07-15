@@ -19,7 +19,13 @@
     if part_no == blank
       assign part_no = product.metafields.custom.part_number.value
     endif
-    assign make = product.vendor
+    assign make = product.metafields.custom.make.value
+    if make == blank
+      assign make = product.vendor
+    endif
+    if make == shop.name
+      assign make = blank
+    endif
     assign category = product.type
     assign condition = product.metafields.custom.condition.value
     assign fits = product.metafields.custom.fits.value

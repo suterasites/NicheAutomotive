@@ -100,6 +100,15 @@
     text-decoration: none; transition: background 0.15s ease, border-color 0.15s ease;
   }
   .nmm-modelgroup a:hover { background: #e11b22; border-color: #e11b22; }
+  .nmm-make + .nmm-make { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px dashed rgba(255,255,255,0.08); }
+  .nmm-make__h {
+    display: inline-flex; align-items: center; gap: 0.4rem; margin: 0 0 0.9rem;
+    font-family: var(--font-heading-family); font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em;
+    font-size: 1.55rem; color: #fff; text-decoration: none;
+  }
+  .nmm-make__h svg { width: 15px; height: 15px; opacity: 0.55; transition: transform 0.15s ease; }
+  .nmm-make__h:hover { color: #ff5a60; }
+  .nmm-make__h:hover svg { transform: translateX(3px); }
 
   /* right rail card */
   .nmm-rail { display: flex; }
@@ -251,32 +260,35 @@
               <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Fluids & Filters</span></span></a></li>
             </ul>
             <div class="nmm-models">
-              <span class="nmm-eyebrow">Shop by Model</span>
-              <div class="nmm-modelgroups">
-                <div class="nmm-modelgroup">
-                  <span class="nmm-modelgroup__h">VN - VS</span>
-                  <ul role="list">
-                    <li><a href="/collections/vn">VN</a></li>
-                    <li><a href="/collections/vp">VP</a></li>
-                    <li><a href="/collections/vr">VR</a></li>
-                    <li><a href="/collections/vs">VS</a></li>
-                  </ul>
-                </div>
-                <div class="nmm-modelgroup">
-                  <span class="nmm-modelgroup__h">VT - VZ</span>
-                  <ul role="list">
-                    <li><a href="/collections/vt">VT</a></li>
-                    <li><a href="/collections/vx">VX</a></li>
-                    <li><a href="/collections/vy">VY</a></li>
-                    <li><a href="/collections/vz">VZ</a></li>
-                  </ul>
-                </div>
-                <div class="nmm-modelgroup">
-                  <span class="nmm-modelgroup__h">VE - VF</span>
-                  <ul role="list">
-                    <li><a href="/collections/ve">VE</a></li>
-                    <li><a href="/collections/vf">VF</a></li>
-                  </ul>
+              <span class="nmm-eyebrow">Shop by Make</span>
+              <div class="nmm-make">
+                <a class="nmm-make__h" href="/collections/holden">Holden <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <div class="nmm-modelgroups">
+                  <div class="nmm-modelgroup">
+                    <span class="nmm-modelgroup__h">VN - VS</span>
+                    <ul role="list">
+                      <li><a href="/collections/vn">VN</a></li>
+                      <li><a href="/collections/vp">VP</a></li>
+                      <li><a href="/collections/vr">VR</a></li>
+                      <li><a href="/collections/vs">VS</a></li>
+                    </ul>
+                  </div>
+                  <div class="nmm-modelgroup">
+                    <span class="nmm-modelgroup__h">VT - VZ</span>
+                    <ul role="list">
+                      <li><a href="/collections/vt">VT</a></li>
+                      <li><a href="/collections/vx">VX</a></li>
+                      <li><a href="/collections/vy">VY</a></li>
+                      <li><a href="/collections/vz">VZ</a></li>
+                    </ul>
+                  </div>
+                  <div class="nmm-modelgroup">
+                    <span class="nmm-modelgroup__h">VE - VF</span>
+                    <ul role="list">
+                      <li><a href="/collections/ve">VE</a></li>
+                      <li><a href="/collections/vf">VF</a></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
