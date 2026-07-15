@@ -78,14 +78,14 @@
     "categories": {
       "type": "niche-categories",
       "blocks": {
-        "b1": { "type": "category", "settings": { "icon": "engine", "title": "Engine", "link": "/collections/all" } },
-        "b2": { "type": "category", "settings": { "icon": "suspension", "title": "Suspension", "link": "/collections/all" } },
-        "b3": { "type": "category", "settings": { "icon": "brakes", "title": "Brakes", "link": "/collections/all" } },
-        "b4": { "type": "category", "settings": { "icon": "tyre", "title": "Wheels & Tyres", "link": "/collections/all" } },
-        "b5": { "type": "category", "settings": { "icon": "body", "title": "Body & Panels", "link": "/collections/all" } },
-        "b6": { "type": "category", "settings": { "icon": "electrical", "title": "Electrical", "link": "/collections/all" } },
-        "b7": { "type": "category", "settings": { "icon": "lighting", "title": "Lighting", "link": "/collections/all" } },
-        "b8": { "type": "category", "settings": { "icon": "fluids", "title": "Fluids & Filters", "link": "/collections/all" } }
+        "b1": { "type": "category", "settings": { "icon": "engine", "title": "Engine", "link": "/collections/engine" } },
+        "b2": { "type": "category", "settings": { "icon": "suspension", "title": "Suspension", "link": "/collections/suspension" } },
+        "b3": { "type": "category", "settings": { "icon": "brakes", "title": "Brakes", "link": "/collections/brakes" } },
+        "b4": { "type": "category", "settings": { "icon": "tyre", "title": "Wheels & Tyres", "link": "/collections/wheels-tyres" } },
+        "b5": { "type": "category", "settings": { "icon": "body", "title": "Body & Panels", "link": "/collections/body-panels" } },
+        "b6": { "type": "category", "settings": { "icon": "electrical", "title": "Electrical", "link": "/collections/electrical" } },
+        "b7": { "type": "category", "settings": { "icon": "lighting", "title": "Lighting", "link": "/collections/lighting" } },
+        "b8": { "type": "category", "settings": { "icon": "fluids", "title": "Fluids & Filters", "link": "/collections/fluids-filters" } }
       },
       "block_order": ["b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8"],
       "settings": {
