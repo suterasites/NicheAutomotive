@@ -87,6 +87,20 @@
   .nmm-grid--parts .nmm-link { align-items: center; }
   .nmm-grid--parts .nmm-t { font-size: 1.47rem; }
 
+  /* Shop by Model - Holden generations */
+  .nmm-models { margin-top: 1.8rem; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.1); }
+  .nmm-modelgroups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem 1.8rem; margin-top: 1rem; }
+  .nmm-modelgroup__h { display: block; font-size: 1.1rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,0.5); margin: 0 0 0.7rem; }
+  .nmm-modelgroup ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .nmm-modelgroup a {
+    display: inline-flex; align-items: center; justify-content: center; min-width: 44px;
+    padding: 0.45rem 0.8rem; border-radius: 8px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff;
+    font-family: var(--font-heading-family); font-weight: 700; font-size: 1.36rem; letter-spacing: 0.02em;
+    text-decoration: none; transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .nmm-modelgroup a:hover { background: #e11b22; border-color: #e11b22; }
+
   /* right rail card */
   .nmm-rail { display: flex; }
   .nmm-card {
@@ -236,6 +250,36 @@
               <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Lighting</span></span></a></li>
               <li><a class="nmm-link" href="/collections/all"><span class="nmm-ico"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><span class="nmm-txt"><span class="nmm-t">Fluids & Filters</span></span></a></li>
             </ul>
+            <div class="nmm-models">
+              <span class="nmm-eyebrow">Shop by Model</span>
+              <div class="nmm-modelgroups">
+                <div class="nmm-modelgroup">
+                  <span class="nmm-modelgroup__h">VN - VS</span>
+                  <ul role="list">
+                    <li><a href="/collections/vn">VN</a></li>
+                    <li><a href="/collections/vp">VP</a></li>
+                    <li><a href="/collections/vr">VR</a></li>
+                    <li><a href="/collections/vs">VS</a></li>
+                  </ul>
+                </div>
+                <div class="nmm-modelgroup">
+                  <span class="nmm-modelgroup__h">VT - VZ</span>
+                  <ul role="list">
+                    <li><a href="/collections/vt">VT</a></li>
+                    <li><a href="/collections/vx">VX</a></li>
+                    <li><a href="/collections/vy">VY</a></li>
+                    <li><a href="/collections/vz">VZ</a></li>
+                  </ul>
+                </div>
+                <div class="nmm-modelgroup">
+                  <span class="nmm-modelgroup__h">VE - VF</span>
+                  <ul role="list">
+                    <li><a href="/collections/ve">VE</a></li>
+                    <li><a href="/collections/vf">VF</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="nmm-rail">
             <div class="nmm-card nmm-card--dark">
