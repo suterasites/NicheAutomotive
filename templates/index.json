@@ -62,6 +62,7 @@
     "new-arrivals": {
       "type": "featured-collection",
       "settings": {
+        "collection": "all",
         "title": "Latest Parts",
         "heading_size": "h1",
         "description": "<p>Fresh second-hand stock, added as it comes in.</p>",
