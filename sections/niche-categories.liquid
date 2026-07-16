@@ -80,6 +80,8 @@
               {%- when 'electrical' -%}<svg viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 10 22 20 9 13 9 13 2"/></svg>
               {%- when 'lighting' -%}<svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>
               {%- when 'fluids' -%}<svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
+              {%- when 'driveline' -%}<svg viewBox="0 0 24 24"><circle cx="4.5" cy="12" r="2.5"/><circle cx="19.5" cy="12" r="2.5"/><line x1="7" y1="12" x2="17" y2="12"/><rect x="10.4" y="9.6" width="3.2" height="4.8" rx="0.7"/></svg>
+              {%- when 'interior' -%}<svg viewBox="0 0 24 24"><rect x="6.5" y="4" width="4" height="8.5" rx="1.5"/><rect x="6.5" y="12.5" width="11" height="4.5" rx="1.5"/><line x1="9" y1="17" x2="9" y2="20.5"/><line x1="15.5" y1="17" x2="15.5" y2="20.5"/></svg>
               {%- else -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>
             {%- endcase -%}
           </span>
@@ -117,12 +119,14 @@
       "settings": [
         { "type": "select", "id": "icon", "label": "Icon", "default": "engine", "options": [
           { "value": "engine", "label": "Engine" },
+          { "value": "driveline", "label": "Driveline" },
           { "value": "suspension", "label": "Suspension" },
           { "value": "brakes", "label": "Brakes" },
-          { "value": "tyre", "label": "Wheels & Tyres" },
           { "value": "body", "label": "Body & Panels" },
           { "value": "electrical", "label": "Electrical" },
           { "value": "lighting", "label": "Lighting" },
+          { "value": "interior", "label": "Interior" },
+          { "value": "tyre", "label": "Wheels & Tyres" },
           { "value": "fluids", "label": "Fluids & Filters" }
         ] },
         { "type": "text", "id": "title", "label": "Category name", "default": "Category" },
@@ -134,14 +138,14 @@
     {
       "name": "Niche Categories",
       "blocks": [
-        { "type": "category", "settings": { "icon": "engine", "title": "Engine", "link": "/collections/all" } },
-        { "type": "category", "settings": { "icon": "suspension", "title": "Suspension", "link": "/collections/all" } },
-        { "type": "category", "settings": { "icon": "brakes", "title": "Brakes", "link": "/collections/all" } },
-        { "type": "category", "settings": { "icon": "tyre", "title": "Wheels & Tyres", "link": "/collections/all" } },
-        { "type": "category", "settings": { "icon": "body", "title": "Body & Panels", "link": "/collections/all" } },
-        { "type": "category", "settings": { "icon": "electrical", "title": "Electrical", "link": "/collections/all" } },
-        { "type": "category", "settings": { "icon": "lighting", "title": "Lighting", "link": "/collections/all" } },
-        { "type": "category", "settings": { "icon": "fluids", "title": "Fluids & Filters", "link": "/collections/all" } }
+        { "type": "category", "settings": { "icon": "engine", "title": "Engine", "link": "/collections/engine" } },
+        { "type": "category", "settings": { "icon": "driveline", "title": "Driveline", "link": "/collections/driveline" } },
+        { "type": "category", "settings": { "icon": "suspension", "title": "Suspension", "link": "/collections/suspension" } },
+        { "type": "category", "settings": { "icon": "brakes", "title": "Brakes", "link": "/collections/brakes" } },
+        { "type": "category", "settings": { "icon": "body", "title": "Body & Panels", "link": "/collections/body-panels" } },
+        { "type": "category", "settings": { "icon": "electrical", "title": "Electrical", "link": "/collections/electrical" } },
+        { "type": "category", "settings": { "icon": "lighting", "title": "Lighting", "link": "/collections/lighting" } },
+        { "type": "category", "settings": { "icon": "interior", "title": "Interior", "link": "/collections/interior" } }
       ]
     }
   ]
