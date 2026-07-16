@@ -1,0 +1,383 @@
+{%- comment -%}
+  Niche Automotive - About page body. (build 1)
+  Three stacked blocks in one section, matching the Services page pattern:
+    1. Story - workshop photo (red accent corner + floating badge) beside brand copy,
+       checklist, owner signature and a contact CTA.
+    2. Values - "What We Stand For" grid of editable value blocks (icon + title + text).
+    3. Two sides - the Workshop and the Parts Store cards, each linking on.
+  Followed by a dark booking strip. Niche red palette, flat (no glows).
+  All CSS scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-abp-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }}; color: #3a3a3d;
+  }
+  .n-abp-{{ section.id }} .n-abp__wrap { max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem; }
+  .n-abp-{{ section.id }} .n-abp__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1.18rem; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: #e11b22; margin: 0 0 1rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__eyebrow::before { content: ""; width: 30px; height: 2px; background: #e11b22; }
+
+  /* 1. Story */
+  .n-abp-{{ section.id }} .n-abp__story {
+    display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 4rem; align-items: center;
+  }
+  .n-abp-{{ section.id }} .n-abp__media { position: relative; }
+  .n-abp-{{ section.id }} .n-abp__img {
+    position: relative; z-index: 1; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 5;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.16);
+  }
+  .n-abp-{{ section.id }} .n-abp__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .n-abp-{{ section.id }} .n-abp__accent {
+    position: absolute; top: -18px; left: -18px; width: 46%; height: 46%; border-radius: 16px; z-index: 0;
+    background: linear-gradient(135deg, #e11b22 0%, #a5121a 100%);
+  }
+  .n-abp-{{ section.id }} .n-abp__badge {
+    position: absolute; left: 20px; bottom: 20px; z-index: 2;
+    display: flex; align-items: center; gap: 0.75rem; max-width: 80%;
+    background: rgba(12,12,14,0.92); color: #fff; border-radius: 12px; padding: 0.85rem 1.05rem;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.28);
+  }
+  .n-abp-{{ section.id }} .n-abp__badge svg { flex: 0 0 auto; width: 26px; height: 26px; color: #ff5a60; }
+  .n-abp-{{ section.id }} .n-abp__badge span { font-weight: 600; font-size: 1.4rem; line-height: 1.25; color: #fff; }
+  .n-abp-{{ section.id }} .n-abp__title {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.04; margin: 0 0 1.3rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__p { font-size: 1.58rem; line-height: 1.65; color: #4a4a4e; margin: 0 0 1.1rem; max-width: 56ch; }
+  .n-abp-{{ section.id }} .n-abp__list {
+    list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 1.4rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__list li { display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 600; font-size: 1.49rem; color: #1c1c1f; }
+  .n-abp-{{ section.id }} .n-abp__list svg { flex: 0 0 auto; width: 19px; height: 19px; margin-top: 1px; color: #e11b22; }
+  .n-abp-{{ section.id }} .n-abp__foot { display: flex; align-items: center; flex-wrap: wrap; gap: 1.4rem 2rem; margin-top: 2rem; }
+  .n-abp-{{ section.id }} .n-abp__sign { display: flex; align-items: center; gap: 0.85rem; }
+  .n-abp-{{ section.id }} .n-abp__sign::before { content: ""; width: 3px; height: 34px; border-radius: 3px; background: #e11b22; }
+  .n-abp-{{ section.id }} .n-abp__sign b { display: block; font-family: var(--font-heading-family); font-weight: 700; color: #0f0f0f; font-size: 1.58rem; letter-spacing: 0.01em; }
+  .n-abp-{{ section.id }} .n-abp__sign span { display: block; font-size: 1.32rem; color: #6a6a6e; }
+  .n-abp-{{ section.id }} .n-abp__btn {
+    display: inline-flex; align-items: center; justify-content: center; background: #e11b22; color: #fff;
+    font-weight: 700; text-decoration: none; padding: 0.9rem 1.8rem; border-radius: 3px; letter-spacing: 0.02em;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .n-abp-{{ section.id }} .n-abp__btn:hover { transform: translateY(-2px); background: #c3141b; }
+
+  /* 2. Values */
+  .n-abp-{{ section.id }} .n-abp__values { margin-top: clamp(4.5rem, 8vw, 7rem); }
+  .n-abp-{{ section.id }} .n-abp__vhead { max-width: 60ch; margin: 0 0 2.6rem; }
+  .n-abp-{{ section.id }} .n-abp__vtitle {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.005em; font-size: clamp(2rem, 3.6vw, 2.9rem); line-height: 1.02; margin: 0 0 0.9rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__vlead { font-size: 1.56rem; line-height: 1.6; color: #4a4a4e; margin: 0; }
+  .n-abp-{{ section.id }} .n-abp__grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__card {
+    background: #fff; border: 1px solid #e6e7ea; border-radius: 14px; padding: 1.9rem 1.7rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+  }
+  .n-abp-{{ section.id }} .n-abp__ico {
+    display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px;
+    border-radius: 11px; background: rgba(225,27,34,0.1); color: #e11b22; margin: 0 0 1.2rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__ico svg { width: 24px; height: 24px; }
+  .n-abp-{{ section.id }} .n-abp__ctitle {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: 1.62rem; line-height: 1.1; margin: 0 0 0.7rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__ctext { font-size: 1.44rem; line-height: 1.55; color: #55555a; margin: 0; }
+
+  /* 3. Two sides */
+  .n-abp-{{ section.id }} .n-abp__sides { margin-top: clamp(4.5rem, 8vw, 7rem); }
+  .n-abp-{{ section.id }} .n-abp__split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+  .n-abp-{{ section.id }} .n-abp__side {
+    background: #f5f6f8; border: 1px solid #e6e7ea; border-radius: 16px; padding: 2.4rem 2.2rem;
+    display: flex; flex-direction: column;
+  }
+  .n-abp-{{ section.id }} .n-abp__side-k {
+    display: inline-flex; align-items: center; background: rgba(225,27,34,0.1); color: #e11b22;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 1.14rem;
+    padding: 0.4rem 0.8rem; border-radius: 999px; align-self: flex-start; margin: 0 0 1.1rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__side-h {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(1.8rem, 2.8vw, 2.3rem); line-height: 1.05; margin: 0 0 0.9rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__side-p { font-size: 1.5rem; line-height: 1.6; color: #4a4a4e; margin: 0 0 1.6rem; }
+  .n-abp-{{ section.id }} .n-abp__link {
+    display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none; color: #e11b22;
+    font-weight: 700; font-size: 1.5rem; margin-top: auto; transition: gap 0.15s ease;
+  }
+  .n-abp-{{ section.id }} .n-abp__link:hover { gap: 0.8rem; }
+  .n-abp-{{ section.id }} .n-abp__link svg { width: 16px; height: 16px; }
+
+  /* booking strip */
+  .n-abp-{{ section.id }} .n-abp__strip {
+    margin-top: clamp(4rem, 7vw, 6rem); background: #101114; border-radius: 18px;
+    padding: clamp(2.4rem, 4vw, 3.4rem) clamp(2rem, 4vw, 3.4rem);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.6rem 2.4rem;
+  }
+  .n-abp-{{ section.id }} .n-abp__strip-t {
+    font-family: var(--font-heading-family); color: #fff; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; margin: 0;
+  }
+  .n-abp-{{ section.id }} .n-abp__strip-s { color: rgba(255,255,255,0.66); font-size: 1.5rem; margin: 0.6rem 0 0; }
+  .n-abp-{{ section.id }} .n-abp__strip-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+  .n-abp-{{ section.id }} .n-abp__sbtn {
+    display: inline-flex; align-items: center; justify-content: center; padding: 1rem 1.9rem; font-weight: 700;
+    font-size: 1.52rem; letter-spacing: 0.02em; text-decoration: none; border-radius: 3px;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .n-abp-{{ section.id }} .n-abp__sbtn--primary { background: #e11b22; color: #fff; }
+  .n-abp-{{ section.id }} .n-abp__sbtn--primary:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-abp-{{ section.id }} .n-abp__sbtn--ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
+  .n-abp-{{ section.id }} .n-abp__sbtn--ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  @media (max-width: 900px) {
+    .n-abp-{{ section.id }} .n-abp__wrap { padding: 0 2rem; }
+    .n-abp-{{ section.id }} .n-abp__story { grid-template-columns: 1fr; gap: 2.6rem; }
+    .n-abp-{{ section.id }} .n-abp__media { max-width: 460px; }
+    .n-abp-{{ section.id }} .n-abp__grid { grid-template-columns: 1fr 1fr; }
+    .n-abp-{{ section.id }} .n-abp__split { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .n-abp-{{ section.id }} .n-abp__list { grid-template-columns: 1fr; }
+    .n-abp-{{ section.id }} .n-abp__grid { grid-template-columns: 1fr; }
+    .n-abp-{{ section.id }} .n-abp__strip { flex-direction: column; align-items: flex-start; }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+  assign arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>'
+-%}
+
+<div class="n-abp-{{ section.id }}">
+  <div class="n-abp__wrap">
+
+    {%- comment -%} 1. STORY {%- endcomment -%}
+    <div class="n-abp__story">
+      <div class="n-abp__media">
+        <span class="n-abp__accent" aria-hidden="true"></span>
+        <div class="n-abp__img">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(max-width: 900px) 90vw, 45vw', widths: '500, 750, 1000, 1200' }}
+          {%- else -%}
+            <img src="{{ section.settings.fallback_image | default: 'niche-about.jpg' | asset_url }}" alt="Inside the Niche Automotive workshop in Sunshine West" loading="lazy" width="1000" height="1250">
+          {%- endif -%}
+        </div>
+        {%- if section.settings.badge_text != blank -%}
+          <div class="n-abp__badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15.5 9.5"/></svg>
+            <span>{{ section.settings.badge_text | escape }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="n-abp__body">
+        {%- if section.settings.eyebrow != blank -%}<span class="n-abp__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
+        {%- if section.settings.title != blank -%}<h2 class="n-abp__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+        {%- if section.settings.body1 != blank -%}<p class="n-abp__p">{{ section.settings.body1 | escape }}</p>{%- endif -%}
+        {%- if section.settings.body2 != blank -%}<p class="n-abp__p">{{ section.settings.body2 | escape }}</p>{%- endif -%}
+        {%- if section.settings.body3 != blank -%}<p class="n-abp__p">{{ section.settings.body3 | escape }}</p>{%- endif -%}
+
+        {%- assign points = section.settings.points | split: '|' -%}
+        {%- if section.settings.points != blank -%}
+          <ul class="n-abp__list">
+            {%- for p in points -%}
+              <li>{{ tick }}<span>{{ p | strip | escape }}</span></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="n-abp__foot">
+          {%- if section.settings.signature_name != blank -%}
+            <div class="n-abp__sign">
+              <div>
+                <b>{{ section.settings.signature_name | escape }}</b>
+                {%- if section.settings.signature_role != blank -%}<span>{{ section.settings.signature_role | escape }}</span>{%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.button_label != blank -%}
+            <a class="n-abp__btn" href="{{ section.settings.button_link | default: '/pages/contact' }}">{{ section.settings.button_label | escape }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} 2. VALUES {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="n-abp__values">
+        <div class="n-abp__vhead">
+          {%- if section.settings.values_eyebrow != blank -%}<span class="n-abp__eyebrow">{{ section.settings.values_eyebrow | escape }}</span>{%- endif -%}
+          {%- if section.settings.values_title != blank -%}<h2 class="n-abp__vtitle">{{ section.settings.values_title | escape }}</h2>{%- endif -%}
+          {%- if section.settings.values_lead != blank -%}<p class="n-abp__vlead">{{ section.settings.values_lead | escape }}</p>{%- endif -%}
+        </div>
+        <div class="n-abp__grid">
+          {%- for block in section.blocks -%}
+            <div class="n-abp__card" {{ block.shopify_attributes }}>
+              <span class="n-abp__ico">
+                {%- case block.settings.icon -%}
+                  {%- when 'wrench' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2 2.6-2.6z"/></svg>
+                  {%- when 'car' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5.2A2 2 0 0 1 6.9 6.5h10.2A2 2 0 0 1 19 7.8L21 13"/><path d="M3 13h18v4H3z"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg>
+                  {%- when 'pin' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  {%- when 'gauge' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l4.5-2.8"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+                  {%- when 'clock' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+                  {%- when 'shield' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15.5 9.5"/></svg>
+                  {%- when 'engine' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-2h2V9h4V7h4v2h3l2 2v2h-2v3a2 2 0 0 1-2 2H8l-2-2H4z"/><path d="M14 9V7h3"/></svg>
+                  {%- else -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><line x1="7" y1="7" x2="7" y2="7"/></svg>
+                {%- endcase -%}
+              </span>
+              {%- if block.settings.title != blank -%}<h3 class="n-abp__ctitle">{{ block.settings.title | escape }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<p class="n-abp__ctext">{{ block.settings.text | escape }}</p>{%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} 3. TWO SIDES {%- endcomment -%}
+    {%- if section.settings.side1_title != blank or section.settings.side2_title != blank -%}
+      <div class="n-abp__sides">
+        <div class="n-abp__vhead">
+          {%- if section.settings.sides_eyebrow != blank -%}<span class="n-abp__eyebrow">{{ section.settings.sides_eyebrow | escape }}</span>{%- endif -%}
+          {%- if section.settings.sides_title != blank -%}<h2 class="n-abp__vtitle">{{ section.settings.sides_title | escape }}</h2>{%- endif -%}
+          {%- if section.settings.sides_lead != blank -%}<p class="n-abp__vlead">{{ section.settings.sides_lead | escape }}</p>{%- endif -%}
+        </div>
+        <div class="n-abp__split">
+          {%- if section.settings.side1_title != blank -%}
+            <div class="n-abp__side">
+              {%- if section.settings.side1_kicker != blank -%}<span class="n-abp__side-k">{{ section.settings.side1_kicker | escape }}</span>{%- endif -%}
+              <h3 class="n-abp__side-h">{{ section.settings.side1_title | escape }}</h3>
+              {%- if section.settings.side1_text != blank -%}<p class="n-abp__side-p">{{ section.settings.side1_text | escape }}</p>{%- endif -%}
+              {%- if section.settings.side1_link_label != blank -%}
+                <a class="n-abp__link" href="{{ section.settings.side1_link | default: '/pages/services' }}">{{ section.settings.side1_link_label | escape }}{{ arrow }}</a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.side2_title != blank -%}
+            <div class="n-abp__side">
+              {%- if section.settings.side2_kicker != blank -%}<span class="n-abp__side-k">{{ section.settings.side2_kicker | escape }}</span>{%- endif -%}
+              <h3 class="n-abp__side-h">{{ section.settings.side2_title | escape }}</h3>
+              {%- if section.settings.side2_text != blank -%}<p class="n-abp__side-p">{{ section.settings.side2_text | escape }}</p>{%- endif -%}
+              {%- if section.settings.side2_link_label != blank -%}
+                <a class="n-abp__link" href="{{ section.settings.side2_link | default: '/collections/all' }}">{{ section.settings.side2_link_label | escape }}{{ arrow }}</a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} BOOKING STRIP {%- endcomment -%}
+    {%- if section.settings.show_strip -%}
+      <div class="n-abp__strip">
+        <div>
+          {%- if section.settings.strip_title != blank -%}<p class="n-abp__strip-t">{{ section.settings.strip_title | escape }}</p>{%- endif -%}
+          {%- if section.settings.strip_sub != blank -%}<p class="n-abp__strip-s">{{ section.settings.strip_sub | escape }}</p>{%- endif -%}
+        </div>
+        <div class="n-abp__strip-actions">
+          {%- if section.settings.strip_btn_label != blank -%}
+            <a class="n-abp__sbtn n-abp__sbtn--primary" href="{{ section.settings.strip_btn_link | default: '/pages/contact' }}">{{ section.settings.strip_btn_label | escape }}</a>
+          {%- endif -%}
+          {%- if section.settings.phone != blank -%}
+            <a class="n-abp__sbtn n-abp__sbtn--ghost" href="tel:{{ section.settings.phone | remove: ' ' }}">Call {{ section.settings.phone | escape }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche About Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "header", "content": "Story" },
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty to use the baked workshop photo below." },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "default": "niche-about.jpg" },
+    { "type": "text", "id": "badge_text", "label": "Floating badge text", "default": "Local Sunshine West workshop" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Story" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Proper Mechanical Work, Done Locally" },
+    { "type": "textarea", "id": "body1", "label": "Paragraph 1", "default": "Niche Automotive is an independent workshop in Sunshine West, built on a simple idea - do the job properly, charge a fair price, and give people straight answers about their car." },
+    { "type": "textarea", "id": "body2", "label": "Paragraph 2", "default": "From routine log book servicing through to performance upgrades, engine builds, conversions and full restorations, we look after all makes and models under one roof. Whatever you drive, you get honest advice and quality work you can rely on." },
+    { "type": "textarea", "id": "body3", "label": "Paragraph 3", "default": "Alongside the workshop, we stock a growing range of quality second-hand parts, so whether you need a car booked in or a hard-to-find part tracked down, you're in the right place." },
+    { "type": "text", "id": "points", "label": "Checklist (separate with | )", "default": "All makes & models | Fixed, upfront pricing | Warranty-safe servicing | Honest advice, every time" },
+    { "type": "text", "id": "signature_name", "label": "Signature name", "default": "Gorgi Niceski" },
+    { "type": "text", "id": "signature_role", "label": "Signature role", "default": "Director, Niche Automotive" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Book Your Car In" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "header", "content": "Values grid" },
+    { "type": "text", "id": "values_eyebrow", "label": "Values eyebrow", "default": "What We Stand For" },
+    { "type": "text", "id": "values_title", "label": "Values heading", "default": "The Way We Work" },
+    { "type": "textarea", "id": "values_lead", "label": "Values lead", "default": "No shortcuts, no surprises. A few things we hold ourselves to on every car that comes through the door." },
+    { "type": "header", "content": "The workshop & the parts store" },
+    { "type": "text", "id": "sides_eyebrow", "label": "Eyebrow", "default": "Two Ways We Help" },
+    { "type": "text", "id": "sides_title", "label": "Heading", "default": "One Workshop, Two Sides" },
+    { "type": "textarea", "id": "sides_lead", "label": "Lead", "default": "Book your car in for a service or a build, or shop the second-hand parts store - it's all Niche." },
+    { "type": "text", "id": "side1_kicker", "label": "Card 1 tag", "default": "The Workshop" },
+    { "type": "text", "id": "side1_title", "label": "Card 1 heading", "default": "Servicing to Full Rebuilds" },
+    { "type": "textarea", "id": "side1_text", "label": "Card 1 text", "default": "Log book and general servicing, performance upgrades, engine builds, conversions and restorations - all done in-house on all makes and models." },
+    { "type": "text", "id": "side1_link_label", "label": "Card 1 link label", "default": "View Our Services" },
+    { "type": "url", "id": "side1_link", "label": "Card 1 link" },
+    { "type": "text", "id": "side2_kicker", "label": "Card 2 tag", "default": "The Parts Store" },
+    { "type": "text", "id": "side2_title", "label": "Card 2 heading", "default": "Quality Second-Hand Parts" },
+    { "type": "textarea", "id": "side2_text", "label": "Card 2 text", "default": "A growing range of quality used parts, added as they come in. Chasing something specific? We can help track down hard-to-find items." },
+    { "type": "text", "id": "side2_link_label", "label": "Card 2 link label", "default": "Shop Parts" },
+    { "type": "url", "id": "side2_link", "label": "Card 2 link" },
+    { "type": "header", "content": "Booking strip" },
+    { "type": "checkbox", "id": "show_strip", "label": "Show booking strip", "default": true },
+    { "type": "text", "id": "strip_title", "label": "Strip heading", "default": "Ready to Book In?" },
+    { "type": "text", "id": "strip_sub", "label": "Strip subtext", "default": "Tell us the make, model and what's going on, and we'll sort you out." },
+    { "type": "text", "id": "strip_btn_label", "label": "Strip button label", "default": "Send an Enquiry" },
+    { "type": "url", "id": "strip_btn_link", "label": "Strip button link" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "0411 019 935" },
+    { "type": "header", "content": "Section" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding top", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding bottom", "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "tag",
+          "options": [
+            { "value": "tag", "label": "Price tag" },
+            { "value": "wrench", "label": "Wrench" },
+            { "value": "car", "label": "Car" },
+            { "value": "pin", "label": "Map pin" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "gauge", "label": "Gauge" },
+            { "value": "engine", "label": "Engine" },
+            { "value": "clock", "label": "Clock" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Honest, Upfront Pricing" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "A clear quote before any work starts. No surprises and no padded invoices - just a fair price for the job." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Niche About Page",
+      "blocks": [
+        { "type": "value" },
+        { "type": "value" },
+        { "type": "value" },
+        { "type": "value" }
+      ]
+    }
+  ]
+}
+{% endschema %}
