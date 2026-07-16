@@ -242,10 +242,10 @@
 
     {%- comment -%} Shop Parts mega {%- endcomment -%}
     <li class="nmm-parent">
-      <button type="button" class="header__menu-item list-menu__item link focus-inset nmm-trigger nmm-trigger--parts" aria-expanded="false"{% if nmm_store %} aria-current="page"{% endif %}>
+      <a href="/collections/all" class="header__menu-item list-menu__item link focus-inset nmm-trigger nmm-trigger--parts" aria-haspopup="true" aria-expanded="false"{% if nmm_store %} aria-current="page"{% endif %}>
         <span>Shop Parts</span>
         {{- 'icon-caret.svg' | inline_asset_content -}}
-      </button>
+      </a>
       <div class="nmm-content motion-reduce">
         <div class="nmm-inner">
           <div>
