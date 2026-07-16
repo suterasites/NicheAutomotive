@@ -1,0 +1,335 @@
+{%- comment -%}
+  Niche Automotive - Single service page body. (build 1)
+  One reusable section, configured per service via its page.service-*.json template.
+  Blocks:
+    1. Overview - service photo (red accent corner) beside eyebrow/heading/copy,
+       a checklist and a book/call CTA pair.
+    2. Highlights - 3-up grid of editable "what's involved / why us" blocks (icon + title + text).
+    3. Other services - chips linking to the other four service pages (current one skipped)
+       + a "View all services" link back to the overview.
+  Followed by a dark booking strip. Niche red palette, flat (no glows).
+  All CSS scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-svd-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }}; color: #3a3a3d;
+  }
+  .n-svd-{{ section.id }} .n-svd__wrap { max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem; }
+  .n-svd-{{ section.id }} .n-svd__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1.18rem; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: #e11b22; margin: 0 0 1rem;
+  }
+  .n-svd-{{ section.id }} .n-svd__eyebrow::before { content: ""; width: 30px; height: 2px; background: #e11b22; }
+
+  /* 1. Overview */
+  .n-svd-{{ section.id }} .n-svd__overview {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3.6rem; align-items: center;
+  }
+  .n-svd-{{ section.id }} .n-svd__media { position: relative; }
+  .n-svd-{{ section.id }} .n-svd__img {
+    position: relative; z-index: 1; border-radius: 16px; overflow: hidden; aspect-ratio: 4 / 3;
+    box-shadow: 0 26px 54px rgba(0,0,0,0.16);
+  }
+  .n-svd-{{ section.id }} .n-svd__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .n-svd-{{ section.id }} .n-svd__media::before {
+    content: ""; position: absolute; z-index: 0; width: 44%; height: 46%; border-radius: 14px;
+    top: -16px; left: -16px; background: linear-gradient(135deg, #e11b22 0%, #a5121a 100%);
+  }
+  .n-svd-{{ section.id }} .n-svd__title {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.03; margin: 0 0 1.2rem;
+  }
+  .n-svd-{{ section.id }} .n-svd__p { font-size: 1.58rem; line-height: 1.64; color: #4a4a4e; margin: 0 0 1.1rem; max-width: 54ch; }
+  .n-svd-{{ section.id }} .n-svd__list {
+    list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 1.4rem;
+  }
+  .n-svd-{{ section.id }} .n-svd__list li { display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 600; font-size: 1.48rem; color: #1c1c1f; }
+  .n-svd-{{ section.id }} .n-svd__list svg { flex: 0 0 auto; width: 19px; height: 19px; margin-top: 1px; color: #e11b22; }
+  .n-svd-{{ section.id }} .n-svd__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+  .n-svd-{{ section.id }} .n-svd__btn {
+    display: inline-flex; align-items: center; justify-content: center; padding: 1rem 1.9rem; font-weight: 700;
+    font-size: 1.52rem; letter-spacing: 0.02em; text-decoration: none; border-radius: 3px;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .n-svd-{{ section.id }} .n-svd__btn--primary { background: #e11b22; color: #fff; }
+  .n-svd-{{ section.id }} .n-svd__btn--primary:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-svd-{{ section.id }} .n-svd__btn--ghost { background: transparent; color: #0f0f0f; border: 1.5px solid #d7d8dc; }
+  .n-svd-{{ section.id }} .n-svd__btn--ghost:hover { border-color: #0f0f0f; transform: translateY(-2px); }
+
+  /* 2. Highlights */
+  .n-svd-{{ section.id }} .n-svd__hl { margin-top: clamp(4.5rem, 8vw, 7rem); }
+  .n-svd-{{ section.id }} .n-svd__hhead { max-width: 60ch; margin: 0 0 2.6rem; }
+  .n-svd-{{ section.id }} .n-svd__htitle {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.005em; font-size: clamp(2rem, 3.6vw, 2.9rem); line-height: 1.02; margin: 0 0 0.9rem;
+  }
+  .n-svd-{{ section.id }} .n-svd__hlead { font-size: 1.56rem; line-height: 1.6; color: #4a4a4e; margin: 0; }
+  .n-svd-{{ section.id }} .n-svd__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .n-svd-{{ section.id }} .n-svd__card {
+    background: #fff; border: 1px solid #e6e7ea; border-radius: 14px; padding: 1.9rem 1.7rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+  }
+  .n-svd-{{ section.id }} .n-svd__ico {
+    display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px;
+    border-radius: 11px; background: rgba(225,27,34,0.1); color: #e11b22; margin: 0 0 1.2rem;
+  }
+  .n-svd-{{ section.id }} .n-svd__ico svg { width: 24px; height: 24px; }
+  .n-svd-{{ section.id }} .n-svd__ctitle {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: 1.62rem; line-height: 1.1; margin: 0 0 0.7rem;
+  }
+  .n-svd-{{ section.id }} .n-svd__ctext { font-size: 1.44rem; line-height: 1.55; color: #55555a; margin: 0; }
+
+  /* 3. Other services */
+  .n-svd-{{ section.id }} .n-svd__other { margin-top: clamp(4.5rem, 8vw, 7rem); }
+  .n-svd-{{ section.id }} .n-svd__ohead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.8rem 1.6rem; margin: 0 0 1.6rem; }
+  .n-svd-{{ section.id }} .n-svd__otitle {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.005em; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.05; margin: 0;
+  }
+  .n-svd-{{ section.id }} .n-svd__all {
+    display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none; color: #e11b22;
+    font-weight: 700; font-size: 1.46rem; transition: gap 0.15s ease;
+  }
+  .n-svd-{{ section.id }} .n-svd__all:hover { gap: 0.8rem; }
+  .n-svd-{{ section.id }} .n-svd__all svg { width: 16px; height: 16px; }
+  .n-svd-{{ section.id }} .n-svd__chips { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .n-svd-{{ section.id }} .n-svd__chip {
+    display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;
+    font-family: var(--font-heading-family); font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em;
+    font-size: 1.34rem; color: #0f0f0f; background: #f5f6f8; border: 1px solid #e6e7ea;
+    padding: 0.72rem 1.2rem; border-radius: 999px;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .n-svd-{{ section.id }} .n-svd__chip svg { width: 14px; height: 14px; opacity: 0.6; transition: transform 0.15s ease, opacity 0.15s ease; }
+  .n-svd-{{ section.id }} .n-svd__chip:hover { background: #e11b22; color: #fff; border-color: #e11b22; }
+  .n-svd-{{ section.id }} .n-svd__chip:hover svg { opacity: 1; transform: translateX(3px); }
+
+  /* booking strip */
+  .n-svd-{{ section.id }} .n-svd__strip {
+    margin-top: clamp(4rem, 7vw, 6rem); background: #101114; border-radius: 18px;
+    padding: clamp(2.4rem, 4vw, 3.4rem) clamp(2rem, 4vw, 3.4rem);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.6rem 2.4rem;
+  }
+  .n-svd-{{ section.id }} .n-svd__strip-t {
+    font-family: var(--font-heading-family); color: #fff; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; margin: 0;
+  }
+  .n-svd-{{ section.id }} .n-svd__strip-s { color: rgba(255,255,255,0.66); font-size: 1.5rem; margin: 0.6rem 0 0; }
+  .n-svd-{{ section.id }} .n-svd__strip-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+  .n-svd-{{ section.id }} .n-svd__sbtn {
+    display: inline-flex; align-items: center; justify-content: center; padding: 1rem 1.9rem; font-weight: 700;
+    font-size: 1.52rem; letter-spacing: 0.02em; text-decoration: none; border-radius: 3px;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .n-svd-{{ section.id }} .n-svd__sbtn--primary { background: #e11b22; color: #fff; }
+  .n-svd-{{ section.id }} .n-svd__sbtn--primary:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-svd-{{ section.id }} .n-svd__sbtn--ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
+  .n-svd-{{ section.id }} .n-svd__sbtn--ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  @media (max-width: 900px) {
+    .n-svd-{{ section.id }} .n-svd__wrap { padding: 0 2rem; }
+    .n-svd-{{ section.id }} .n-svd__overview { grid-template-columns: 1fr; gap: 2.2rem; }
+    .n-svd-{{ section.id }} .n-svd__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .n-svd-{{ section.id }} .n-svd__list { grid-template-columns: 1fr; }
+    .n-svd-{{ section.id }} .n-svd__strip { flex-direction: column; align-items: flex-start; }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+  assign arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>'
+-%}
+
+<div class="n-svd-{{ section.id }}">
+  <div class="n-svd__wrap">
+
+    {%- comment -%} 1. OVERVIEW {%- endcomment -%}
+    <div class="n-svd__overview">
+      <div class="n-svd__media">
+        <div class="n-svd__img">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'eager', sizes: '(max-width: 900px) 90vw, 45vw', widths: '500, 750, 1000, 1200' }}
+          {%- else -%}
+            <img src="{{ section.settings.fallback_image | default: 'niche-services-feature.jpg' | asset_url }}" alt="{{ section.settings.heading | escape }} at Niche Automotive" loading="eager" width="1000" height="750">
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="n-svd__body">
+        {%- if section.settings.eyebrow != blank -%}<span class="n-svd__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h1 class="n-svd__title">{{ section.settings.heading | escape }}</h1>{%- endif -%}
+        {%- if section.settings.body1 != blank -%}<p class="n-svd__p">{{ section.settings.body1 | escape }}</p>{%- endif -%}
+        {%- if section.settings.body2 != blank -%}<p class="n-svd__p">{{ section.settings.body2 | escape }}</p>{%- endif -%}
+
+        {%- assign points = section.settings.points | split: '|' -%}
+        {%- if section.settings.points != blank -%}
+          <ul class="n-svd__list">
+            {%- for p in points -%}<li>{{ tick }}<span>{{ p | strip | escape }}</span></li>{%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="n-svd__actions">
+          {%- if section.settings.cta_label != blank -%}
+            <a class="n-svd__btn n-svd__btn--primary" href="{{ section.settings.cta_link | default: '/pages/contact' }}">{{ section.settings.cta_label | escape }}</a>
+          {%- endif -%}
+          {%- if section.settings.phone != blank -%}
+            <a class="n-svd__btn n-svd__btn--ghost" href="tel:{{ section.settings.phone | remove: ' ' }}">Call {{ section.settings.phone | escape }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} 2. HIGHLIGHTS {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="n-svd__hl">
+        <div class="n-svd__hhead">
+          {%- if section.settings.highlights_eyebrow != blank -%}<span class="n-svd__eyebrow">{{ section.settings.highlights_eyebrow | escape }}</span>{%- endif -%}
+          {%- if section.settings.highlights_title != blank -%}<h2 class="n-svd__htitle">{{ section.settings.highlights_title | escape }}</h2>{%- endif -%}
+          {%- if section.settings.highlights_lead != blank -%}<p class="n-svd__hlead">{{ section.settings.highlights_lead | escape }}</p>{%- endif -%}
+        </div>
+        <div class="n-svd__grid">
+          {%- for block in section.blocks -%}
+            <div class="n-svd__card" {{ block.shopify_attributes }}>
+              <span class="n-svd__ico">
+                {%- case block.settings.icon -%}
+                  {%- when 'wrench' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2 2.6-2.6z"/></svg>
+                  {%- when 'car' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5.2A2 2 0 0 1 6.9 6.5h10.2A2 2 0 0 1 19 7.8L21 13"/><path d="M3 13h18v4H3z"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg>
+                  {%- when 'pin' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  {%- when 'gauge' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l4.5-2.8"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+                  {%- when 'clock' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+                  {%- when 'shield' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15.5 9.5"/></svg>
+                  {%- when 'engine' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-2h2V9h4V7h4v2h3l2 2v2h-2v3a2 2 0 0 1-2 2H8l-2-2H4z"/><path d="M14 9V7h3"/></svg>
+                  {%- else -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><line x1="7" y1="7" x2="7" y2="7"/></svg>
+                {%- endcase -%}
+              </span>
+              {%- if block.settings.title != blank -%}<h3 class="n-svd__ctitle">{{ block.settings.title | escape }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<p class="n-svd__ctext">{{ block.settings.text | escape }}</p>{%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} 3. OTHER SERVICES {%- endcomment -%}
+    {%- if section.settings.show_related -%}
+      {%- assign svc_handles = 'servicing,performance-upgrades,engine-builds,engine-conversions,restoration' | split: ',' -%}
+      {%- assign svc_titles = 'Servicing,Performance Upgrades,Engine Builds & Rebuilds,Engine Conversions,Restoration' | split: ',' -%}
+      <div class="n-svd__other">
+        <div class="n-svd__ohead">
+          {%- if section.settings.related_title != blank -%}<h2 class="n-svd__otitle">{{ section.settings.related_title | escape }}</h2>{%- endif -%}
+          <a class="n-svd__all" href="/pages/services">View all services {{ arrow }}</a>
+        </div>
+        <div class="n-svd__chips">
+          {%- for h in svc_handles -%}
+            {%- unless h == section.settings.current_service -%}
+              <a class="n-svd__chip" href="/pages/{{ h }}">{{ svc_titles[forloop.index0] }} {{ arrow }}</a>
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} BOOKING STRIP {%- endcomment -%}
+    {%- if section.settings.show_strip -%}
+      <div class="n-svd__strip">
+        <div>
+          {%- if section.settings.strip_title != blank -%}<p class="n-svd__strip-t">{{ section.settings.strip_title | escape }}</p>{%- endif -%}
+          {%- if section.settings.strip_sub != blank -%}<p class="n-svd__strip-s">{{ section.settings.strip_sub | escape }}</p>{%- endif -%}
+        </div>
+        <div class="n-svd__strip-actions">
+          {%- if section.settings.strip_btn_label != blank -%}
+            <a class="n-svd__sbtn n-svd__sbtn--primary" href="{{ section.settings.strip_btn_link | default: '/pages/contact' }}">{{ section.settings.strip_btn_label | escape }}</a>
+          {%- endif -%}
+          {%- if section.settings.phone != blank -%}
+            <a class="n-svd__sbtn n-svd__sbtn--ghost" href="tel:{{ section.settings.phone | remove: ' ' }}">Call {{ section.settings.phone | escape }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche Service Detail",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "header", "content": "Overview" },
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty to use the baked fallback below." },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "default": "niche-services-feature.jpg" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Workshop Service" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Servicing" },
+    { "type": "textarea", "id": "body1", "label": "Paragraph 1" },
+    { "type": "textarea", "id": "body2", "label": "Paragraph 2" },
+    { "type": "text", "id": "points", "label": "Checklist (separate with | )" },
+    { "type": "text", "id": "cta_label", "label": "Primary button label", "default": "Book a Service" },
+    { "type": "url", "id": "cta_link", "label": "Primary button link" },
+    { "type": "text", "id": "phone", "label": "Phone (for Call button)", "default": "0411 019 935" },
+    { "type": "header", "content": "Highlights" },
+    { "type": "text", "id": "highlights_eyebrow", "label": "Highlights eyebrow", "default": "Why Niche" },
+    { "type": "text", "id": "highlights_title", "label": "Highlights heading", "default": "What You Get" },
+    { "type": "textarea", "id": "highlights_lead", "label": "Highlights lead" },
+    { "type": "header", "content": "Other services" },
+    { "type": "checkbox", "id": "show_related", "label": "Show other-services links", "default": true },
+    { "type": "text", "id": "related_title", "label": "Heading", "default": "Explore Our Other Services" },
+    { "type": "select", "id": "current_service", "label": "This service (hidden from the list)", "default": "servicing",
+      "options": [
+        { "value": "servicing", "label": "Servicing" },
+        { "value": "performance-upgrades", "label": "Performance Upgrades" },
+        { "value": "engine-builds", "label": "Engine Builds & Rebuilds" },
+        { "value": "engine-conversions", "label": "Engine Conversions" },
+        { "value": "restoration", "label": "Restoration" }
+      ]
+    },
+    { "type": "header", "content": "Booking strip" },
+    { "type": "checkbox", "id": "show_strip", "label": "Show booking strip", "default": true },
+    { "type": "text", "id": "strip_title", "label": "Strip heading", "default": "Ready to Book In?" },
+    { "type": "text", "id": "strip_sub", "label": "Strip subtext", "default": "Tell us the make, model and what's going on, and we'll sort you out." },
+    { "type": "text", "id": "strip_btn_label", "label": "Strip button label", "default": "Send an Enquiry" },
+    { "type": "url", "id": "strip_btn_link", "label": "Strip button link" },
+    { "type": "header", "content": "Section" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding top", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding bottom", "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Highlight",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "shield",
+          "options": [
+            { "value": "shield", "label": "Shield" },
+            { "value": "wrench", "label": "Wrench" },
+            { "value": "gauge", "label": "Gauge" },
+            { "value": "engine", "label": "Engine" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "car", "label": "Car" },
+            { "value": "tag", "label": "Price tag" },
+            { "value": "pin", "label": "Map pin" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Warranty Safe" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "We service to the manufacturer's schedule, so your new car warranty stays intact." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Niche Service Detail",
+      "blocks": [
+        { "type": "highlight" },
+        { "type": "highlight" },
+        { "type": "highlight" }
+      ]
+    }
+  ]
+}
+{% endschema %}
