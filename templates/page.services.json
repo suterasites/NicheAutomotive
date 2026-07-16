@@ -20,8 +20,8 @@
             "title": "Servicing",
             "text": "Keep your car running right with scheduled log book and general servicing. We follow the manufacturer's schedule so your new car warranty stays intact, and give you a straight rundown of anything that needs attention.",
             "features": "Log book & general servicing | Warranty-safe, manufacturer schedule | All makes and models | Clear, upfront pricing",
-            "cta_label": "Book a Service",
-            "cta_link": "/pages/contact"
+            "cta_label": "Learn More",
+            "cta_link": "/pages/servicing"
           }
         },
         "s2": {
@@ -31,8 +31,8 @@
             "title": "Performance Upgrades",
             "text": "Get more out of your car with the right upgrades for the way you drive. From bolt-ons to tuning and supporting mods, we put together a package that is reliable, streetable and does what you actually want.",
             "features": "Bolt-on upgrades & tuning | Intake, exhaust & cooling | Reliable, streetable setups | Built to your goals & budget",
-            "cta_label": "Enquire About Upgrades",
-            "cta_link": "/pages/contact"
+            "cta_label": "Learn More",
+            "cta_link": "/pages/performance-upgrades"
           }
         },
         "s3": {
@@ -42,8 +42,8 @@
             "title": "Engine Builds & Rebuilds",
             "text": "Full engine builds and rebuilds done properly, from worn-out daily drivers to serious performance builds. Measured, assembled and set up to spec so it lasts and performs the way it should.",
             "features": "Full builds & rebuilds | Performance & standard specs | Precise, measured assembly | Built to last",
-            "cta_label": "Talk to Us About a Build",
-            "cta_link": "/pages/contact"
+            "cta_label": "Learn More",
+            "cta_link": "/pages/engine-builds"
           }
         },
         "s4": {
@@ -53,8 +53,8 @@
             "title": "Engine Conversions",
             "text": "Dropping a different engine into your project? We handle conversions end to end, from mounts and wiring to cooling and tuning, so the swap runs clean, safe and reliable.",
             "features": "Complete engine swaps | Mounts, wiring & plumbing | Cooling & fuelling sorted | Tuned and road-ready",
-            "cta_label": "Plan Your Conversion",
-            "cta_link": "/pages/contact"
+            "cta_label": "Learn More",
+            "cta_link": "/pages/engine-conversions"
           }
         },
         "s5": {
@@ -64,8 +64,8 @@
             "title": "Restoration",
             "text": "Bringing an old or unfinished project back to life. Mechanical restoration done with care and patience so your car looks, drives and feels the way it was meant to.",
             "features": "Full & partial restorations | Mechanical rebuilds | Careful, patient workmanship | Project cars welcome",
-            "cta_label": "Start Your Restoration",
-            "cta_link": "/pages/contact"
+            "cta_label": "Learn More",
+            "cta_link": "/pages/restoration"
           }
         }
       },

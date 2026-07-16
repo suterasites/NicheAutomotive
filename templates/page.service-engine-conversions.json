@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Workshop Service",
+        "heading": "Engine",
+        "heading_accent": "Conversions",
+        "subtext": "Complete engine swaps handled end to end - mounts, wiring, cooling and tuning - so it runs clean, safe and reliable."
+      }
+    },
+    "detail": {
+      "type": "niche-service-detail",
+      "blocks": {
+        "h1": { "type": "highlight", "settings": { "icon": "wrench", "title": "End To End", "text": "Mounts, wiring, plumbing, cooling and tuning - the whole swap handled in-house." } },
+        "h2": { "type": "highlight", "settings": { "icon": "shield", "title": "Clean & Safe", "text": "Done properly so it's reliable and road-ready, not a headache down the track." } },
+        "h3": { "type": "highlight", "settings": { "icon": "gauge", "title": "Tuned To Suit", "text": "The new combination tuned so it runs right, drives well and stays dependable." } }
+      },
+      "block_order": ["h1", "h2", "h3"],
+      "settings": {
+        "fallback_image": "niche-svc-repairs.jpg",
+        "eyebrow": "Engine Conversions",
+        "heading": "Swaps Done Properly",
+        "body1": "Dropping a different engine into your project? We handle conversions end to end, from mounts and wiring to cooling and tuning, so the swap runs clean, safe and reliable.",
+        "body2": "We sort the details that make or break a swap - mounts, wiring, plumbing, cooling and tuning - so it drives like it was meant to be there.",
+        "points": "Complete engine swaps | Mounts, wiring & plumbing | Cooling & fuelling sorted | Tuned and road-ready",
+        "cta_label": "Plan Your Conversion",
+        "cta_link": "/pages/contact",
+        "phone": "0411 019 935",
+        "highlights_eyebrow": "Why Niche",
+        "highlights_title": "How We Do It",
+        "highlights_lead": "",
+        "show_related": true,
+        "related_title": "Explore Our Other Services",
+        "current_service": "engine-conversions",
+        "show_strip": true,
+        "strip_title": "Planning a Conversion?",
+        "strip_sub": "Tell us the car and the engine you want in it, and we'll map out the swap.",
+        "strip_btn_label": "Plan Your Conversion",
+        "strip_btn_link": "/pages/contact",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 80
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["header", "detail", "contact"]
+}

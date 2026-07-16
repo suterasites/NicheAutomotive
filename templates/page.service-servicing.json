@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Workshop Service",
+        "heading": "Servicing",
+        "heading_accent": "",
+        "subtext": "Log book and general servicing for all makes and models - done to the manufacturer's schedule, with honest advice and clear, upfront pricing."
+      }
+    },
+    "detail": {
+      "type": "niche-service-detail",
+      "blocks": {
+        "h1": { "type": "highlight", "settings": { "icon": "shield", "title": "Warranty Safe", "text": "We service to the manufacturer's log book schedule, so your new car warranty stays intact." } },
+        "h2": { "type": "highlight", "settings": { "icon": "tag", "title": "Upfront Pricing", "text": "You get a clear quote before we start. No surprises and no padded invoices." } },
+        "h3": { "type": "highlight", "settings": { "icon": "clock", "title": "Honest Rundown", "text": "We tell you what needs doing now and what can wait, so you can plan ahead." } }
+      },
+      "block_order": ["h1", "h2", "h3"],
+      "settings": {
+        "fallback_image": "niche-svc-logbook.jpg",
+        "eyebrow": "Log Book & General Servicing",
+        "heading": "Servicing That Keeps Your Car Right",
+        "body1": "Keep your car running right with scheduled log book and general servicing. We follow the manufacturer's schedule so your new car warranty stays intact, and give you a straight rundown of anything that needs attention.",
+        "body2": "Whatever you drive, we service all makes and models with clear, upfront pricing - no surprises when you come to collect.",
+        "points": "Log book & general servicing | Warranty-safe, manufacturer schedule | All makes and models | Clear, upfront pricing",
+        "cta_label": "Book a Service",
+        "cta_link": "/pages/contact",
+        "phone": "0411 019 935",
+        "highlights_eyebrow": "Why Niche",
+        "highlights_title": "What You Get",
+        "highlights_lead": "",
+        "show_related": true,
+        "related_title": "Explore Our Other Services",
+        "current_service": "servicing",
+        "show_strip": true,
+        "strip_title": "Due for a Service?",
+        "strip_sub": "Send through your make, model and rego and we'll book you in.",
+        "strip_btn_label": "Book a Service",
+        "strip_btn_link": "/pages/contact",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 80
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["header", "detail", "contact"]
+}

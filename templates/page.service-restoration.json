@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Workshop Service",
+        "heading": "Restoration",
+        "heading_accent": "",
+        "subtext": "Bringing an old or unfinished project back to life - mechanical restoration done with care and patience so your car drives the way it was meant to."
+      }
+    },
+    "detail": {
+      "type": "niche-service-detail",
+      "blocks": {
+        "h1": { "type": "highlight", "settings": { "icon": "clock", "title": "Care & Patience", "text": "Restoration isn't a rush job. We take the time to get the details right." } },
+        "h2": { "type": "highlight", "settings": { "icon": "engine", "title": "Mechanical Focus", "text": "Engines, driveline and running gear brought back to proper working order." } },
+        "h3": { "type": "highlight", "settings": { "icon": "car", "title": "Project Cars Welcome", "text": "Started something and run out of time or know-how? We'll help you finish it." } }
+      },
+      "block_order": ["h1", "h2", "h3"],
+      "settings": {
+        "fallback_image": "niche-services-feature.jpg",
+        "eyebrow": "Restoration",
+        "heading": "Projects Brought Back To Life",
+        "body1": "Bringing an old or unfinished project back to life. Mechanical restoration done with care and patience so your car looks, drives and feels the way it was meant to.",
+        "body2": "Whether it's a full mechanical restoration or picking up a stalled project, we take the time to do it properly.",
+        "points": "Full & partial restorations | Mechanical rebuilds | Careful, patient workmanship | Project cars welcome",
+        "cta_label": "Start Your Restoration",
+        "cta_link": "/pages/contact",
+        "phone": "0411 019 935",
+        "highlights_eyebrow": "Why Niche",
+        "highlights_title": "How We Approach It",
+        "highlights_lead": "",
+        "show_related": true,
+        "related_title": "Explore Our Other Services",
+        "current_service": "restoration",
+        "show_strip": true,
+        "strip_title": "Got a Project?",
+        "strip_sub": "Tell us about the car and where it's at, and we'll talk through the next steps.",
+        "strip_btn_label": "Start Your Restoration",
+        "strip_btn_link": "/pages/contact",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 80
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["header", "detail", "contact"]
+}

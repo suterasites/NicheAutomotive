@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Workshop Service",
+        "heading": "Engine Builds",
+        "heading_accent": "& Rebuilds",
+        "subtext": "Full engine builds and rebuilds done properly - measured, assembled and set up to spec so it lasts and performs the way it should."
+      }
+    },
+    "detail": {
+      "type": "niche-service-detail",
+      "blocks": {
+        "h1": { "type": "highlight", "settings": { "icon": "gauge", "title": "Measured & Precise", "text": "Clearances checked and set to spec, not guessed - the difference between a build that lasts and one that doesn't." } },
+        "h2": { "type": "highlight", "settings": { "icon": "engine", "title": "Standard Or Performance", "text": "From a tidy factory rebuild to a serious performance combination, built to suit." } },
+        "h3": { "type": "highlight", "settings": { "icon": "shield", "title": "Quality Parts", "text": "We use parts we trust and machining done right, so the engine holds up." } }
+      },
+      "block_order": ["h1", "h2", "h3"],
+      "settings": {
+        "fallback_image": "niche-svc-engine.jpg",
+        "eyebrow": "Engine Builds & Rebuilds",
+        "heading": "Engines Built To Last",
+        "body1": "Full engine builds and rebuilds done properly, from worn-out daily drivers to serious performance builds. Measured, assembled and set up to spec so it lasts and performs the way it should.",
+        "body2": "Every build is measured and assembled with care, using quality parts and proper machining, so you get an engine you can trust for the long haul.",
+        "points": "Full builds & rebuilds | Performance & standard specs | Precise, measured assembly | Built to last",
+        "cta_label": "Talk to Us About a Build",
+        "cta_link": "/pages/contact",
+        "phone": "0411 019 935",
+        "highlights_eyebrow": "Why Niche",
+        "highlights_title": "How We Build It",
+        "highlights_lead": "",
+        "show_related": true,
+        "related_title": "Explore Our Other Services",
+        "current_service": "engine-builds",
+        "show_strip": true,
+        "strip_title": "Planning an Engine Build?",
+        "strip_sub": "Tell us the engine and what you're chasing, and we'll talk you through it.",
+        "strip_btn_label": "Talk to Us About a Build",
+        "strip_btn_link": "/pages/contact",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 80
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["header", "detail", "contact"]
+}

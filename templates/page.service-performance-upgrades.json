@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Workshop Service",
+        "heading": "Performance",
+        "heading_accent": "Upgrades",
+        "subtext": "The right upgrades for the way you drive - reliable, streetable and built around your goals and budget."
+      }
+    },
+    "detail": {
+      "type": "niche-service-detail",
+      "blocks": {
+        "h1": { "type": "highlight", "settings": { "icon": "gauge", "title": "Built To Your Goals", "text": "Daily driver with a bit more, or a weekend weapon - we tailor the build to how you actually use the car." } },
+        "h2": { "type": "highlight", "settings": { "icon": "shield", "title": "Reliable & Streetable", "text": "Power is easy; power that lasts is the point. We keep it drivable and dependable." } },
+        "h3": { "type": "highlight", "settings": { "icon": "wrench", "title": "Supporting Mods Sorted", "text": "Cooling, fuelling and tuning matched to the upgrades, so nothing gets left behind." } }
+      },
+      "block_order": ["h1", "h2", "h3"],
+      "settings": {
+        "fallback_image": "niche-svc-performance.jpg",
+        "eyebrow": "Performance Upgrades",
+        "heading": "Get More Out Of Your Car",
+        "body1": "Get more out of your car with the right upgrades for the way you drive. From bolt-ons to tuning and supporting mods, we put together a package that is reliable, streetable and does what you actually want.",
+        "body2": "We'll talk through your goals and budget first, then build a combination that works together - not a shelf of parts that fight each other.",
+        "points": "Bolt-on upgrades & tuning | Intake, exhaust & cooling | Reliable, streetable setups | Built to your goals & budget",
+        "cta_label": "Enquire About Upgrades",
+        "cta_link": "/pages/contact",
+        "phone": "0411 019 935",
+        "highlights_eyebrow": "Why Niche",
+        "highlights_title": "How We Build It",
+        "highlights_lead": "",
+        "show_related": true,
+        "related_title": "Explore Our Other Services",
+        "current_service": "performance-upgrades",
+        "show_strip": true,
+        "strip_title": "Got a Build In Mind?",
+        "strip_sub": "Tell us your car and your goals, and we'll map out a package that suits.",
+        "strip_btn_label": "Enquire About Upgrades",
+        "strip_btn_link": "/pages/contact",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 80
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["header", "detail", "contact"]
+}
