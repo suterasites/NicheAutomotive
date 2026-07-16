@@ -1,0 +1,107 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-about.jpg",
+        "eyebrow": "Who We Are",
+        "heading": "About",
+        "heading_accent": "Niche Automotive",
+        "subtext": "An independent Sunshine West workshop built on honest advice, quality workmanship and fair, upfront pricing - for every make and model that rolls through the door."
+      }
+    },
+    "about": {
+      "type": "niche-about-page",
+      "blocks": {
+        "v1": {
+          "type": "value",
+          "settings": {
+            "icon": "tag",
+            "title": "Honest, Upfront Pricing",
+            "text": "A clear quote before any work starts. No surprises and no padded invoices - just a fair price for the job."
+          }
+        },
+        "v2": {
+          "type": "value",
+          "settings": {
+            "icon": "wrench",
+            "title": "Quality Workmanship",
+            "text": "Every job done properly and checked before it leaves. We treat every car like it's our own."
+          }
+        },
+        "v3": {
+          "type": "value",
+          "settings": {
+            "icon": "car",
+            "title": "All Makes & Models",
+            "text": "From daily drivers to weekend projects, we service, repair and build across all makes and models."
+          }
+        },
+        "v4": {
+          "type": "value",
+          "settings": {
+            "icon": "pin",
+            "title": "Local & Personal",
+            "text": "A Sunshine West workshop you can actually talk to. Deal direct with the people doing the work."
+          }
+        }
+      },
+      "block_order": ["v1", "v2", "v3", "v4"],
+      "settings": {
+        "badge_text": "Local Sunshine West workshop",
+        "eyebrow": "Our Story",
+        "title": "Proper Mechanical Work, Done Locally",
+        "body1": "Niche Automotive is an independent workshop in Sunshine West, built on a simple idea - do the job properly, charge a fair price, and give people straight answers about their car.",
+        "body2": "From routine log book servicing through to performance upgrades, engine builds, conversions and full restorations, we look after all makes and models under one roof. Whatever you drive, you get honest advice and quality work you can rely on.",
+        "body3": "Alongside the workshop, we stock a growing range of quality second-hand parts, so whether you need a car booked in or a hard-to-find part tracked down, you're in the right place.",
+        "points": "All makes & models | Fixed, upfront pricing | Warranty-safe servicing | Honest advice, every time",
+        "signature_name": "Gorgi Niceski",
+        "signature_role": "Director, Niche Automotive",
+        "button_label": "Book Your Car In",
+        "button_link": "/pages/contact",
+        "values_eyebrow": "What We Stand For",
+        "values_title": "The Way We Work",
+        "values_lead": "No shortcuts, no surprises. A few things we hold ourselves to on every car that comes through the door.",
+        "sides_eyebrow": "Two Ways We Help",
+        "sides_title": "One Workshop, Two Sides",
+        "sides_lead": "Book your car in for a service or a build, or shop the second-hand parts store - it's all Niche.",
+        "side1_kicker": "The Workshop",
+        "side1_title": "Servicing to Full Rebuilds",
+        "side1_text": "Log book and general servicing, performance upgrades, engine builds, conversions and restorations - all done in-house on all makes and models.",
+        "side1_link_label": "View Our Services",
+        "side1_link": "/pages/services",
+        "side2_kicker": "The Parts Store",
+        "side2_title": "Quality Second-Hand Parts",
+        "side2_text": "A growing range of quality used parts, added as they come in. Chasing something specific? We can help track down hard-to-find items.",
+        "side2_link_label": "Shop Parts",
+        "side2_link": "/collections/all",
+        "show_strip": true,
+        "strip_title": "Ready to Book In?",
+        "strip_sub": "Tell us the make, model and what's going on, and we'll sort you out.",
+        "strip_btn_label": "Send an Enquiry",
+        "strip_btn_link": "/pages/contact",
+        "phone": "0411 019 935",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 80
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["header", "about", "contact"]
+}
