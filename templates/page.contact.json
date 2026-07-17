@@ -21,24 +21,14 @@
         "address": "4/94 Boundary Road, Sunshine West VIC 3020",
         "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
         "button_label": "Send Enquiry",
+        "show_map": true,
+        "map_query": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "directions_label": "Get Directions",
         "bg_color": "#101114",
         "padding_top": 88,
         "padding_bottom": 88
       }
-    },
-    "map": {
-      "type": "niche-map",
-      "settings": {
-        "eyebrow": "Find Us",
-        "title": "Visit the Workshop",
-        "lead": "We're in Sunshine West, easy to reach from across Melbourne's western suburbs.",
-        "map_query": "4/94 Boundary Road, Sunshine West VIC 3020",
-        "directions_label": "Get Directions",
-        "bg_color": "#FFFFFF",
-        "padding_top": 88,
-        "padding_bottom": 96
-      }
     }
   },
-  "order": ["header", "contact", "map"]
+  "order": ["header", "contact"]
 }

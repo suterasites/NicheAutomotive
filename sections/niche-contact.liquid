@@ -1,7 +1,9 @@
 {%- comment -%}
-  Niche Automotive - Contact + enquiry form. (build 1)
-  Dark two-column: info/contact details (left) + Shopify contact form (right).
-  Uses the native {% form 'contact' %} so submissions email the store. Scoped by section.id.
+  Niche Automotive - Contact + enquiry form. (build 2)
+  Dark two-column: info/contact details (left) + Shopify contact form (right),
+  with an optional full-width Google Map + Get Directions pill embedded below
+  (toggle "Show location map"). Uses the native {% form 'contact' %} so submissions
+  email the store (or a Formspree endpoint if set). Scoped by section.id.
 {%- endcomment -%}
 
 {%- style -%}
@@ -61,9 +63,26 @@
   }
   .n-con-{{ section.id }} .n-con__error { color: #ff9a9f; font-size: 1.4rem; margin: 0 0 1rem; }
 
+  /* embedded location map (spans both columns) */
+  .n-con-{{ section.id }} .n-con__map {
+    grid-column: 1 / -1; position: relative; margin-top: 0.6rem; border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 22px 48px rgba(0,0,0,0.32);
+    aspect-ratio: 21 / 8; background: #1a1b1f;
+  }
+  .n-con-{{ section.id }} .n-con__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .n-con-{{ section.id }} .n-con__dir {
+    position: absolute; left: 18px; bottom: 18px; z-index: 2; display: inline-flex; align-items: center; gap: 0.55rem;
+    text-decoration: none; background: #e11b22; color: #fff; font-weight: 700; font-size: 1.44rem; letter-spacing: 0.01em;
+    padding: 0.95rem 1.6rem; border-radius: 999px; box-shadow: 0 10px 26px rgba(0,0,0,0.34);
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .n-con-{{ section.id }} .n-con__dir:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-con-{{ section.id }} .n-con__dir svg { width: 16px; height: 16px; }
+
   @media (max-width: 860px) {
     .n-con-{{ section.id }} .n-con__wrap { grid-template-columns: 1fr; gap: 2.4rem; padding: 0 2rem; }
     .n-con-{{ section.id }} .n-con__row { grid-template-columns: 1fr; }
+    .n-con-{{ section.id }} .n-con__map { aspect-ratio: 4 / 3; }
   }
 {%- endstyle -%}
 
@@ -147,6 +166,29 @@
       {%- endif -%}
     </div>
 
+    {%- if section.settings.show_map -%}
+      {%- assign map_q = section.settings.map_query | default: '4/94 Boundary Road, Sunshine West VIC 3020' -%}
+      {%- if section.settings.directions_url != blank -%}
+        {%- assign dir_url = section.settings.directions_url -%}
+      {%- else -%}
+        {%- assign dir_url = 'https://www.google.com/maps/dir/?api=1&destination=' | append: map_q | url_encode -%}
+      {%- endif -%}
+      <div class="n-con__map">
+        <iframe
+          title="Map to Niche Automotive"
+          src="https://www.google.com/maps?q={{ map_q | url_encode }}&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+        {%- if section.settings.directions_label != blank -%}
+          <a class="n-con__dir" href="{{ dir_url }}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            {{ section.settings.directions_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
   </div>
 </div>
 
@@ -164,6 +206,11 @@
     { "type": "text", "id": "address", "label": "Address", "default": "4/94 Boundary Road, Sunshine West VIC 3020" },
     { "type": "text", "id": "hours", "label": "Hours", "default": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm" },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Send Enquiry" },
+    { "type": "header", "content": "Location map" },
+    { "type": "checkbox", "id": "show_map", "label": "Show location map", "default": false, "info": "Embeds a Google Map of the address below beneath the form." },
+    { "type": "text", "id": "map_query", "label": "Map location (address or place)", "default": "4/94 Boundary Road, Sunshine West VIC 3020", "info": "Used for the map pin and the Get Directions link." },
+    { "type": "text", "id": "directions_label", "label": "Directions button label", "default": "Get Directions" },
+    { "type": "url", "id": "directions_url", "label": "Directions link (optional)", "info": "Leave empty to auto-build a Google Maps directions link from the location above." },
     { "type": "header", "content": "Form delivery" },
     { "type": "text", "id": "formspree_endpoint", "label": "Formspree endpoint (optional)", "info": "Paste your Formspree form URL or ID (e.g. https://formspree.io/f/abcd1234) to send enquiries via Formspree. Leave empty to use Shopify's built-in contact form." },
     { "type": "color", "id": "bg_color", "label": "Background", "default": "#101114" },
