@@ -1,7 +1,9 @@
 {%- comment -%}
-  Niche Automotive - Shop by Category (dark). (build 2)
-  Category tiles that link to collections. Renders great even before collections
-  have products. Self-contained, scoped by section.id.
+  Niche Automotive - Shop by Category (dark). (build 3 - photo tiles)
+  Category tiles that link to collections. Each tile background is a real part
+  photo: a manual override image if set, else the linked collection's image,
+  else that collection's first product photo, else a dark fallback. A scrim
+  keeps the title legible over any photo. Self-contained, scoped by section.id.
 {%- endcomment -%}
 
 {%- style -%}
@@ -35,24 +37,33 @@
     display: grid; grid-template-columns: repeat({{ section.settings.columns }}, minmax(0,1fr)); gap: 1rem;
   }
   .n-cat-{{ section.id }} .n-cat__tile {
-    position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 2.2rem;
-    min-height: 168px; padding: 1.5rem; text-decoration: none; color: #fff;
+    position: relative; display: flex; flex-direction: column; justify-content: flex-end;
+    min-height: 190px; padding: 1.5rem; text-decoration: none; color: #fff;
     background: #17181c; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px;
-    overflow: hidden; transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    overflow: hidden; transition: transform 0.18s ease, border-color 0.18s ease;
   }
-  .n-cat-{{ section.id }} .n-cat__tile:hover { transform: translateY(-4px); border-color: rgba(225,27,34,0.6); background: #1c1d22; }
-  .n-cat-{{ section.id }} .n-cat__ico { width: 40px; height: 40px; color: #ff5a60; position: relative; z-index: 1; }
-  .n-cat-{{ section.id }} .n-cat__ico svg { width: 40px; height: 40px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .n-cat-{{ section.id }} .n-cat__label { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; }
+  .n-cat-{{ section.id }} .n-cat__tile:hover { transform: translateY(-4px); border-color: rgba(225,27,34,0.6); }
+  .n-cat-{{ section.id }} .n-cat__bg { position: absolute; inset: 0; z-index: 0; }
+  .n-cat-{{ section.id }} .n-cat__bg img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+    transition: transform 0.5s ease;
+  }
+  .n-cat-{{ section.id }} .n-cat__tile:hover .n-cat__bg img { transform: scale(1.06); }
+  .n-cat-{{ section.id }} .n-cat__scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(12,12,14,0.94) 0%, rgba(12,12,14,0.6) 42%, rgba(12,12,14,0.42) 100%);
+  }
+  .n-cat-{{ section.id }} .n-cat__label { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; }
   .n-cat-{{ section.id }} .n-cat__label h3 {
     font-family: var(--font-heading-family);
     color: #ffffff;
     margin: 0; font-size: 1.74rem; text-transform: uppercase; letter-spacing: 0.02em; font-weight: 600;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
   }
-  .n-cat-{{ section.id }} .n-cat__arrow { color: #e11b22; transition: transform 0.18s ease; }
+  .n-cat-{{ section.id }} .n-cat__arrow { color: #e11b22; flex: 0 0 auto; transition: transform 0.18s ease; }
   .n-cat-{{ section.id }} .n-cat__tile:hover .n-cat__arrow { transform: translateX(4px); }
   @media (max-width: 990px) { .n-cat-{{ section.id }} .n-cat__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .n-cat-{{ section.id }} .n-cat__wrap { padding: 0 2rem; } }
-  @media (max-width: 560px) { .n-cat-{{ section.id }} .n-cat__grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.75rem; } .n-cat-{{ section.id }} .n-cat__tile { min-height: 140px; } }
+  @media (max-width: 560px) { .n-cat-{{ section.id }} .n-cat__grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.75rem; } .n-cat-{{ section.id }} .n-cat__tile { min-height: 150px; } }
 {%- endstyle -%}
 
 <div class="n-cat-{{ section.id }}">
@@ -69,22 +80,28 @@
 
     <div class="n-cat__grid">
       {%- for block in section.blocks -%}
+        {%- liquid
+          assign bg = block.settings.image
+          if bg == blank
+            assign lparts = block.settings.link | default: '' | split: '/collections/'
+            assign chandle = lparts | last | split: '?' | first | split: '#' | first | split: '/' | first
+            assign col = collections[chandle]
+            if col != blank
+              if col.image != blank
+                assign bg = col.image
+              elsif col.products.first.featured_image != blank
+                assign bg = col.products.first.featured_image
+              endif
+            endif
+          endif
+        -%}
         <a class="n-cat__tile" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
-          <span class="n-cat__ico">
-            {%- case block.settings.icon -%}
-              {%- when 'engine' -%}<svg viewBox="0 0 24 24"><path d="M4 13v-2h2l1.5-2H10V7h4v2h3l3 3v3h-2v3h-3l-2-2H9l-2 2H4v-4H2v-2z"/></svg>
-              {%- when 'suspension' -%}<svg viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><path d="M7 5h10M7 9h10M7 13h10M7 17h10" transform="rotate(0 12 12)"/><path d="M8 6l8 3M8 10l8 3M8 14l8 3"/></svg>
-              {%- when 'brakes' -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="3" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="21" y2="12"/></svg>
-              {%- when 'tyre' -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/><line x1="12" y1="3" x2="12" y2="6.3"/><line x1="12" y1="17.7" x2="12" y2="21"/><line x1="3" y1="12" x2="6.3" y2="12"/><line x1="17.7" y1="12" x2="21" y2="12"/></svg>
-              {%- when 'body' -%}<svg viewBox="0 0 24 24"><path d="M3 13l2.5-5A3 3 0 0 1 8.2 6h7.6a3 3 0 0 1 2.7 2l2.5 5"/><path d="M2 13h20v4a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/><circle cx="6.5" cy="16" r="0.6"/><circle cx="17.5" cy="16" r="0.6"/></svg>
-              {%- when 'electrical' -%}<svg viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 10 22 20 9 13 9 13 2"/></svg>
-              {%- when 'lighting' -%}<svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>
-              {%- when 'fluids' -%}<svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
-              {%- when 'driveline' -%}<svg viewBox="0 0 24 24"><circle cx="4.5" cy="12" r="2.5"/><circle cx="19.5" cy="12" r="2.5"/><line x1="7" y1="12" x2="17" y2="12"/><rect x="10.4" y="9.6" width="3.2" height="4.8" rx="0.7"/></svg>
-              {%- when 'interior' -%}<svg viewBox="0 0 24 24"><rect x="6.5" y="4" width="4" height="8.5" rx="1.5"/><rect x="6.5" y="12.5" width="11" height="4.5" rx="1.5"/><line x1="9" y1="17" x2="9" y2="20.5"/><line x1="15.5" y1="17" x2="15.5" y2="20.5"/></svg>
-              {%- else -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>
-            {%- endcase -%}
-          </span>
+          {%- if bg != blank -%}
+            <span class="n-cat__bg">
+              {{ bg | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 420, 560, 700, 900', sizes: '(max-width: 990px) 45vw, 22vw', alt: block.settings.title }}
+            </span>
+          {%- endif -%}
+          <span class="n-cat__scrim" aria-hidden="true"></span>
           <span class="n-cat__label">
             <h3>{{ block.settings.title | escape }}</h3>
             <span class="n-cat__arrow">
@@ -117,20 +134,9 @@
       "type": "category",
       "name": "Category",
       "settings": [
-        { "type": "select", "id": "icon", "label": "Icon", "default": "engine", "options": [
-          { "value": "engine", "label": "Engine" },
-          { "value": "driveline", "label": "Driveline" },
-          { "value": "suspension", "label": "Suspension" },
-          { "value": "brakes", "label": "Brakes" },
-          { "value": "body", "label": "Body & Panels" },
-          { "value": "electrical", "label": "Electrical" },
-          { "value": "lighting", "label": "Lighting" },
-          { "value": "interior", "label": "Interior" },
-          { "value": "tyre", "label": "Wheels & Tyres" },
-          { "value": "fluids", "label": "Fluids & Filters" }
-        ] },
         { "type": "text", "id": "title", "label": "Category name", "default": "Category" },
-        { "type": "url", "id": "link", "label": "Link (collection)" }
+        { "type": "url", "id": "link", "label": "Link (collection)" },
+        { "type": "image_picker", "id": "image", "label": "Background image (optional)", "info": "Leave empty to auto-use the linked collection's image, or its first product photo." }
       ]
     }
   ],
@@ -138,14 +144,14 @@
     {
       "name": "Niche Categories",
       "blocks": [
-        { "type": "category", "settings": { "icon": "engine", "title": "Engine", "link": "/collections/engine" } },
-        { "type": "category", "settings": { "icon": "driveline", "title": "Driveline", "link": "/collections/driveline" } },
-        { "type": "category", "settings": { "icon": "suspension", "title": "Suspension", "link": "/collections/suspension" } },
-        { "type": "category", "settings": { "icon": "brakes", "title": "Brakes", "link": "/collections/brakes" } },
-        { "type": "category", "settings": { "icon": "body", "title": "Body & Panels", "link": "/collections/body-panels" } },
-        { "type": "category", "settings": { "icon": "electrical", "title": "Electrical", "link": "/collections/electrical" } },
-        { "type": "category", "settings": { "icon": "lighting", "title": "Lighting", "link": "/collections/lighting" } },
-        { "type": "category", "settings": { "icon": "interior", "title": "Interior", "link": "/collections/interior" } }
+        { "type": "category", "settings": { "title": "Engine", "link": "/collections/engine" } },
+        { "type": "category", "settings": { "title": "Driveline", "link": "/collections/driveline" } },
+        { "type": "category", "settings": { "title": "Suspension", "link": "/collections/suspension" } },
+        { "type": "category", "settings": { "title": "Brakes", "link": "/collections/brakes" } },
+        { "type": "category", "settings": { "title": "Body & Panels", "link": "/collections/body-panels" } },
+        { "type": "category", "settings": { "title": "Electrical", "link": "/collections/electrical" } },
+        { "type": "category", "settings": { "title": "Lighting", "link": "/collections/lighting" } },
+        { "type": "category", "settings": { "title": "Interior", "link": "/collections/interior" } }
       ]
     }
   ]
