@@ -1,0 +1,100 @@
+{%- comment -%}
+  Niche Automotive - Find us / map. (build 1)
+  Centered intro + a rounded, keyless Google Maps embed with a "Get Directions"
+  pill overlaid on the map. Used on the Contact page below the enquiry form.
+  Self-contained, scoped by section.id.
+{%- endcomment -%}
+
+{%- assign map_q = section.settings.map_query | default: '4/94 Boundary Road, Sunshine West VIC 3020' -%}
+{%- if section.settings.directions_url != blank -%}
+  {%- assign dir_url = section.settings.directions_url -%}
+{%- else -%}
+  {%- assign dir_url = 'https://www.google.com/maps/dir/?api=1&destination=' | append: map_q | url_encode -%}
+{%- endif -%}
+
+{%- style -%}
+  .n-map-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+  .n-map-{{ section.id }} .n-map__wrap { max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem; }
+  .n-map-{{ section.id }} .n-map__head { text-align: center; max-width: 60ch; margin: 0 auto 2.6rem; }
+  .n-map-{{ section.id }} .n-map__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1.18rem; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: #e11b22; margin: 0 0 1rem;
+  }
+  .n-map-{{ section.id }} .n-map__eyebrow::before,
+  .n-map-{{ section.id }} .n-map__eyebrow::after { content: ""; width: 26px; height: 2px; background: #e11b22; }
+  .n-map-{{ section.id }} .n-map__title {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.005em; font-size: clamp(2rem, 3.6vw, 2.9rem); line-height: 1.02; margin: 0 0 0.9rem;
+  }
+  .n-map-{{ section.id }} .n-map__lead { font-size: 1.56rem; line-height: 1.6; color: #4a4a4e; margin: 0; }
+  .n-map-{{ section.id }} .n-map__frame {
+    position: relative; border-radius: 18px; overflow: hidden; box-shadow: 0 22px 48px rgba(0,0,0,0.14);
+    border: 1px solid #e6e7ea; aspect-ratio: 16 / 7; background: #eceef1;
+  }
+  .n-map-{{ section.id }} .n-map__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .n-map-{{ section.id }} .n-map__dir {
+    position: absolute; left: 20px; bottom: 20px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none;
+    background: #e11b22; color: #fff; font-weight: 700; font-size: 1.46rem; letter-spacing: 0.01em;
+    padding: 1rem 1.7rem; border-radius: 999px; box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .n-map-{{ section.id }} .n-map__dir:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-map-{{ section.id }} .n-map__dir svg { width: 17px; height: 17px; }
+  @media (max-width: 749px) {
+    .n-map-{{ section.id }} .n-map__wrap { padding: 0 2rem; }
+    .n-map-{{ section.id }} .n-map__frame { aspect-ratio: 3 / 4; }
+    .n-map-{{ section.id }} .n-map__dir { left: 14px; right: 14px; bottom: 14px; justify-content: center; }
+  }
+{%- endstyle -%}
+
+<div class="n-map-{{ section.id }}">
+  <div class="n-map__wrap">
+    {%- if section.settings.eyebrow != blank or section.settings.title != blank or section.settings.lead != blank -%}
+      <div class="n-map__head">
+        {%- if section.settings.eyebrow != blank -%}<span class="n-map__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
+        {%- if section.settings.title != blank -%}<h2 class="n-map__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+        {%- if section.settings.lead != blank -%}<p class="n-map__lead">{{ section.settings.lead | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="n-map__frame">
+      <iframe
+        title="Map to Niche Automotive"
+        src="https://www.google.com/maps?q={{ map_q | url_encode }}&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen></iframe>
+      {%- if section.settings.directions_label != blank -%}
+        <a class="n-map__dir" href="{{ dir_url }}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          {{ section.settings.directions_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche Map",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Find Us" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Visit the Workshop" },
+    { "type": "textarea", "id": "lead", "label": "Lead", "default": "Drop in to Sunshine West, or send an enquiry first and we'll have you booked in." },
+    { "type": "text", "id": "map_query", "label": "Map location (address or place)", "default": "4/94 Boundary Road, Sunshine West VIC 3020", "info": "Used for the map pin and the Get Directions link." },
+    { "type": "text", "id": "directions_label", "label": "Directions button label", "default": "Get Directions" },
+    { "type": "url", "id": "directions_url", "label": "Directions link (optional)", "info": "Leave empty to auto-build a Google Maps directions link from the location above." },
+    { "type": "header", "content": "Section" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding top", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding bottom", "default": 96 }
+  ],
+  "presets": [ { "name": "Niche Map" } ]
+}
+{% endschema %}
