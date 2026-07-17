@@ -34,6 +34,8 @@
         "show_related": true,
         "related_title": "Explore Our Other Services",
         "current_service": "engine-builds",
+        "seo_service_name": "Engine Builds & Rebuilds",
+        "seo_description": "Engine builds and rebuilds in Sunshine West, standard or performance. Precise, measured assembly with quality parts, built to last - at the Niche Automotive workshop.",
         "show_strip": true,
         "strip_title": "Planning an Engine Build?",
         "strip_sub": "Tell us the engine and what you're chasing, and we'll talk you through it.",

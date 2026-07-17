@@ -34,6 +34,8 @@
         "show_related": true,
         "related_title": "Explore Our Other Services",
         "current_service": "servicing",
+        "seo_service_name": "Car Servicing",
+        "seo_description": "Log book and general car servicing in Sunshine West for all makes and models. Warranty-safe, manufacturer-schedule servicing with clear, upfront pricing from Niche Automotive.",
         "show_strip": true,
         "strip_title": "Due for a Service?",
         "strip_sub": "Send through your make, model and rego and we'll book you in.",

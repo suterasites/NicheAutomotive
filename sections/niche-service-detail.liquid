@@ -24,6 +24,16 @@
   }
   .n-svd-{{ section.id }} .n-svd__eyebrow::before { content: ""; width: 30px; height: 2px; background: #e11b22; }
 
+  /* breadcrumb */
+  .n-svd-{{ section.id }} .n-svd__crumbs {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+    font-size: 1.3rem; color: #8a8a90; margin: 0 0 2.4rem;
+  }
+  .n-svd-{{ section.id }} .n-svd__crumbs a { color: #6a6a6e; text-decoration: none; }
+  .n-svd-{{ section.id }} .n-svd__crumbs a:hover { color: #e11b22; }
+  .n-svd-{{ section.id }} .n-svd__crumbs .sep { color: #c7c7cc; }
+  .n-svd-{{ section.id }} .n-svd__crumbs [aria-current] { color: #0f0f0f; font-weight: 600; }
+
   /* 1. Overview */
   .n-svd-{{ section.id }} .n-svd__overview {
     display: grid; grid-template-columns: 1fr 1fr; gap: 3.6rem; align-items: center;
@@ -149,6 +159,17 @@
 <div class="n-svd-{{ section.id }}">
   <div class="n-svd__wrap">
 
+    {%- if section.settings.show_breadcrumb -%}
+      {%- assign crumb_current = page.title | default: section.settings.seo_service_name | default: section.settings.heading -%}
+      <nav class="n-svd__crumbs" aria-label="Breadcrumb">
+        <a href="{{ routes.root_url }}">Home</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <a href="/pages/services">Services</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">{{ crumb_current | escape }}</span>
+      </nav>
+    {%- endif -%}
+
     {%- comment -%} 1. OVERVIEW {%- endcomment -%}
     <div class="n-svd__overview">
       <div class="n-svd__media">
@@ -162,7 +183,7 @@
       </div>
       <div class="n-svd__body">
         {%- if section.settings.eyebrow != blank -%}<span class="n-svd__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
-        {%- if section.settings.heading != blank -%}<h1 class="n-svd__title">{{ section.settings.heading | escape }}</h1>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="n-svd__title">{{ section.settings.heading | escape }}</h2>{%- endif -%}
         {%- if section.settings.body1 != blank -%}<p class="n-svd__p">{{ section.settings.body1 | escape }}</p>{%- endif -%}
         {%- if section.settings.body2 != blank -%}<p class="n-svd__p">{{ section.settings.body2 | escape }}</p>{%- endif -%}
 
@@ -255,6 +276,79 @@
   </div>
 </div>
 
+{%- comment -%} SEO: structured data for this service {%- endcomment -%}
+{%- if request.page_type == 'page' and page != blank -%}
+  {%- liquid
+    assign biz_img = 'niche-hero-workshop.jpg' | asset_url
+    unless biz_img contains 'http'
+      assign biz_img = 'https:' | append: biz_img
+    endunless
+    assign tel = section.settings.phone | default: '0411 019 935' | remove: ' '
+    unless tel contains '+'
+      assign tel = tel | remove_first: '0' | prepend: '+61'
+    endunless
+    assign svc_name = section.settings.seo_service_name
+    if svc_name == blank
+      assign svc_name = page.title
+    endif
+    if svc_name == blank
+      assign svc_name = section.settings.heading
+    endif
+    assign svc_desc = section.settings.seo_description
+    if svc_desc == blank
+      assign svc_desc = section.settings.body1
+    endif
+    assign svc_desc = svc_desc | strip_newlines
+    assign page_abs = shop.url | append: page.url
+  -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": {{ svc_name | json }},
+    "serviceType": {{ svc_name | json }},
+    "description": {{ svc_desc | json }},
+    "url": {{ page_abs | json }},
+    "areaServed": [
+      { "@type": "City", "name": "Sunshine West" },
+      { "@type": "AdministrativeArea", "name": "Melbourne's western suburbs" }
+    ],
+    "provider": {
+      "@type": "AutoRepair",
+      "name": "Niche Automotive",
+      "image": {{ biz_img | json }},
+      "url": {{ shop.url | json }},
+      "telephone": {{ tel | json }},
+      "email": "info@nicheautomotive.com.au",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4/94 Boundary Road",
+        "addressLocality": "Sunshine West",
+        "addressRegion": "VIC",
+        "postalCode": "3020",
+        "addressCountry": "AU"
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "12:00" }
+      ]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ shop.url | append: '/' | json }} },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": {{ shop.url | append: '/pages/services' | json }} },
+      { "@type": "ListItem", "position": 3, "name": {{ svc_name | json }}, "item": {{ page_abs | json }} }
+    ]
+  }
+  </script>
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Niche Service Detail",
@@ -288,6 +382,10 @@
         { "value": "restoration", "label": "Restoration" }
       ]
     },
+    { "type": "header", "content": "SEO" },
+    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
+    { "type": "text", "id": "seo_service_name", "label": "SEO service name", "info": "Used in the Service + breadcrumb structured data. Defaults to the page title." },
+    { "type": "textarea", "id": "seo_description", "label": "SEO description", "info": "Used in structured data. Also paste this as the page's meta description in admin (Search engine listing). Defaults to paragraph 1." },
     { "type": "header", "content": "Booking strip" },
     { "type": "checkbox", "id": "show_strip", "label": "Show booking strip", "default": true },
     { "type": "text", "id": "strip_title", "label": "Strip heading", "default": "Ready to Book In?" },

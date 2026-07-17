@@ -34,6 +34,8 @@
         "show_related": true,
         "related_title": "Explore Our Other Services",
         "current_service": "restoration",
+        "seo_service_name": "Car Restoration",
+        "seo_description": "Mechanical car restoration in Sunshine West. Full and partial restorations and rebuilds done with care and patience. Project cars welcome at Niche Automotive.",
         "show_strip": true,
         "strip_title": "Got a Project?",
         "strip_sub": "Tell us about the car and where it's at, and we'll talk through the next steps.",
