@@ -1,25 +1,44 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "header": {
+      "type": "niche-page-header",
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Get In Touch",
+        "heading": "Contact",
+        "heading_accent": "Niche",
+        "subtext": "Book your car in, ask about a build, or track down a part - call the workshop or send an enquiry and we'll get back to you."
       }
     },
-    "form": {
-      "type": "contact-form",
+    "contact": {
+      "type": "niche-contact",
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "eyebrow": "Send an Enquiry",
+        "title": "Book Your Car In",
+        "copy": "Tell us the make, model and what you need - a service, a build, or a part - and we'll get back to you to sort it out.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    },
+    "map": {
+      "type": "niche-map",
+      "settings": {
+        "eyebrow": "Find Us",
+        "title": "Visit the Workshop",
+        "lead": "We're in Sunshine West, easy to reach from across Melbourne's western suburbs.",
+        "map_query": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "directions_label": "Get Directions",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 96
       }
     }
   },
-  "order": [
-    "main",
-    "form"
-  ]
+  "order": ["header", "contact", "map"]
 }
