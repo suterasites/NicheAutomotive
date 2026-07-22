@@ -313,6 +313,13 @@
       </div>
     </li>
 
+    {%- comment -%} Gallery {%- endcomment -%}
+    <li>
+      <a href="/pages/gallery" class="header__menu-item list-menu__item link link--text focus-inset"{% if request.path contains '/pages/gallery' %} aria-current="page"{% endif %}>
+        <span>Gallery</span>
+      </a>
+    </li>
+
     {%- comment -%} About {%- endcomment -%}
     <li>
       <a href="/pages/about" class="header__menu-item list-menu__item link link--text focus-inset"{% if request.path contains '/pages/about' %} aria-current="page"{% endif %}>
