@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Legal",
+        "heading": "Privacy",
+        "heading_accent": "Policy",
+        "subtext": "How Niche Automotive collects, uses and protects your personal information."
+      }
+    },
+    "legal": {
+      "type": "niche-legal",
+      "settings": {
+        "updated": "July 2026",
+        "bg_color": "#FFFFFF",
+        "padding_top": 72,
+        "padding_bottom": 96
+      }
+    }
+  },
+  "order": ["header", "legal"]
+}

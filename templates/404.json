@@ -1,10 +1,16 @@
 {
   "sections": {
     "main": {
-      "type": "main-404"
+      "type": "niche-404",
+      "settings": {
+        "eyebrow": "Error 404",
+        "title": "Page Not Found",
+        "subtext": "The page you're after has moved or no longer exists. Let's get you back on track - head home, browse the parts store, or get in touch.",
+        "btn1_label": "Back to Home",
+        "btn2_label": "Shop Parts",
+        "bg_color": "#0d0d0f"
+      }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
