@@ -12,7 +12,9 @@
         "button_label_2": "Shop Parts",
         "button_link_2": "/collections/all",
         "trust_items": "All Makes & Models | Log Book Servicing | Warranty Safe | Second-Hand Parts",
-        "overlay": 60
+        "overlay": 65,
+        "video_bg": "niche-hero.mp4",
+        "video_poster": "niche-hero-poster.jpg"
       }
     },
     "intro": {
