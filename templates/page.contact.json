@@ -13,6 +13,7 @@
     "contact": {
       "type": "niche-contact",
       "settings": {
+        "formspree_endpoint": "https://formspree.io/f/xwvgqgzr",
         "eyebrow": "Send an Enquiry",
         "title": "Book Your Car In",
         "copy": "Tell us the make, model and what you need - a service, a build, or a part - and we'll get back to you to sort it out.",

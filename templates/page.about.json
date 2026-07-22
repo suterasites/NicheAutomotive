@@ -89,6 +89,7 @@
     "contact": {
       "type": "niche-contact",
       "settings": {
+        "formspree_endpoint": "https://formspree.io/f/xwvgqgzr",
         "eyebrow": "Get In Touch",
         "title": "Book Your Car In",
         "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
