@@ -1,0 +1,67 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-gallery-resto-v8.jpg",
+        "eyebrow": "Our Work",
+        "heading": "Workshop",
+        "heading_accent": "Gallery",
+        "subtext": "Cars, builds and jobs from the Niche Automotive workshop in Sunshine West - servicing, performance, engine work and restorations."
+      }
+    },
+    "gallery": {
+      "type": "niche-gallery",
+      "blocks": {
+        "b1":  { "type": "video", "settings": { "video": "niche-gallery-v1.mp4", "poster": "niche-gallery-v1-poster.jpg", "caption": "Bonnet up" } },
+        "b2":  { "type": "image", "settings": { "asset": "niche-gallery-conversion.jpg", "caption": "Engine conversion" } },
+        "b3":  { "type": "image", "settings": { "asset": "niche-gallery-front-1.jpg", "caption": "Booked in" } },
+        "b4":  { "type": "video", "settings": { "video": "niche-gallery-v7.mp4", "poster": "niche-gallery-v7-poster.jpg", "caption": "V8 engine bay" } },
+        "b5":  { "type": "image", "settings": { "asset": "niche-gallery-resto-v8.jpg", "caption": "Restored V8" } },
+        "b6":  { "type": "image", "settings": { "asset": "niche-gallery-underside.jpg", "caption": "On the hoist" } },
+        "b7":  { "type": "video", "settings": { "video": "niche-gallery-v4.mp4", "poster": "niche-gallery-v4-poster.jpg", "caption": "New intake" } },
+        "b8":  { "type": "image", "settings": { "asset": "niche-svc-engine.jpg", "caption": "Turbo setup" } },
+        "b9":  { "type": "image", "settings": { "asset": "niche-gallery-front-2.jpg", "caption": "In the workshop" } },
+        "b10": { "type": "video", "settings": { "video": "niche-gallery-v2.mp4", "poster": "niche-gallery-v2-poster.jpg", "caption": "Project car" } },
+        "b11": { "type": "image", "settings": { "asset": "niche-gallery-resto-project.jpg", "caption": "Restoration underway" } },
+        "b12": { "type": "video", "settings": { "video": "niche-gallery-v5.mp4", "poster": "niche-gallery-v5-poster.jpg", "caption": "Underbody work" } },
+        "b13": { "type": "image", "settings": { "asset": "niche-svc-performance.jpg", "caption": "Performance build" } },
+        "b14": { "type": "video", "settings": { "video": "niche-gallery-v3.mp4", "poster": "niche-gallery-v3-poster.jpg", "caption": "Interior" } },
+        "b15": { "type": "image", "settings": { "asset": "niche-gallery-front-3.jpg", "caption": "Out front" } },
+        "b16": { "type": "video", "settings": { "video": "niche-gallery-v6.mp4", "poster": "niche-gallery-v6-poster.jpg", "caption": "Dash & gauges" } },
+        "b17": { "type": "image", "settings": { "asset": "niche-svc-logbook.jpg", "caption": "In for a service" } },
+        "b18": { "type": "image", "settings": { "asset": "niche-gallery-front-4.jpg", "caption": "Ready for pickup" } },
+        "b19": { "type": "video", "settings": { "video": "niche-gallery-v8.mp4", "poster": "niche-gallery-v8-poster.jpg", "caption": "Sitting right" } },
+        "b20": { "type": "image", "settings": { "asset": "niche-workshop-front.jpg", "caption": "Niche Automotive, Sunshine West" } }
+      },
+      "block_order": ["b1","b2","b3","b4","b5","b6","b7","b8","b9","b10","b11","b12","b13","b14","b15","b16","b17","b18","b19","b20"],
+      "settings": {
+        "kicker": "Our Work",
+        "title": "From the Workshop",
+        "lead": "A look at the cars, builds and jobs that come through Niche Automotive. Tap any photo or video to view it full size.",
+        "bg_color": "#FFFFFF",
+        "text_color": "#0F0F0F",
+        "padding_top": 84,
+        "padding_bottom": 88
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "formspree_endpoint": "https://formspree.io/f/xwvgqgzr",
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["header", "gallery", "contact"]
+}
