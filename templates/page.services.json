@@ -60,7 +60,7 @@
         "s5": {
           "type": "service",
           "settings": {
-            "fallback_image": "niche-services-feature.jpg",
+            "fallback_image": "niche-svc-resto.jpg",
             "title": "Restoration",
             "text": "Bringing an old or unfinished project back to life. Mechanical restoration done with care and patience so your car looks, drives and feels the way it was meant to.",
             "features": "Full & partial restorations | Mechanical rebuilds | Careful, patient workmanship | Project cars welcome",
