@@ -1,0 +1,87 @@
+{%- comment -%}
+  Niche Automotive - Branded 404. (build 1)
+  Dark, centered "page not found" with a big 404, message and quick links
+  back into the site. Self-contained, scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-404-{{ section.id }} {
+    background: {{ section.settings.bg_color }}; color: #fff; position: relative; overflow: hidden;
+  }
+  .n-404-{{ section.id }} .n-404__inner {
+    position: relative; z-index: 1; max-width: 720px; margin: 0 auto; text-align: center;
+    padding: clamp(6rem, 12vw, 10rem) 2.5rem clamp(6rem, 12vw, 10rem);
+  }
+  .n-404-{{ section.id }} .n-404__num {
+    font-family: var(--font-heading-family); font-weight: 700; line-height: 0.9; letter-spacing: 0.02em;
+    font-size: clamp(8rem, 22vw, 15rem); margin: 0;
+    color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,0.22); text-stroke: 2px rgba(255,255,255,0.22);
+  }
+  .n-404-{{ section.id }} .n-404__num span { color: #e11b22; -webkit-text-stroke: 0; text-stroke: 0; }
+  .n-404-{{ section.id }} .n-404__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1.2rem; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: #ff5a60; margin: 0 0 1.2rem;
+  }
+  .n-404-{{ section.id }} .n-404__eyebrow::before,
+  .n-404-{{ section.id }} .n-404__eyebrow::after { content: ""; width: 26px; height: 2px; background: #e11b22; }
+  .n-404-{{ section.id }} .n-404__title {
+    font-family: var(--font-heading-family); color: #fff; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(2.6rem, 5.4vw, 4rem); line-height: 1.0; margin: 1.4rem 0 1.1rem;
+  }
+  .n-404-{{ section.id }} .n-404__sub { font-size: 1.65rem; line-height: 1.6; color: rgba(255,255,255,0.72); margin: 0 auto 2.4rem; max-width: 46ch; }
+  .n-404-{{ section.id }} .n-404__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+  .n-404-{{ section.id }} .n-404__btn {
+    display: inline-flex; align-items: center; justify-content: center; padding: 1.05rem 2rem; font-weight: 700;
+    font-size: 1.55rem; letter-spacing: 0.02em; text-decoration: none; border-radius: 3px;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .n-404-{{ section.id }} .n-404__btn--primary { background: #e11b22; color: #fff; }
+  .n-404-{{ section.id }} .n-404__btn--primary:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-404-{{ section.id }} .n-404__btn--ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
+  .n-404-{{ section.id }} .n-404__btn--ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+  .n-404-{{ section.id }} .n-404__links { margin: 2.2rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem; justify-content: center; }
+  .n-404-{{ section.id }} .n-404__links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 1.42rem; font-weight: 500; }
+  .n-404-{{ section.id }} .n-404__links a:hover { color: #ff5a60; }
+{%- endstyle -%}
+
+<div class="n-404-{{ section.id }}">
+  <div class="n-404__inner">
+    {%- if section.settings.eyebrow != blank -%}<span class="n-404__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
+    <p class="n-404__num">4<span>0</span>4</p>
+    {%- if section.settings.title != blank -%}<h1 class="n-404__title">{{ section.settings.title | escape }}</h1>{%- endif -%}
+    {%- if section.settings.subtext != blank -%}<p class="n-404__sub">{{ section.settings.subtext | escape }}</p>{%- endif -%}
+    <div class="n-404__actions">
+      {%- if section.settings.btn1_label != blank -%}
+        <a class="n-404__btn n-404__btn--primary" href="{{ section.settings.btn1_link | default: routes.root_url }}">{{ section.settings.btn1_label | escape }}</a>
+      {%- endif -%}
+      {%- if section.settings.btn2_label != blank -%}
+        <a class="n-404__btn n-404__btn--ghost" href="{{ section.settings.btn2_link | default: '/collections/all' }}">{{ section.settings.btn2_label | escape }}</a>
+      {%- endif -%}
+    </div>
+    <div class="n-404__links">
+      <a href="{{ routes.root_url }}">Home</a>
+      <a href="/pages/services">Services</a>
+      <a href="/collections/all">Shop Parts</a>
+      <a href="/pages/contact">Contact</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche 404",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Error 404" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Page Not Found" },
+    { "type": "textarea", "id": "subtext", "label": "Message", "default": "The page you're after has moved or no longer exists. Let's get you back on track - head home, browse the parts store, or get in touch." },
+    { "type": "text", "id": "btn1_label", "label": "Primary button label", "default": "Back to Home" },
+    { "type": "url", "id": "btn1_link", "label": "Primary button link" },
+    { "type": "text", "id": "btn2_label", "label": "Secondary button label", "default": "Shop Parts" },
+    { "type": "url", "id": "btn2_link", "label": "Secondary button link" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#0d0d0f" }
+  ],
+  "presets": [ { "name": "Niche 404" } ]
+}
+{% endschema %}

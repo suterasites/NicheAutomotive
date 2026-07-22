@@ -1,0 +1,127 @@
+{%- comment -%}
+  Niche Automotive - Legal / long-form prose page. (build 1)
+  Readable, brand-styled container for policy pages (Privacy, Terms, etc).
+  Renders the Shopify page body (page.content) if it has any, otherwise falls
+  back to the baked default below (a general privacy policy). Edit the page
+  content in admin to override. Self-contained, scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-leg-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }}; color: #3a3a3d;
+  }
+  .n-leg-{{ section.id }} .n-leg__wrap { max-width: 820px; margin: 0 auto; padding: 0 2.5rem; }
+  .n-leg-{{ section.id }} .n-leg__updated {
+    font-size: 1.3rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;
+    color: #e11b22; margin: 0 0 2.2rem;
+  }
+  .n-leg-{{ section.id }} .n-leg__body { font-size: 1.6rem; line-height: 1.72; color: #45454a; }
+  .n-leg-{{ section.id }} .n-leg__body > *:first-child { margin-top: 0; }
+  .n-leg-{{ section.id }} .n-leg__body h2 {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(1.9rem, 3vw, 2.4rem); line-height: 1.1; margin: 3.2rem 0 1rem;
+  }
+  .n-leg-{{ section.id }} .n-leg__body h3 {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700;
+    font-size: 1.75rem; line-height: 1.15; margin: 2.4rem 0 0.8rem;
+  }
+  .n-leg-{{ section.id }} .n-leg__body p { margin: 0 0 1.3rem; }
+  .n-leg-{{ section.id }} .n-leg__body ul,
+  .n-leg-{{ section.id }} .n-leg__body ol { margin: 0 0 1.3rem; padding-left: 1.6rem; }
+  .n-leg-{{ section.id }} .n-leg__body li { margin: 0 0 0.5rem; padding-left: 0.3rem; }
+  .n-leg-{{ section.id }} .n-leg__body li::marker { color: #e11b22; }
+  .n-leg-{{ section.id }} .n-leg__body a { color: #e11b22; text-decoration: underline; text-underline-offset: 2px; }
+  .n-leg-{{ section.id }} .n-leg__body a:hover { color: #c3141b; }
+  .n-leg-{{ section.id }} .n-leg__body strong { color: #1c1c1f; }
+  @media (max-width: 749px) {
+    .n-leg-{{ section.id }} .n-leg__wrap { padding: 0 2rem; }
+    .n-leg-{{ section.id }} .n-leg__body { font-size: 1.55rem; }
+  }
+{%- endstyle -%}
+
+<div class="n-leg-{{ section.id }}">
+  <div class="n-leg__wrap">
+    {%- if section.settings.updated != blank -%}
+      <p class="n-leg__updated">Last updated: {{ section.settings.updated | escape }}</p>
+    {%- endif -%}
+    <div class="n-leg__body rte">
+      {%- if page.content != blank -%}
+        {{ page.content }}
+      {%- else -%}
+        <p>This Privacy Policy explains how Niche Automotive ("we", "us", "our") collects, uses, holds and protects your personal information when you contact us, use our website, or purchase parts from our online store. We handle personal information in line with the Australian Privacy Principles under the Privacy Act 1988 (Cth).</p>
+
+        <h2>Information We Collect</h2>
+        <p>We only collect information we need to help you. Depending on how you use our site, that may include:</p>
+        <ul>
+          <li><strong>Enquiry details</strong> you provide through our contact and booking forms, such as your name, phone number, email address and the details of your vehicle or the part you are after.</li>
+          <li><strong>Order details</strong> if you buy a part from our online store, such as your name, delivery address, contact details and payment information. Payments are processed securely by our payment providers - we do not store your full card details.</li>
+          <li><strong>Usage information</strong> collected automatically as you browse, such as your device type, browser, pages viewed and general location, through cookies and similar technologies.</li>
+        </ul>
+
+        <h2>How We Use Your Information</h2>
+        <p>We use your information to:</p>
+        <ul>
+          <li>respond to your enquiries and book your vehicle in;</li>
+          <li>source, sell and deliver parts you order;</li>
+          <li>provide our workshop services and keep you updated on your job;</li>
+          <li>operate, maintain and improve our website and store; and</li>
+          <li>meet our legal and record-keeping obligations.</li>
+        </ul>
+
+        <h2>How Your Information Is Shared</h2>
+        <p>We do not sell your personal information. We only share it with trusted providers who help us run the business, including:</p>
+        <ul>
+          <li><strong>Shopify</strong>, which hosts our website and online store;</li>
+          <li><strong>our payment providers</strong>, who securely process store payments;</li>
+          <li><strong>Formspree</strong>, which delivers our website enquiry forms to us;</li>
+          <li><strong>Google</strong>, for the embedded map and website analytics; and</li>
+          <li><strong>delivery and courier services</strong>, where a part needs to be shipped to you.</li>
+        </ul>
+        <p>We may also disclose information where required by law.</p>
+
+        <h2>Cookies &amp; Analytics</h2>
+        <p>Our website uses cookies and similar technologies to keep the store working, remember your cart, and understand how the site is used so we can improve it. You can control or disable cookies through your browser settings, though some parts of the site may not work as well without them.</p>
+
+        <h2>Storing &amp; Protecting Your Information</h2>
+        <p>We take reasonable steps to protect your personal information from misuse, loss and unauthorised access, and we keep it only as long as we need it for the purposes above or to meet our legal obligations. Much of our data is held securely by our providers, such as Shopify.</p>
+
+        <h2>Your Rights</h2>
+        <p>You can ask us to access or correct the personal information we hold about you, or ask us to delete it where we are not required to keep it. To make a request, or if you have a privacy concern, please contact us using the details below. If you are not satisfied with our response, you can contact the Office of the Australian Information Commissioner.</p>
+
+        <h2>Third-Party Links</h2>
+        <p>Our website may link to other sites we do not control. This policy does not cover those sites, so we encourage you to read their own privacy policies.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this policy from time to time. Any changes will be posted on this page with a revised date.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have any questions about this policy or how we handle your information, get in touch:</p>
+        <p>
+          <strong>Niche Automotive</strong><br>
+          4/94 Boundary Road, Sunshine West VIC 3020<br>
+          Phone: <a href="tel:0411019935">0411 019 935</a><br>
+          Email: <a href="mailto:info@nicheautomotive.com.au">info@nicheautomotive.com.au</a>
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche Legal / Prose",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "updated", "label": "Last updated date", "default": "July 2026", "info": "Shown above the content. Leave empty to hide." },
+    { "type": "paragraph", "content": "This section shows the page's own content (edit it in the page editor). If the page has no content, a general privacy policy is shown as a starting point." },
+    { "type": "header", "content": "Section" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding top", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding bottom", "default": 96 }
+  ],
+  "presets": [ { "name": "Niche Legal / Prose" } ]
+}
+{% endschema %}
