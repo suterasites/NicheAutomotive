@@ -81,7 +81,7 @@
         {%- if section.settings.image != blank -%}
           {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(max-width: 900px) 90vw, 45vw', widths: '500, 750, 1000, 1200' }}
         {%- else -%}
-          <img src="{{ 'niche-about.jpg' | asset_url }}" alt="Niche Automotive mechanical work in Sunshine West" loading="lazy" width="1100" height="1099">
+          <img src="{{ section.settings.fallback_image | default: 'niche-about.jpg' | asset_url }}" alt="Niche Automotive workshop in Sunshine West" loading="lazy" width="1100" height="1320">
         {%- endif -%}
       </div>
       {%- if section.settings.badge_text != blank -%}
@@ -132,7 +132,8 @@
   "class": "section",
   "settings": [
     { "type": "header", "content": "Image" },
-    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty to use the built-in workshop photo." },
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty to use the baked asset below." },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "default": "niche-about.jpg", "info": "Used when no photo is uploaded above. e.g. niche-shopfront.jpg" },
     { "type": "text", "id": "badge_text", "label": "Floating badge text", "default": "Sunshine West's trusted local workshop" },
     { "type": "header", "content": "Content" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "About Niche Automotive" },

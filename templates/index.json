@@ -21,6 +21,7 @@
       "type": "niche-intro",
       "settings": {
         "badge_text": "Sunshine West's trusted local workshop",
+        "fallback_image": "niche-shopfront.jpg",
         "eyebrow": "About Niche Automotive",
         "heading": "Proper Mechanical Work, Done Locally",
         "body1": "Niche Automotive is a Sunshine West workshop built on honest advice and quality workmanship. From routine log book servicing to full engine rebuilds, we look after all makes and models and treat every car like it's our own.",
