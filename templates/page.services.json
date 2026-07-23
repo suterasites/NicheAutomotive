@@ -16,7 +16,7 @@
         "s1": {
           "type": "service",
           "settings": {
-            "fallback_image": "niche-svc-logbook.jpg",
+            "fallback_image": "niche-icon-servicing.jpg",
             "title": "Servicing",
             "text": "Keep your car running right with scheduled log book and general servicing. We follow the manufacturer's schedule so your new car warranty stays intact, and give you a straight rundown of anything that needs attention.",
             "features": "Log book & general servicing | Warranty-safe, manufacturer schedule | All makes and models | Clear, upfront pricing",
@@ -27,7 +27,7 @@
         "s2": {
           "type": "service",
           "settings": {
-            "fallback_image": "niche-svc-performance.jpg",
+            "fallback_image": "niche-icon-performance.jpg",
             "title": "Performance Upgrades",
             "text": "Get more out of your car with the right upgrades for the way you drive. From bolt-ons to tuning and supporting mods, we put together a package that is reliable, streetable and does what you actually want.",
             "features": "Bolt-on upgrades & tuning | Intake, exhaust & cooling | Reliable, streetable setups | Built to your goals & budget",
@@ -38,7 +38,7 @@
         "s3": {
           "type": "service",
           "settings": {
-            "fallback_image": "niche-svc-engine.jpg",
+            "fallback_image": "niche-icon-engine.jpg",
             "title": "Engine Builds & Rebuilds",
             "text": "Full engine builds and rebuilds done properly, from worn-out daily drivers to serious performance builds. Measured, assembled and set up to spec so it lasts and performs the way it should.",
             "features": "Full builds & rebuilds | Performance & standard specs | Precise, measured assembly | Built to last",
