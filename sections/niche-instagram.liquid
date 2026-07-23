@@ -1,0 +1,91 @@
+{%- comment -%}
+  Niche Automotive - Instagram feed (Elfsight embed). (build 1)
+  Branded heading + the Elfsight Instagram Feed widget. The Elfsight app id is a setting
+  so it can be swapped without touching code. platform.js is loaded async and the widget
+  lazy-loads (data-elfsight-app-lazy), so it won't block first paint. Scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-ig-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+  .n-ig-{{ section.id }} .n-ig__wrap { max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem; }
+  .n-ig-{{ section.id }} .n-ig__head { text-align: center; max-width: 60ch; margin: 0 auto 2.6rem; }
+  .n-ig-{{ section.id }} .n-ig__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 1.2rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+    color: #ff5a60; margin: 0 0 1.1rem;
+  }
+  .n-ig-{{ section.id }} .n-ig__eyebrow svg { width: 17px; height: 17px; }
+  .n-ig-{{ section.id }} .n-ig__title {
+    font-family: var(--font-heading-family); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.005em; line-height: 0.98; margin: 0; font-size: clamp(2.8rem, 5vw, 4.4rem);
+  }
+  .n-ig-{{ section.id }} .n-ig__sub { margin: 1.2rem auto 0; font-size: 1.55rem; line-height: 1.6; opacity: 0.72; }
+  .n-ig-{{ section.id }} .n-ig__btn {
+    display: inline-flex; align-items: center; gap: 0.55rem; margin-top: 1.8rem; text-decoration: none;
+    background: #e11b22; color: #fff; font-weight: 700; font-size: 1.46rem; letter-spacing: 0.01em;
+    padding: 1rem 1.9rem; border-radius: 999px; transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .n-ig-{{ section.id }} .n-ig__btn:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-ig-{{ section.id }} .n-ig__btn svg { width: 17px; height: 17px; }
+  @media (max-width: 749px) {
+    .n-ig-{{ section.id }} .n-ig__wrap { padding: 0 2rem; }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign ig_svg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>'
+-%}
+
+<div class="n-ig-{{ section.id }}">
+  <div class="n-ig__wrap">
+    {%- if section.settings.eyebrow != blank or section.settings.title != blank or section.settings.subtext != blank -%}
+      <div class="n-ig__head">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="n-ig__eyebrow">{{ ig_svg }} {{ section.settings.eyebrow | escape }}</span>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}<h2 class="n-ig__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+        {%- if section.settings.subtext != blank -%}<p class="n-ig__sub">{{ section.settings.subtext | escape }}</p>{%- endif -%}
+        {%- if section.settings.button_label != blank and section.settings.instagram_url != blank -%}
+          <a class="n-ig__btn" href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener">{{ ig_svg }} {{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.elfsight_app_id != blank -%}
+      <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div class="elfsight-app-{{ section.settings.elfsight_app_id }}" data-elfsight-app-lazy></div>
+    {%- else -%}
+      {%- if request.design_mode -%}
+        <p style="text-align:center;opacity:0.6;">Add your Elfsight Instagram Feed app ID in this section's settings to show the feed.</p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche Instagram",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Follow Along" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Follow Us On Instagram" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "The latest builds, parts and workshop action - straight from our Instagram." },
+    { "type": "text", "id": "button_label", "label": "Follow button label", "default": "Follow @nicheautomotive" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram profile URL", "info": "The Follow button only shows if this is set." },
+    { "type": "header", "content": "Elfsight" },
+    { "type": "text", "id": "elfsight_app_id", "label": "Elfsight app ID", "default": "2ba30dad-1add-42ab-aa12-ffde0370082a", "info": "The id from your Elfsight embed's class (elfsight-app-XXXX)." },
+    { "type": "header", "content": "Section" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#101114" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 84 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 88 }
+  ],
+  "presets": [ { "name": "Niche Instagram" } ]
+}
+{% endschema %}
