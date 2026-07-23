@@ -133,7 +133,9 @@
         <ul class="n-ft__list">
           <li><a href="{{ routes.root_url }}">Home</a></li>
           <li><a href="/collections/all">Shop Parts</a></li>
+          <li><a href="/pages/request-part">Request a Part</a></li>
           <li><a href="/pages/gallery">Gallery</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
           <li><a href="/pages/about">About</a></li>
           <li><a href="/pages/contact">Contact</a></li>
         </ul>
@@ -195,7 +197,7 @@
     </div>
 
     <div class="n-ft__bar">
-      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}{% if section.settings.abn != blank %} &nbsp;&middot;&nbsp; ABN {{ section.settings.abn | escape }}{% endif %}. All rights reserved. &nbsp;&middot;&nbsp; <a href="/pages/privacy-policy">Privacy Policy</a></span>
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}{% if section.settings.abn != blank %} &nbsp;&middot;&nbsp; ABN {{ section.settings.abn | escape }}{% endif %}. All rights reserved. &nbsp;&middot;&nbsp; <a href="/pages/privacy-policy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/pages/store-policies">Store Policies</a></span>
       {%- if section.settings.show_credit -%}
         <span>Website by <a href="https://suterasites.com" target="_blank" rel="noopener">Sutera Sites</a></span>
       {%- endif -%}

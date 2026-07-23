@@ -1,0 +1,107 @@
+{%- comment -%}
+  Niche Automotive - Store Policies. (build 1)
+  Sticky left jump-nav + right content column. Each policy is a block (title + richtext),
+  so James can edit/add/reorder policies in the theme editor. Anchor IDs are derived from
+  each policy title. Readable, brand-styled to match niche-legal. Scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-pol-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }}; color: #3a3a3d;
+  }
+  .n-pol-{{ section.id }} .n-pol__wrap {
+    max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem;
+    display: grid; grid-template-columns: 250px 1fr; gap: 3.5rem; align-items: start;
+  }
+  .n-pol-{{ section.id }} .n-pol__nav { position: sticky; top: 100px; }
+  .n-pol-{{ section.id }} .n-pol__updated {
+    font-size: 1.24rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: #e11b22; margin: 0 0 1.4rem;
+  }
+  .n-pol-{{ section.id }} .n-pol__navlist { list-style: none; margin: 0; padding: 0; border-left: 2px solid rgba(15,15,15,0.10); }
+  .n-pol-{{ section.id }} .n-pol__navlist a {
+    display: block; padding: 0.6rem 0 0.6rem 1.2rem; margin-left: -2px; border-left: 2px solid transparent;
+    font-size: 1.42rem; line-height: 1.3; color: #55555a; text-decoration: none; transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .n-pol-{{ section.id }} .n-pol__navlist a:hover { color: #e11b22; border-left-color: #e11b22; }
+
+  .n-pol-{{ section.id }} .n-pol__intro { font-size: 1.6rem; line-height: 1.7; color: #45454a; margin: 0 0 2.6rem; padding-bottom: 2.2rem; border-bottom: 1px solid rgba(15,15,15,0.10); }
+  .n-pol-{{ section.id }} .n-pol__block { scroll-margin-top: 110px; margin: 0 0 2.8rem; }
+  .n-pol-{{ section.id }} .n-pol__h {
+    font-family: var(--font-heading-family); color: #0f0f0f; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(1.9rem, 3vw, 2.4rem); line-height: 1.1; margin: 0 0 1rem;
+  }
+  .n-pol-{{ section.id }} .n-pol__body { font-size: 1.58rem; line-height: 1.72; color: #45454a; }
+  .n-pol-{{ section.id }} .n-pol__body > *:first-child { margin-top: 0; }
+  .n-pol-{{ section.id }} .n-pol__body p { margin: 0 0 1.2rem; }
+  .n-pol-{{ section.id }} .n-pol__body ul, .n-pol-{{ section.id }} .n-pol__body ol { margin: 0 0 1.2rem; padding-left: 1.6rem; }
+  .n-pol-{{ section.id }} .n-pol__body li { margin: 0 0 0.5rem; padding-left: 0.3rem; }
+  .n-pol-{{ section.id }} .n-pol__body li::marker { color: #e11b22; }
+  .n-pol-{{ section.id }} .n-pol__body a { color: #e11b22; text-decoration: underline; text-underline-offset: 2px; }
+  .n-pol-{{ section.id }} .n-pol__body strong { color: #1c1c1f; }
+
+  @media (max-width: 860px) {
+    .n-pol-{{ section.id }} .n-pol__wrap { grid-template-columns: 1fr; gap: 2rem; padding: 0 2rem; }
+    .n-pol-{{ section.id }} .n-pol__nav { position: static; }
+    .n-pol-{{ section.id }} .n-pol__navlist { display: flex; flex-wrap: wrap; gap: 0.5rem 0.7rem; border-left: 0; }
+    .n-pol-{{ section.id }} .n-pol__navlist a { padding: 0.5rem 1rem; margin: 0; border: 1px solid rgba(15,15,15,0.14); border-radius: 999px; font-size: 1.34rem; }
+    .n-pol-{{ section.id }} .n-pol__navlist a:hover { border-left-color: #e11b22; }
+  }
+{%- endstyle -%}
+
+<div class="n-pol-{{ section.id }}">
+  <div class="n-pol__wrap">
+
+    <aside class="n-pol__nav">
+      {%- if section.settings.updated != blank -%}<p class="n-pol__updated">Updated {{ section.settings.updated | escape }}</p>{%- endif -%}
+      <ul class="n-pol__navlist">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'policy' and block.settings.title != blank -%}
+            <li><a href="#pol-{{ block.settings.title | handleize }}">{{ block.settings.title | escape }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </aside>
+
+    <div class="n-pol__content">
+      {%- if section.settings.intro != blank -%}<p class="n-pol__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'policy' -%}
+          <section class="n-pol__block" id="pol-{{ block.settings.title | handleize }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.title != blank -%}<h2 class="n-pol__h">{{ block.settings.title | escape }}</h2>{%- endif -%}
+            <div class="n-pol__body rte">{{ block.settings.body }}</div>
+          </section>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche Store Policies",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "updated", "label": "Last updated", "default": "July 2026" },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "How buying, shipping, returns and warranty work at the Niche Automotive parts store. If anything here isn't clear, just get in touch before you order and we'll sort it out." },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding top", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 140, "step": 4, "unit": "px", "label": "Padding bottom", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "policy",
+      "name": "Policy",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Policy title", "default": "Policy title" },
+        { "type": "richtext", "id": "body", "label": "Policy content", "default": "<p>Policy details go here.</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [ { "name": "Niche Store Policies" } ]
+}
+{% endschema %}

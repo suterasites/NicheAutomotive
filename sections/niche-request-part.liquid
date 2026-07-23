@@ -1,0 +1,242 @@
+{%- comment -%}
+  Niche Automotive - Request a Part (part-finder form). (build 1)
+  Dark two-column: pitch + how-it-works + contact details (left) and a part-specific
+  enquiry form (right). Posts via Formspree (AJAX) when an endpoint is set, else falls
+  back to Shopify's {% form 'contact' %}. Mirrors niche-contact's delivery logic.
+  Self-contained, scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-rp-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }}; color: #fff;
+  }
+  .n-rp-{{ section.id }} .n-rp__wrap {
+    max-width: {{ settings.page_width }}px; margin: 0 auto; padding: 0 2.5rem;
+    display: grid; grid-template-columns: 0.94fr 1.06fr; gap: 3.5rem; align-items: start;
+  }
+  .n-rp-{{ section.id }} .n-rp__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1.2rem; letter-spacing: 0.22em;
+    text-transform: uppercase; font-weight: 600; color: #ff5a60; margin: 0 0 1.1rem;
+  }
+  .n-rp-{{ section.id }} .n-rp__eyebrow::before { content: ""; width: 30px; height: 2px; background: #e11b22; }
+  .n-rp-{{ section.id }} .n-rp__title {
+    font-family: var(--font-heading-family); color: #fff; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: clamp(2.6rem, 4.4vw, 3.8rem); line-height: 1.0; margin: 0 0 1.2rem;
+  }
+  .n-rp-{{ section.id }} .n-rp__copy { font-size: 1.6rem; line-height: 1.6; color: rgba(255,255,255,0.74); margin: 0 0 2.2rem; max-width: 46ch; }
+
+  .n-rp-{{ section.id }} .n-rp__steps { list-style: none; margin: 0 0 2.2rem; padding: 0; display: flex; flex-direction: column; gap: 1.4rem; }
+  .n-rp-{{ section.id }} .n-rp__step { display: flex; align-items: flex-start; gap: 1.1rem; }
+  .n-rp-{{ section.id }} .n-rp__num {
+    flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+    background: #e11b22; color: #fff; font-family: var(--font-heading-family); font-weight: 700; font-size: 1.5rem;
+  }
+  .n-rp-{{ section.id }} .n-rp__step-t { font-weight: 600; font-size: 1.55rem; color: #fff; margin: 0 0 0.2rem; }
+  .n-rp-{{ section.id }} .n-rp__step-d { font-size: 1.42rem; line-height: 1.5; color: rgba(255,255,255,0.62); margin: 0; }
+
+  .n-rp-{{ section.id }} .n-rp__details { list-style: none; margin: 0; padding: 1.8rem 0 0; border-top: 1px solid rgba(255,255,255,0.12); display: flex; flex-direction: column; gap: 1.1rem; }
+  .n-rp-{{ section.id }} .n-rp__details li { display: flex; align-items: center; gap: 0.9rem; font-size: 1.5rem; }
+  .n-rp-{{ section.id }} .n-rp__details svg { flex: 0 0 auto; width: 21px; height: 21px; color: #e11b22; }
+  .n-rp-{{ section.id }} .n-rp__details a { color: #fff; text-decoration: none; }
+  .n-rp-{{ section.id }} .n-rp__details a:hover { color: #ff5a60; }
+
+  .n-rp-{{ section.id }} .n-rp__form {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 18px; padding: 2.4rem 2.2rem;
+  }
+  .n-rp-{{ section.id }} .n-rp__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .n-rp-{{ section.id }} .n-rp__field { display: block; margin: 0 0 1rem; }
+  .n-rp-{{ section.id }} .n-rp__label { display: block; font-size: 1.32rem; font-weight: 600; color: rgba(255,255,255,0.7); margin: 0 0 0.5rem; letter-spacing: 0.01em; }
+  .n-rp-{{ section.id }} .n-rp__field input,
+  .n-rp-{{ section.id }} .n-rp__field select,
+  .n-rp-{{ section.id }} .n-rp__field textarea {
+    width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 9px; padding: 1.05rem 1.15rem; color: #fff; font-family: inherit; font-size: 1.5rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .n-rp-{{ section.id }} .n-rp__field select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ff5a60' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1.15rem center; padding-right: 3rem; }
+  .n-rp-{{ section.id }} .n-rp__field textarea { min-height: 120px; resize: vertical; }
+  .n-rp-{{ section.id }} .n-rp__field input::placeholder,
+  .n-rp-{{ section.id }} .n-rp__field textarea::placeholder { color: rgba(255,255,255,0.5); }
+  .n-rp-{{ section.id }} .n-rp__field input:focus,
+  .n-rp-{{ section.id }} .n-rp__field select:focus,
+  .n-rp-{{ section.id }} .n-rp__field textarea:focus { outline: none; border-color: #e11b22; background: rgba(255,255,255,0.09); }
+  .n-rp-{{ section.id }} .n-rp__btn {
+    display: inline-flex; align-items: center; justify-content: center; width: 100%;
+    background: #e11b22; color: #fff; border: 0; cursor: pointer; font-weight: 700; font-size: 1.55rem;
+    letter-spacing: 0.02em; padding: 1.15rem 1.8rem; border-radius: 9px; margin-top: 0.4rem;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .n-rp-{{ section.id }} .n-rp__btn:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-rp-{{ section.id }} .n-rp__note { font-size: 1.28rem; color: rgba(255,255,255,0.5); margin: 1rem 0 0; text-align: center; }
+  .n-rp-{{ section.id }} .n-rp__success {
+    background: rgba(46,160,67,0.14); border: 1px solid rgba(46,160,67,0.5); color: #7ee08a;
+    border-radius: 9px; padding: 1rem 1.2rem; margin: 0 0 1.2rem; font-size: 1.45rem;
+  }
+  .n-rp-{{ section.id }} .n-rp__error { color: #ff9a9f; font-size: 1.4rem; margin: 0 0 1rem; }
+
+  @media (max-width: 860px) {
+    .n-rp-{{ section.id }} .n-rp__wrap { grid-template-columns: 1fr; gap: 2.4rem; padding: 0 2rem; }
+    .n-rp-{{ section.id }} .n-rp__row { grid-template-columns: 1fr; }
+  }
+{%- endstyle -%}
+
+<div class="n-rp-{{ section.id }}">
+  <div class="n-rp__wrap">
+
+    <div class="n-rp__info">
+      {%- if section.settings.eyebrow != blank -%}<span class="n-rp__eyebrow">{{ section.settings.eyebrow | escape }}</span>{%- endif -%}
+      {%- if section.settings.title != blank -%}<h2 class="n-rp__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+      {%- if section.settings.copy != blank -%}<p class="n-rp__copy">{{ section.settings.copy | escape }}</p>{%- endif -%}
+
+      <ul class="n-rp__steps">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'step' -%}
+            <li class="n-rp__step" {{ block.shopify_attributes }}>
+              <span class="n-rp__num">{{ forloop.index }}</span>
+              <div>
+                {%- if block.settings.title != blank -%}<p class="n-rp__step-t">{{ block.settings.title | escape }}</p>{%- endif -%}
+                {%- if block.settings.text != blank -%}<p class="n-rp__step-d">{{ block.settings.text | escape }}</p>{%- endif -%}
+              </div>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      <ul class="n-rp__details">
+        {%- if section.settings.phone != blank -%}
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg><a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone | escape }}</a></li>
+        {%- endif -%}
+        {%- if section.settings.email != blank -%}
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg><a href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a></li>
+        {%- endif -%}
+      </ul>
+    </div>
+
+    <div class="n-rp__form">
+      {%- assign fs = section.settings.formspree_endpoint | strip -%}
+      {%- assign btn_label = section.settings.button_label | default: 'Send Part Request' -%}
+      {%- if fs != blank -%}
+        {%- if fs contains 'formspree.io' -%}{%- assign fs_action = fs -%}{%- else -%}{%- assign fs_action = 'https://formspree.io/f/' | append: fs -%}{%- endif -%}
+        <form id="n-rp-fs-{{ section.id }}" class="n-rp__fsform" action="{{ fs_action }}" method="POST">
+          <div class="n-rp__row">
+            <label class="n-rp__field"><span class="n-rp__label">Name</span><input type="text" name="name" placeholder="Your name" required></label>
+            <label class="n-rp__field"><span class="n-rp__label">Phone</span><input type="tel" name="phone" placeholder="Best contact number"></label>
+          </div>
+          <label class="n-rp__field"><span class="n-rp__label">Email</span><input type="email" name="email" placeholder="you@email.com" required></label>
+          <div class="n-rp__row">
+            <label class="n-rp__field"><span class="n-rp__label">Make</span><input type="text" name="Make" placeholder="e.g. Holden"></label>
+            <label class="n-rp__field"><span class="n-rp__label">Model</span><input type="text" name="Model" placeholder="e.g. VE Commodore"></label>
+          </div>
+          <div class="n-rp__row">
+            <label class="n-rp__field"><span class="n-rp__label">Year</span><input type="text" name="Year" placeholder="e.g. 2010"></label>
+            <label class="n-rp__field"><span class="n-rp__label">Condition</span>
+              <select name="Condition">
+                <option value="Used preferred">Used preferred</option>
+                <option value="New only">New only</option>
+                <option value="Either is fine">Either is fine</option>
+              </select>
+            </label>
+          </div>
+          <label class="n-rp__field"><span class="n-rp__label">Part(s) you need</span><textarea name="Parts needed" placeholder="Tell us what you're after - part name/number, side (LH/RH), colour, anything that helps us find the right one." required></textarea></label>
+          <label class="n-rp__field"><span class="n-rp__label">Rego or VIN (optional)</span><input type="text" name="Rego or VIN" placeholder="Helps us match the exact part"></label>
+          <input type="hidden" name="_subject" value="New part request - Niche Automotive website">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+          <p class="n-rp__success" hidden>Thanks - your part request is in. We'll check stock and our network and get back to you.</p>
+          <button type="submit" class="n-rp__btn">{{ btn_label | escape }}</button>
+          {%- if section.settings.note != blank -%}<p class="n-rp__note">{{ section.settings.note | escape }}</p>{%- endif -%}
+        </form>
+        <script>
+          (function () {
+            var f = document.getElementById('n-rp-fs-{{ section.id }}');
+            if (!f || f.dataset.bound) return;
+            f.dataset.bound = '1';
+            var btn = f.querySelector('button[type="submit"]');
+            var ok = f.querySelector('.n-rp__success');
+            var label = {{ btn_label | json }};
+            var phone = {{ section.settings.phone | default: '' | json }};
+            f.addEventListener('submit', function (e) {
+              e.preventDefault();
+              if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+              fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } })
+                .then(function (r) {
+                  if (r.ok) { f.reset(); if (ok) ok.hidden = false; if (btn) { btn.disabled = false; btn.textContent = 'Sent'; } }
+                  else { if (btn) { btn.disabled = false; btn.textContent = label; } alert('Sorry, something went wrong. Please call us' + (phone ? ' on ' + phone : '') + '.'); }
+                })
+                .catch(function () { if (btn) { btn.disabled = false; btn.textContent = label; } alert('Network error - please call us' + (phone ? ' on ' + phone : '') + '.'); });
+            });
+          })();
+        </script>
+      {%- else -%}
+        {%- form 'contact' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="n-rp__success">Thanks - your part request is in. We'll check stock and our network and get back to you.</p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <p class="n-rp__error">{{ form.errors | default_errors }}</p>
+          {%- endif -%}
+          <div class="n-rp__row">
+            <label class="n-rp__field"><span class="n-rp__label">Name</span><input type="text" name="contact[name]" placeholder="Your name" value="{{ form.name }}" required></label>
+            <label class="n-rp__field"><span class="n-rp__label">Phone</span><input type="tel" name="contact[phone]" placeholder="Best contact number" value="{{ form.phone }}"></label>
+          </div>
+          <label class="n-rp__field"><span class="n-rp__label">Email</span><input type="email" name="contact[email]" placeholder="you@email.com" value="{{ form.email }}" required></label>
+          <div class="n-rp__row">
+            <label class="n-rp__field"><span class="n-rp__label">Make</span><input type="text" name="contact[Make]" placeholder="e.g. Holden"></label>
+            <label class="n-rp__field"><span class="n-rp__label">Model</span><input type="text" name="contact[Model]" placeholder="e.g. VE Commodore"></label>
+          </div>
+          <div class="n-rp__row">
+            <label class="n-rp__field"><span class="n-rp__label">Year</span><input type="text" name="contact[Year]" placeholder="e.g. 2010"></label>
+            <label class="n-rp__field"><span class="n-rp__label">Condition</span>
+              <select name="contact[Condition]">
+                <option value="Used preferred">Used preferred</option>
+                <option value="New only">New only</option>
+                <option value="Either is fine">Either is fine</option>
+              </select>
+            </label>
+          </div>
+          <label class="n-rp__field"><span class="n-rp__label">Part(s) you need</span><textarea name="contact[body]" placeholder="Tell us what you're after - part name/number, side (LH/RH), colour, anything that helps us find the right one." required>{{ form.body }}</textarea></label>
+          <label class="n-rp__field"><span class="n-rp__label">Rego or VIN (optional)</span><input type="text" name="contact[Rego or VIN]" placeholder="Helps us match the exact part"></label>
+          <button type="submit" class="n-rp__btn">{{ btn_label | escape }}</button>
+          {%- if section.settings.note != blank -%}<p class="n-rp__note">{{ section.settings.note | escape }}</p>{%- endif -%}
+        {%- endform -%}
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Niche Request a Part",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Second-Hand Parts Store" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Can't Find the Part?" },
+    { "type": "textarea", "id": "copy", "label": "Copy", "default": "New stock lands all the time and we can track down hard-to-find parts through our network. Tell us what you're chasing and we'll check what we've got and what we can source." },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "0411 019 935" },
+    { "type": "text", "id": "email", "label": "Email", "default": "info@nicheautomotive.com.au" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Send Part Request" },
+    { "type": "text", "id": "note", "label": "Small note under button", "default": "No obligation - we'll only get in touch about your request." },
+    { "type": "header", "content": "Form delivery" },
+    { "type": "text", "id": "formspree_endpoint", "label": "Formspree endpoint (optional)", "default": "https://formspree.io/f/xwvgqgzr", "info": "Paste your Formspree form URL or ID. Leave empty to use Shopify's built-in contact form." },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#101114" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 84 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 92 }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "How-it-works step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Step title", "default": "Tell us what you need" },
+        { "type": "text", "id": "text", "label": "Step text", "default": "Send through the details." }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [ { "name": "Niche Request a Part" } ]
+}
+{% endschema %}

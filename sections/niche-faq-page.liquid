@@ -1,0 +1,149 @@
+{%- comment -%}
+  Niche Automotive - Full FAQ page. (build 1)
+  Centered, categorised accordion built from blocks: "category" blocks insert a group
+  heading, "faq" blocks are the questions. Native <details> (no JS). Also emits
+  FAQPage JSON-LD (from every faq block) for Google rich results. Scoped by section.id.
+{%- endcomment -%}
+
+{%- style -%}
+  .n-faqp-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }}; color: #0f0f0f;
+  }
+  .n-faqp-{{ section.id }} .n-faqp__wrap { max-width: 880px; margin: 0 auto; padding: 0 2.5rem; }
+  .n-faqp-{{ section.id }} .n-faqp__intro { font-size: 1.62rem; line-height: 1.65; color: #4a4a4e; margin: 0 0 2.8rem; max-width: 62ch; }
+
+  .n-faqp-{{ section.id }} .n-faqp__cat {
+    display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1.2rem; letter-spacing: 0.2em;
+    text-transform: uppercase; font-weight: 600; color: #e11b22; margin: 2.8rem 0 0.4rem;
+  }
+  .n-faqp-{{ section.id }} .n-faqp__cat::before { content: ""; width: 26px; height: 2px; background: #e11b22; }
+  .n-faqp-{{ section.id }} .n-faqp__cat:first-child { margin-top: 0; }
+
+  .n-faqp-{{ section.id }} .n-faqp__item { border-bottom: 1px solid rgba(15,15,15,0.12); }
+  .n-faqp-{{ section.id }} .n-faqp__q {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+    padding: 1.6rem 0; font-family: var(--font-heading-family); font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.01em; font-size: 1.62rem; line-height: 1.25; color: #0f0f0f;
+  }
+  .n-faqp-{{ section.id }} .n-faqp__q::-webkit-details-marker { display: none; }
+  .n-faqp-{{ section.id }} .n-faqp__ico {
+    flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+    background: rgba(225,27,34,0.10); color: #e11b22; transition: background 0.18s ease, color 0.18s ease, transform 0.25s ease;
+  }
+  .n-faqp-{{ section.id }} .n-faqp__ico svg { width: 15px; height: 15px; }
+  .n-faqp-{{ section.id }} details[open] .n-faqp__ico { background: #e11b22; color: #fff; transform: rotate(180deg); }
+  .n-faqp-{{ section.id }} .n-faqp__a { padding: 0 3rem 1.7rem 0; margin: 0; font-size: 1.52rem; line-height: 1.65; color: #4a4a4e; }
+
+  .n-faqp-{{ section.id }} .n-faqp__foot {
+    margin-top: 3rem; padding: 2.2rem 2.4rem; border-radius: 16px; background: #101114; color: #fff;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.2rem;
+  }
+  .n-faqp-{{ section.id }} .n-faqp__foot-t { font-family: var(--font-heading-family); font-weight: 700; text-transform: uppercase; font-size: 1.9rem; margin: 0; }
+  .n-faqp-{{ section.id }} .n-faqp__foot-s { font-size: 1.44rem; color: rgba(255,255,255,0.7); margin: 0.3rem 0 0; }
+  .n-faqp-{{ section.id }} .n-faqp__foot-btns { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .n-faqp-{{ section.id }} .n-faqp__btn {
+    display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+    font-weight: 700; font-size: 1.44rem; padding: 0.95rem 1.7rem; border-radius: 999px; transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .n-faqp-{{ section.id }} .n-faqp__btn--primary { background: #e11b22; color: #fff; }
+  .n-faqp-{{ section.id }} .n-faqp__btn--primary:hover { background: #c3141b; transform: translateY(-2px); }
+  .n-faqp-{{ section.id }} .n-faqp__btn--ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
+  .n-faqp-{{ section.id }} .n-faqp__btn--ghost:hover { border-color: #fff; transform: translateY(-2px); }
+
+  @media (max-width: 749px) {
+    .n-faqp-{{ section.id }} .n-faqp__wrap { padding: 0 2rem; }
+    .n-faqp-{{ section.id }} .n-faqp__foot { flex-direction: column; align-items: flex-start; }
+  }
+{%- endstyle -%}
+
+<div class="n-faqp-{{ section.id }}">
+  <div class="n-faqp__wrap">
+    {%- if section.settings.intro != blank -%}<p class="n-faqp__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
+
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'category' -%}
+          {%- if block.settings.title != blank -%}<p class="n-faqp__cat" {{ block.shopify_attributes }}>{{ block.settings.title | escape }}</p>{%- endif -%}
+        {%- when 'faq' -%}
+          <details class="n-faqp__item" {{ block.shopify_attributes }}>
+            <summary class="n-faqp__q">
+              <span>{{ block.settings.question | escape }}</span>
+              <span class="n-faqp__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </summary>
+            {%- if block.settings.answer != blank -%}<p class="n-faqp__a">{{ block.settings.answer | escape | newline_to_br }}</p>{%- endif -%}
+          </details>
+      {%- endcase -%}
+    {%- endfor -%}
+
+    {%- if section.settings.foot_title != blank -%}
+      <div class="n-faqp__foot">
+        <div>
+          <p class="n-faqp__foot-t">{{ section.settings.foot_title | escape }}</p>
+          {%- if section.settings.foot_sub != blank -%}<p class="n-faqp__foot-s">{{ section.settings.foot_sub | escape }}</p>{%- endif -%}
+        </div>
+        <div class="n-faqp__foot-btns">
+          {%- if section.settings.phone != blank -%}<a class="n-faqp__btn n-faqp__btn--primary" href="tel:{{ section.settings.phone | remove: ' ' }}">Call {{ section.settings.phone | escape }}</a>{%- endif -%}
+          <a class="n-faqp__btn n-faqp__btn--ghost" href="{{ section.settings.foot_link | default: '/pages/contact' }}">Send an Enquiry</a>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- capture faq_ld -%}
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- assign qcount = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'faq' and block.settings.question != blank and block.settings.answer != blank -%}
+        {%- if qcount > 0 -%},{%- endif -%}
+        {"@type":"Question","name":{{ block.settings.question | strip_newlines | json }},"acceptedAnswer":{"@type":"Answer","text":{{ block.settings.answer | strip_newlines | json }}}}
+        {%- assign qcount = qcount | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  ]
+}
+{%- endcapture -%}
+{%- if qcount > 0 -%}<script type="application/ld+json">{{ faq_ld }}</script>{%- endif -%}
+
+{% schema %}
+{
+  "name": "Niche FAQ Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "Everything you need to know about booking your car in, our workshop services, and buying from the second-hand parts store. Can't find your answer? Give us a call." },
+    { "type": "header", "content": "Bottom CTA" },
+    { "type": "text", "id": "foot_title", "label": "CTA title", "default": "Still Have a Question?" },
+    { "type": "text", "id": "foot_sub", "label": "CTA subtitle", "default": "We're happy to help - give the workshop a call or send an enquiry." },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "0411 019 935" },
+    { "type": "url", "id": "foot_link", "label": "Enquiry button link" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 92 }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category heading",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Category", "default": "Category" }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Your question here?" },
+        { "type": "textarea", "id": "answer", "label": "Answer", "default": "Your answer here." }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [ { "name": "Niche FAQ Page" } ]
+}
+{% endschema %}
