@@ -21,7 +21,7 @@
         "q5": { "type": "faq", "settings": { "question": "How do I book my car in?", "answer": "Give us a call on 0411 019 935 or send an enquiry through the contact form and we'll get you sorted." } },
 
         "c2": { "type": "category", "settings": { "title": "Performance & Builds" } },
-        "q6": { "type": "faq", "settings": { "question": "Do you do performance upgrades and tuning?", "answer": "Yes. We put together reliable, streetable performance packages to suit how you drive and your budget - from bolt-ons to supporting mods and tuning." } },
+        "q6": { "type": "faq", "settings": { "question": "Do you do performance upgrades and tuning?", "answer": "Yes. We put together reliable, streetable performance and race packages to suit how you drive and your budget - from bolt-ons to supporting mods and tuning." } },
         "q7": { "type": "faq", "settings": { "question": "Can you build or rebuild an engine?", "answer": "Yes. We do full engine builds and rebuilds, measured and assembled to spec, whether it's a tired daily or a serious performance build." } },
         "q8": { "type": "faq", "settings": { "question": "Do you do engine conversions and swaps?", "answer": "We do. We handle conversions end to end - mounts, wiring, cooling and tuning - so the swap runs clean, safe and reliable." } },
         "q9": { "type": "faq", "settings": { "question": "Do you take on restoration projects?", "answer": "Yes. We do mechanical restoration and can help finish a stalled project. Tell us about the car and where it's at and we'll talk through the next steps." } },

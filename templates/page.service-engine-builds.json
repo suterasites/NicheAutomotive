@@ -19,7 +19,7 @@
       },
       "block_order": ["h1", "h2", "h3"],
       "settings": {
-        "fallback_image": "niche-svc-engine.jpg",
+        "fallback_image": "niche-icon-engine.jpg",
         "eyebrow": "Engine Builds & Rebuilds",
         "heading": "Engines Built To Last",
         "body1": "Full engine builds and rebuilds done properly, from worn-out daily drivers to serious performance builds. Measured, assembled and set up to spec so it lasts and performs the way it should.",
