@@ -1,9 +1,9 @@
 {%- comment -%}
-  Niche Automotive - Reusable sub-page header. (build 1)
-  Compact dark banner for interior pages (Services, About, Contact). Eyebrow +
-  big uppercase title (optional red accent word) + lead line. Optional background
-  photo with a dark brand scrim; falls back to a baked workshop asset.
-  Self-contained: all CSS scoped by section.id.
+  Niche Automotive - Reusable sub-page header. (build 2 - rotating background)
+  Compact dark banner for interior pages. Eyebrow + big uppercase title (optional red
+  accent word) + lead line. Background can ROTATE through a set of baked asset photos
+  (cross-fade), or show a single image. Priority: image_picker > rotating set > single
+  fallback asset. Rotation is CSS/JS cross-fade, respects reduced-motion. Scoped by section.id.
 {%- endcomment -%}
 
 {%- style -%}
@@ -11,10 +11,13 @@
     position: relative; overflow: hidden; background: #0d0d0f; color: #fff;
   }
   .n-ph-{{ section.id }}__bg { position: absolute; inset: 0; z-index: 0; }
-  .n-ph-{{ section.id }}__bg img {
+  .n-ph-{{ section.id }}__slide {
+    position: absolute; inset: 0;
     width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
     filter: brightness(0.4) saturate(0.8) contrast(1.06);
+    opacity: 0; transition: opacity 1.4s ease;
   }
+  .n-ph-{{ section.id }}__slide.is-active { opacity: 1; }
   .n-ph-{{ section.id }}__scrim {
     position: absolute; inset: 0; z-index: 1;
     background:
@@ -47,12 +50,28 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  assign rotate_ms = section.settings.rotate_seconds | default: 5 | times: 1000
+  assign slide_class = 'n-ph-' | append: section.id | append: '__slide is-active'
+-%}
+
 <div class="n-ph-{{ section.id }}">
-  <div class="n-ph-{{ section.id }}__bg">
+  <div class="n-ph-{{ section.id }}__bg" data-rotate-ms="{{ rotate_ms }}">
     {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 2200 | image_tag: loading: 'eager', sizes: '100vw', widths: '750, 1100, 1500, 1900, 2200' }}
+      {{ section.settings.image | image_url: width: 2200 | image_tag: class: slide_class, loading: 'eager', sizes: '100vw', widths: '750, 1100, 1500, 1900, 2200' }}
     {%- else -%}
-      <img src="{{ section.settings.fallback_image | default: 'niche-services-feature.jpg' | asset_url }}" alt="Niche Automotive workshop in Sunshine West" loading="eager" width="1600" height="900">
+      {%- assign ri_list = section.settings.rotate_images | split: ',' -%}
+      {%- assign shown = 0 -%}
+      {%- for raw in ri_list -%}
+        {%- assign fn = raw | strip -%}
+        {%- if fn != blank -%}
+          <img class="n-ph-{{ section.id }}__slide{% if shown == 0 %} is-active{% endif %}" src="{{ fn | asset_url }}" alt="Niche Automotive workshop in Sunshine West" {% if shown == 0 %}loading="eager"{% else %}loading="lazy"{% endif %} width="1600" height="900">
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if shown == 0 -%}
+        <img class="n-ph-{{ section.id }}__slide is-active" src="{{ section.settings.fallback_image | default: 'niche-services-feature.jpg' | asset_url }}" alt="Niche Automotive workshop in Sunshine West" loading="eager" width="1600" height="900">
+      {%- endif -%}
     {%- endif -%}
   </div>
   <div class="n-ph-{{ section.id }}__scrim"></div>
@@ -70,19 +89,39 @@
   </div>
 </div>
 
+<script>
+  (function () {
+    var bg = document.querySelector('.n-ph-{{ section.id }}__bg');
+    if (!bg || bg.dataset.rInit) return;
+    bg.dataset.rInit = '1';
+    var slides = bg.querySelectorAll('.n-ph-{{ section.id }}__slide');
+    if (slides.length < 2) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var ms = parseInt(bg.dataset.rotateMs, 10) || 5000;
+    var i = 0;
+    setInterval(function () {
+      slides[i].classList.remove('is-active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('is-active');
+    }, ms);
+  })();
+</script>
+
 {% schema %}
 {
   "name": "Niche Page Header",
   "tag": "section",
   "class": "section",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Background image (optional)", "info": "Leave empty to use the baked workshop photo below." },
-    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "default": "niche-services-feature.jpg" },
+    { "type": "paragraph", "content": "Background priority: a single uploaded image (below) overrides everything; otherwise the rotating photo set rotates; otherwise the single fallback asset shows." },
+    { "type": "image_picker", "id": "image", "label": "Single background image (optional)", "info": "Set this to pin ONE static image and turn off rotation for this page." },
+    { "type": "textarea", "id": "rotate_images", "label": "Rotating background photos", "default": "niche-gallery-front-1.jpg, niche-gallery-front-2.jpg, niche-gallery-front-3.jpg, niche-gallery-front-4.jpg, niche-workshop-front.jpg, niche-shopfront.jpg", "info": "Comma-separated asset filenames. 2+ photos cross-fade in the background. Clear this to use the single fallback below." },
+    { "type": "range", "id": "rotate_seconds", "min": 3, "max": 10, "step": 1, "unit": "s", "label": "Seconds per photo", "default": 5 },
+    { "type": "text", "id": "fallback_image", "label": "Fallback asset filename", "default": "niche-services-feature.jpg", "info": "Used only if no image is uploaded and the rotating set is empty." },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What We Do" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Workshop" },
     { "type": "text", "id": "heading_accent", "label": "Heading (red highlight)", "default": "Services" },
-    { "type": "textarea", "id": "subtext", "label": "Lead line", "default": "From routine servicing to full engine builds and restorations, we look after all makes and models with honest advice and quality workmanship." },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Padding top (unused)", "default": 0 }
+    { "type": "textarea", "id": "subtext", "label": "Lead line", "default": "From routine servicing to full engine builds and restorations, we look after all makes and models with honest advice and quality workmanship." }
   ],
   "presets": [ { "name": "Niche Page Header" } ]
 }
