@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-shopfront.jpg",
+        "eyebrow": "Second-Hand Parts Store",
+        "heading": "Request a",
+        "heading_accent": "Part",
+        "subtext": "Chasing something we don't have listed yet? Tell us what you need and we'll check our stock and our network to track it down."
+      }
+    },
+    "request": {
+      "type": "niche-request-part",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "title": "Tell us what you need", "text": "Make, model and the part you're chasing - the more detail the better." } },
+        "s2": { "type": "step", "settings": { "title": "We check stock and our network", "text": "We look at what's in the store and what we can source second-hand." } },
+        "s3": { "type": "step", "settings": { "title": "We get back to you", "text": "You'll get price and availability, usually the same or next day." } }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {
+        "formspree_endpoint": "https://formspree.io/f/xwvgqgzr",
+        "eyebrow": "Second-Hand Parts Store",
+        "title": "Can't Find the Part?",
+        "copy": "New stock lands all the time and we can track down hard-to-find parts through our network. Tell us what you're chasing and we'll check what we've got and what we can source.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "button_label": "Send Part Request",
+        "note": "No obligation - we'll only get in touch about your request.",
+        "bg_color": "#101114",
+        "padding_top": 84,
+        "padding_bottom": 92
+      }
+    }
+  },
+  "order": ["header", "request"]
+}

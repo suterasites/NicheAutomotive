@@ -1,0 +1,77 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-workshop-front.jpg",
+        "eyebrow": "The Details",
+        "heading": "Store",
+        "heading_accent": "Policies",
+        "subtext": "How ordering, shipping, pickup, returns and warranty work when you buy parts from Niche Automotive."
+      }
+    },
+    "policies": {
+      "type": "niche-policies",
+      "blocks": {
+        "p1": {
+          "type": "policy",
+          "settings": {
+            "title": "Ordering & Payment",
+            "body": "<p>You can order parts directly through our online store, or get in touch and we'll help you sort it out. Prices are in Australian dollars.</p><p>Payments are processed securely through our payment providers at checkout - we never see or store your full card details. Because a lot of our stock is one-off second-hand items, parts are sold on a first-in, first-served basis, so it pays to order or reserve early.</p>"
+          }
+        },
+        "p2": {
+          "type": "policy",
+          "settings": {
+            "title": "Shipping & Delivery",
+            "body": "<p>We ship Australia-wide. Postage is calculated at checkout where possible, and we do our best to pack parts safely and get them on their way quickly, usually within a couple of business days.</p><p><strong>Large or heavy items</strong> - engines, panels, glass and the like - may not price correctly online. For these, contact us before or after ordering and we'll arrange a freight quote to your postcode. If you've been overcharged or undercharged on postage, we'll always make it right.</p>"
+          }
+        },
+        "p3": {
+          "type": "policy",
+          "settings": {
+            "title": "Local Pickup",
+            "body": "<p>You're welcome to collect your order from the workshop at <strong>4/94 Boundary Road, Sunshine West VIC 3020</strong>. Choose pickup at checkout and we'll let you know once your part is ready to grab. Please bring your order confirmation with you.</p>"
+          }
+        },
+        "p4": {
+          "type": "policy",
+          "settings": {
+            "title": "Used Parts & Condition",
+            "body": "<p>Most of our stock is quality second-hand. We describe the condition of each part honestly and, where we can, the photos show the actual item you'll receive. Used parts will show some age and wear, which is reflected in the price.</p><p>If you're not sure a part is right for your car or want more photos or detail before you buy, just ask - we'd rather get you the right part the first time.</p>"
+          }
+        },
+        "p5": {
+          "type": "policy",
+          "settings": {
+            "title": "Returns & Refunds",
+            "body": "<p>If a part arrives <strong>faulty, not as described, or we've sent the wrong item</strong>, contact us within <strong>7 days</strong> of receiving it and we'll make it right with a replacement, exchange or refund. Please don't fit or modify the part before contacting us, and keep it in the condition it arrived.</p><p>As second-hand parts are often one-offs, we generally can't accept change-of-mind returns - so please check fitment and ask any questions before ordering. Any return postage for change-of-mind is at your cost.</p><p>Nothing here takes away your rights under the <strong>Australian Consumer Law</strong>, including the consumer guarantees that apply to the goods we sell.</p>"
+          }
+        },
+        "p6": {
+          "type": "policy",
+          "settings": {
+            "title": "Warranty",
+            "body": "<p>Any warranty offered on a second-hand part is noted on the listing or confirmed with you at the time of sale, and covers the part being faulty or not as described - not general wear, incorrect fitment, or damage from misuse or improper installation. We recommend used parts are fitted by a qualified mechanic.</p><p>New parts are covered by the relevant manufacturer's warranty. Warranty on workshop repairs and labour is handled separately - ask us and we'll talk you through it.</p>"
+          }
+        },
+        "p7": {
+          "type": "policy",
+          "settings": {
+            "title": "Questions",
+            "body": "<p>If anything here isn't clear, get in touch before you order and we'll sort it out.</p><p><strong>Niche Automotive</strong><br>4/94 Boundary Road, Sunshine West VIC 3020<br>Phone: <a href=\"tel:0411019935\">0411 019 935</a><br>Email: <a href=\"mailto:info@nicheautomotive.com.au\">info@nicheautomotive.com.au</a></p>"
+          }
+        }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6", "p7"],
+      "settings": {
+        "updated": "July 2026",
+        "intro": "How buying, shipping, returns and warranty work at the Niche Automotive parts store. If anything here isn't clear, just get in touch before you order and we'll sort it out.",
+        "bg_color": "#FFFFFF",
+        "padding_top": 72,
+        "padding_bottom": 96
+      }
+    }
+  },
+  "order": ["header", "policies"]
+}

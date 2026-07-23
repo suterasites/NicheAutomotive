@@ -1,0 +1,56 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "FAQ",
+        "heading": "Frequently Asked",
+        "heading_accent": "Questions",
+        "subtext": "Booking your car in, our workshop services, and buying from the second-hand parts store - the questions we get asked most, answered."
+      }
+    },
+    "faq": {
+      "type": "niche-faq-page",
+      "blocks": {
+        "c1": { "type": "category", "settings": { "title": "Workshop & Servicing" } },
+        "q1": { "type": "faq", "settings": { "question": "What areas do you service?", "answer": "We're based in Sunshine West and look after customers right across Melbourne's western suburbs." } },
+        "q2": { "type": "faq", "settings": { "question": "Do you work on all makes and models?", "answer": "Yes. From daily drivers to weekend projects, we service and repair all makes and models." } },
+        "q3": { "type": "faq", "settings": { "question": "Will a service affect my new car warranty?", "answer": "No. Our log book servicing follows the manufacturer's schedule, so your new car warranty stays intact." } },
+        "q4": { "type": "faq", "settings": { "question": "Do you give upfront pricing?", "answer": "Always. We provide clear, upfront quotes before any work starts, so there are no surprises." } },
+        "q5": { "type": "faq", "settings": { "question": "How do I book my car in?", "answer": "Give us a call on 0411 019 935 or send an enquiry through the contact form and we'll get you sorted." } },
+
+        "c2": { "type": "category", "settings": { "title": "Performance & Builds" } },
+        "q6": { "type": "faq", "settings": { "question": "Do you do performance upgrades and tuning?", "answer": "Yes. We put together reliable, streetable performance packages to suit how you drive and your budget - from bolt-ons to supporting mods and tuning." } },
+        "q7": { "type": "faq", "settings": { "question": "Can you build or rebuild an engine?", "answer": "Yes. We do full engine builds and rebuilds, measured and assembled to spec, whether it's a tired daily or a serious performance build." } },
+        "q8": { "type": "faq", "settings": { "question": "Do you do engine conversions and swaps?", "answer": "We do. We handle conversions end to end - mounts, wiring, cooling and tuning - so the swap runs clean, safe and reliable." } },
+        "q9": { "type": "faq", "settings": { "question": "Do you take on restoration projects?", "answer": "Yes. We do mechanical restoration and can help finish a stalled project. Tell us about the car and where it's at and we'll talk through the next steps." } },
+
+        "c3": { "type": "category", "settings": { "title": "Parts Store" } },
+        "q10": { "type": "faq", "settings": { "question": "Do you sell second-hand parts?", "answer": "Yes. We stock a growing range of quality second-hand parts and add new stock all the time." } },
+        "q11": { "type": "faq", "settings": { "question": "What condition are your used parts in?", "answer": "Quality second-hand. We describe each part's condition honestly and, where we can, the photos show the actual item. Used parts show some age and wear, which is reflected in the price." } },
+        "q12": { "type": "faq", "settings": { "question": "Can you find a part you don't have listed?", "answer": "Often, yes. Head to the Request a Part page and tell us the make, model and what you're after, and we'll check our stock and our network to track it down." } },
+        "q13": { "type": "faq", "settings": { "question": "How do I know a part will fit my car?", "answer": "Check the listing details, and if you're unsure just ask before you buy. Your rego or VIN helps us match the exact part to your vehicle." } },
+        "q14": { "type": "faq", "settings": { "question": "Do used parts come with a warranty?", "answer": "Any warranty is noted on the listing or confirmed at the time of sale, and covers the part being faulty or not as described. Your rights under the Australian Consumer Law still apply. See our Store Policies for the full detail." } },
+
+        "c4": { "type": "category", "settings": { "title": "Ordering & Delivery" } },
+        "q15": { "type": "faq", "settings": { "question": "How do I buy a part?", "answer": "Order directly through our online store, or get in touch and we'll help you sort it out." } },
+        "q16": { "type": "faq", "settings": { "question": "Do you ship parts?", "answer": "Yes, Australia-wide. Postage is calculated at checkout where possible. Large or heavy items like engines and panels may need a freight quote - just contact us. See our Store Policies for more." } },
+        "q17": { "type": "faq", "settings": { "question": "Can I pick up from the workshop?", "answer": "Absolutely. Choose pickup at checkout and collect from 4/94 Boundary Road, Sunshine West. We'll let you know when your part is ready." } },
+        "q18": { "type": "faq", "settings": { "question": "What if a part is faulty or the wrong item?", "answer": "Contact us within 7 days of receiving it and we'll make it right with a replacement, exchange or refund. Full detail is on our Store Policies page." } }
+      },
+      "block_order": ["c1","q1","q2","q3","q4","q5","c2","q6","q7","q8","q9","c3","q10","q11","q12","q13","q14","c4","q15","q16","q17","q18"],
+      "settings": {
+        "intro": "Everything you need to know about booking your car in, our workshop services, and buying from the second-hand parts store. Can't find your answer? Give us a call.",
+        "foot_title": "Still Have a Question?",
+        "foot_sub": "We're happy to help - give the workshop a call or send an enquiry.",
+        "phone": "0411 019 935",
+        "foot_link": "/pages/contact",
+        "bg_color": "#FFFFFF",
+        "padding_top": 72,
+        "padding_bottom": 92
+      }
+    }
+  },
+  "order": ["header", "faq"]
+}
