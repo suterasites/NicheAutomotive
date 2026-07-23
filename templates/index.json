@@ -162,14 +162,14 @@
     "instagram": {
       "type": "niche-instagram",
       "settings": {
-        "eyebrow": "Follow Along",
+        "eyebrow": "",
         "title": "Follow Us On Instagram",
-        "subtext": "The latest builds, parts and workshop action - straight from our Instagram.",
+        "subtext": "",
         "button_label": "Follow on Instagram",
         "instagram_url": "",
         "elfsight_app_id": "2ba30dad-1add-42ab-aa12-ffde0370082a",
-        "bg_color": "#101114",
-        "text_color": "#FFFFFF",
+        "bg_color": "#FFFFFF",
+        "text_color": "#0F0F0F",
         "padding_top": 84,
         "padding_bottom": 88
       }
