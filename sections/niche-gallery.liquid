@@ -153,7 +153,6 @@
               <button type="button" class="n-gal__item" {{ block.shopify_attributes }}
                       data-type="image" data-full="{{ full }}" data-caption="{{ block.settings.caption | escape }}">
                 <img class="n-gal__media" src="{{ thumb }}" alt="{{ block.settings.caption | default: 'Niche Automotive' | escape }}" loading="lazy">
-                {%- if block.settings.caption != blank -%}<span class="n-gal__cap">{{ block.settings.caption | escape }}</span>{%- endif -%}
               </button>
             {%- endif -%}
           {%- when 'video' -%}
@@ -171,7 +170,6 @@
                 <img class="n-gal__media" src="{{ poster }}" alt="{{ block.settings.caption | default: 'Niche Automotive video' | escape }}" loading="lazy">
                 <span class="n-gal__tag">Video</span>
                 <span class="n-gal__play">{{ play_svg }}</span>
-                {%- if block.settings.caption != blank -%}<span class="n-gal__cap">{{ block.settings.caption | escape }}</span>{%- endif -%}
               </button>
             {%- endif -%}
         {%- endcase -%}
