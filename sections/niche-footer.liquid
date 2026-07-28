@@ -86,7 +86,7 @@
   }
 {%- endstyle -%}
 
-<div class="n-ft-{{ section.id }}">
+<footer class="n-ft-{{ section.id }}" role="contentinfo">
   <div class="n-ft__wrap">
 
     {%- if section.settings.show_cta -%}
@@ -113,7 +113,7 @@
         {%- if section.settings.logo != blank -%}
           <img class="n-ft__logo" src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ shop.name | escape }}" width="172" height="auto" loading="lazy">
         {%- else -%}
-          <img class="n-ft__logo" src="{{ 'niche-logo-white.png' | asset_url }}" alt="{{ shop.name | escape }}" width="172" loading="lazy">
+          <img class="n-ft__logo" src="{{ 'niche-logo-white.png' | asset_url }}" alt="{{ shop.name | escape }}" width="172" height="53" loading="lazy">
         {%- endif -%}
         {%- if section.settings.tagline != blank -%}<p class="n-ft__tag">{{ section.settings.tagline | escape }}</p>{%- endif -%}
         {%- if section.settings.instagram_url != blank -%}
@@ -204,7 +204,7 @@
     </div>
 
   </div>
-</div>
+</footer>
 
 {% schema %}
 {
