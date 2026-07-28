@@ -31,9 +31,31 @@
       {%- unless request.page_type == 'product' or page_title contains shop.name %} - {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | strip_html | truncate: 155 | escape }}">
-    {% endif %}
+    {%- liquid
+      # Smart meta description. Use the page/product description; for products whose
+      # description is short, pad with genuinely useful in-stock + location + shipping
+      # context (varied by part type, so it is not identical boilerplate) so the SERP
+      # snippet lands in the 150-160 char target instead of a thin ~90-char line.
+      assign meta_description = page_description | strip_html | strip_newlines | strip
+      if request.page_type == 'product' and product != blank
+        if meta_description == blank
+          assign meta_description = product.description | strip_html | strip_newlines | strip
+        endif
+        assign meta_description = meta_description | truncate: 155
+        if meta_description.size < 120
+          assign part_type = product.type | default: 'Holden parts'
+          capture desc_pad
+            In stock now at Niche Automotive in Sunshine West VIC. Genuine second-hand {{ part_type }} with fast, tracked Australia-wide shipping.
+          endcapture
+          assign desc_pad = desc_pad | strip_newlines | replace: '  ', ' ' | strip
+          assign meta_description = meta_description | append: ' ' | append: desc_pad
+        endif
+      endif
+      assign meta_description = meta_description | truncate: 160
+    -%}
+    {%- if meta_description != blank -%}
+      <meta name="description" content="{{ meta_description | escape }}">
+    {%- endif -%}
 
     {% render 'meta-tags' %}
 
