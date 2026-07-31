@@ -454,8 +454,8 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    {%- comment -%} Elfsight Google Reviews - floating widget (site-wide) {%- endcomment -%}
+    {%- comment -%} Elfsight Google Reviews - floating widget (site-wide). No data-elfsight-app-lazy: as the last node in <body> the lazy observer never fired, so the badge never loaded. Eager load fixes that. {%- endcomment -%}
     <script src="https://elfsightcdn.com/platform.js" async></script>
-    <div class="elfsight-app-4dad6755-a84e-46e7-a5a5-4945729586be" data-elfsight-app-lazy></div>
+    <div class="elfsight-app-4dad6755-a84e-46e7-a5a5-4945729586be"></div>
   </body>
 </html>
