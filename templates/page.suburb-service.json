@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Car Servicing",
+        "heading": "",
+        "heading_accent": "",
+        "subtext": "Log book and general servicing for all makes and models, done to the manufacturer's schedule with honest advice and clear, upfront pricing.",
+        "min_height": 52
+      }
+    },
+    "body": {
+      "type": "niche-page-body",
+      "settings": {
+        "padding_top": 56,
+        "padding_bottom": 40
+      }
+    },
+    "areas": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"background:#ffffff;padding:64px 20px;\"><div style=\"max-width:1000px;margin:0 auto;text-align:center;\"><p style=\"color:#e11b22;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;font-size:0.78rem;margin:0 0 10px;\">Areas We Service</p><h2 style=\"font-family:var(--font-heading-family);text-transform:uppercase;font-size:2rem;margin:0 0 12px;color:#0f0f0f;\">Car Servicing Across Melbourne's West</h2><p style=\"color:#4a4a4e;max-width:640px;margin:0 auto 26px;line-height:1.7;\">Based in Sunshine West and servicing drivers right across Melbourne's western suburbs. Find your local car servicing page below.</p><div class=\"niche-areas\"><a href=\"/pages/car-service-altona\">Altona</a><a href=\"/pages/car-service-deer-park\">Deer Park</a><a href=\"/pages/car-service-footscray\">Footscray</a><a href=\"/pages/car-service-keilor\">Keilor</a><a href=\"/pages/car-service-maribyrnong\">Maribyrnong</a><a href=\"/pages/car-service-newport\">Newport</a><a href=\"/pages/car-service-seddon\">Seddon</a><a href=\"/pages/car-service-st-albans\">St Albans</a><a href=\"/pages/car-service-sunshine\">Sunshine</a><a href=\"/pages/car-service-sydenham\">Sydenham</a><a href=\"/pages/car-service-taylors-lakes\">Taylors Lakes</a><a href=\"/pages/car-service-west-footscray\">West Footscray</a><a href=\"/pages/car-service-williamstown\">Williamstown</a><a href=\"/pages/car-service-yarraville\">Yarraville</a></div></div></div><style>.niche-areas{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}.niche-areas a{display:inline-block;padding:10px 18px;border:1px solid #d7d8dc;color:#0f0f0f;font-weight:600;font-size:0.9rem;text-decoration:none;transition:border-color .2s,color .2s;}.niche-areas a:hover{border-color:#e11b22;color:#e11b22;}</style>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "formspree_endpoint": "https://formspree.io/f/xwvgqgzr",
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": ["header", "body", "areas", "contact"]
+}
