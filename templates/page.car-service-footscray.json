@@ -1,0 +1,206 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Car Servicing",
+        "heading": "Car Servicing in Footscray",
+        "heading_accent": "",
+        "subtext": "Log book and general servicing for Footscray drivers, done to the manufacturer's schedule with honest advice and clear, upfront pricing.",
+        "min_height": 52
+      }
+    },
+    "detail": {
+      "type": "niche-service-detail",
+      "blocks": {
+        "h1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "shield",
+            "title": "Warranty Safe",
+            "text": "We service to the manufacturer's log book schedule, so your new car warranty stays intact."
+          }
+        },
+        "h2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "tag",
+            "title": "Upfront Pricing",
+            "text": "You get a clear quote before we start. No surprises and no padded invoices."
+          }
+        },
+        "h3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "clock",
+            "title": "Honest Advice",
+            "text": "We tell you what needs doing now and what can wait, so you can plan ahead."
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "settings": {
+        "fallback_image": "niche-icon-servicing.jpg",
+        "eyebrow": "Log Book & General Servicing",
+        "heading": "Servicing in Footscray, Done Properly",
+        "body1": "Looking for honest, warranty-safe car servicing near Footscray? Niche Automotive is a short drive west in Sunshine West, and we service all makes and models to the manufacturer's log book schedule.",
+        "body2": "Footscray sits just across the Maribyrnong River from our Sunshine West workshop, an easy run down Somerville Road or Ballarat Road, so it is simple to drop your car in before work and pick it up on the way home. Whether it is a routine log book service, a general service, or you just want a straight answer on what your car actually needs, you get clear, upfront pricing before we start.",
+        "points": "Log book & general servicing | Warranty-safe, manufacturer schedule | All makes & models, petrol & diesel | Engine oil & filter replacement | Fluids, filters & safety checks | Brakes, tyres & battery checked | Clear, upfront pricing",
+        "cta_label": "Book a Service",
+        "cta_link": "/pages/contact",
+        "phone": "0411 019 935",
+        "highlights_eyebrow": "Why Niche",
+        "highlights_title": "What You Get",
+        "highlights_lead": "A service with us is more than an oil change. Here is what you can count on every time you book your car in.",
+        "show_related": true,
+        "related_title": "Explore Our Other Services",
+        "current_service": "servicing",
+        "show_breadcrumb": true,
+        "seo_service_name": "Car Servicing in Footscray",
+        "seo_description": "Log book and general car servicing in Footscray, VIC. All makes and models, warranty-safe, with clear upfront pricing from Niche Automotive, Sunshine West.",
+        "show_strip": true,
+        "strip_title": "Due for a Service in Footscray?",
+        "strip_sub": "Send through your make, model and rego and we'll book you in.",
+        "strip_btn_label": "Book a Service",
+        "strip_btn_link": "/pages/contact",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 80
+      }
+    },
+    "faq": {
+      "type": "niche-faq-page",
+      "blocks": {
+        "cat": {
+          "type": "category",
+          "settings": {
+            "title": "Servicing FAQ"
+          }
+        },
+        "q0": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you service cars from Footscray?",
+            "answer": "Yes. Plenty of Footscray drivers have their cars serviced with us. Footscray is only about a 12 minute drive from our Sunshine West workshop, so it is an easy trip for a service. Drop your car off in the morning and we will call you with anything that needs attention before we do the work."
+          }
+        },
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "How often should I service my car?",
+            "answer": "Most cars need a service every 6 months or 10,000 to 15,000 kilometres, whichever comes first, but it depends on your make, model and how you drive. We follow your manufacturer's log book schedule, so you are servicing at the right intervals for your car."
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "Will a log book service at Niche keep my new car warranty?",
+            "answer": "Yes. We service to the manufacturer's log book schedule using quality parts and stamp your book, which keeps your new car warranty intact. By law you do not have to return to the dealer to protect it."
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "What is the difference between a log book and a general service?",
+            "answer": "A log book service follows the exact schedule and checklist your manufacturer sets for that model and kilometres. A general service covers the essentials, oil and filter, fluids, brakes, tyres and a safety check, and is ideal for older cars that are out of warranty."
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "How much does a car service cost?",
+            "answer": "It depends on your make, model and which service is due. We give you a clear, upfront price when you book, so you know the cost before we start and there are no surprises when you collect the car."
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does a car service take?",
+            "answer": "A standard log book or general service is usually done the same day. If we find anything that needs extra work, we call you with a price first, so you stay in control of what gets done."
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you service all makes and models?",
+            "answer": "Yes, petrol and diesel, from everyday runabouts to performance cars. We are Holden and Commodore specialists, but we service everything with the same care and upfront pricing."
+          }
+        },
+        "q7": {
+          "type": "faq",
+          "settings": {
+            "question": "Which suburbs do you service?",
+            "answer": "We are based in Sunshine West and look after drivers across Melbourne's west, including Sunshine, St Albans, Deer Park, Keilor, Footscray, Yarraville, Altona, Williamstown and the surrounding suburbs."
+          }
+        },
+        "q8": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to book my service in advance?",
+            "answer": "Booking ahead helps us get you in at a time that suits and have the right parts ready, but give us a call and we will fit you in as soon as we can."
+          }
+        }
+      },
+      "block_order": [
+        "cat",
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8"
+      ],
+      "settings": {
+        "intro": "Common questions about log book and general servicing at Niche Automotive. Can't find your answer? Give the workshop a call on 0411 019 935.",
+        "foot_title": "Still Have a Question?",
+        "foot_sub": "We're happy to help. Give the workshop a call or send an enquiry and we'll get back to you.",
+        "phone": "0411 019 935",
+        "foot_link": "/pages/contact",
+        "bg_color": "#F4F5F7",
+        "padding_top": 72,
+        "padding_bottom": 92
+      }
+    },
+    "areas": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"background:#ffffff;padding:64px 20px;\"><div style=\"max-width:1000px;margin:0 auto;text-align:center;\"><p style=\"color:#e11b22;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;font-size:0.78rem;margin:0 0 10px;\">Areas We Service</p><h2 style=\"font-family:var(--font-heading-family);text-transform:uppercase;font-size:2rem;margin:0 0 12px;color:#0f0f0f;\">Car Servicing Across Melbourne's West</h2><p style=\"color:#4a4a4e;max-width:640px;margin:0 auto 26px;line-height:1.7;\">Based in Sunshine West and servicing drivers right across Melbourne's western suburbs. Find your local car servicing page below.</p><div class=\"niche-areas\"><a href=\"/pages/car-service-altona\">Altona</a><a href=\"/pages/car-service-deer-park\">Deer Park</a><a href=\"/pages/car-service-footscray\">Footscray</a><a href=\"/pages/car-service-keilor\">Keilor</a><a href=\"/pages/car-service-maribyrnong\">Maribyrnong</a><a href=\"/pages/car-service-newport\">Newport</a><a href=\"/pages/car-service-seddon\">Seddon</a><a href=\"/pages/car-service-st-albans\">St Albans</a><a href=\"/pages/car-service-sunshine\">Sunshine</a><a href=\"/pages/car-service-sydenham\">Sydenham</a><a href=\"/pages/car-service-taylors-lakes\">Taylors Lakes</a><a href=\"/pages/car-service-west-footscray\">West Footscray</a><a href=\"/pages/car-service-williamstown\">Williamstown</a><a href=\"/pages/car-service-yarraville\">Yarraville</a></div></div></div><style>.niche-areas{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}.niche-areas a{display:inline-block;padding:10px 18px;border:1px solid #d7d8dc;color:#0f0f0f;font-weight:600;font-size:0.9rem;text-decoration:none;transition:border-color .2s,color .2s;}.niche-areas a:hover{border-color:#e11b22;color:#e11b22;}</style>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "formspree_endpoint": "https://formspree.io/f/xwvgqgzr",
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": [
+    "header",
+    "detail",
+    "faq",
+    "areas",
+    "contact"
+  ]
+}
