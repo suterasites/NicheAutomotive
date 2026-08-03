@@ -82,7 +82,7 @@
       <span class="n-ph-{{ section.id }}__eyebrow">{{ section.settings.eyebrow | escape }}</span>
     {%- endif -%}
     <h1 class="n-ph-{{ section.id }}__title">
-      {{ section.settings.heading | escape }}
+      {{ section.settings.heading | default: page.title | escape }}
       {%- if section.settings.heading_accent != blank %} <span class="accent">{{ section.settings.heading_accent | escape }}</span>{%- endif -%}
     </h1>
     {%- if section.settings.subtext != blank -%}
