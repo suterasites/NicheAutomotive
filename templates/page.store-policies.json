@@ -59,7 +59,7 @@
           "type": "policy",
           "settings": {
             "title": "Questions",
-            "body": "<p>If anything here isn't clear, get in touch before you order and we'll sort it out.</p><p><strong>Niche Automotive</strong><br>4/94 Boundary Road, Sunshine West VIC 3020<br>Phone: <a href=\"tel:0411019935\">0411 019 935</a><br>Email: <a href=\"mailto:info@nicheautomotive.com.au\">info@nicheautomotive.com.au</a></p>"
+            "body": "<p>If anything here isn't clear, get in touch before you order and we'll sort it out.</p><p><strong>Niche Automotive</strong><br>4/94 Boundary Road, Sunshine West VIC 3020<br>Phone: <a href=\"tel:0411019935\">0411 019 935</a><br>Email: <a class=\"obf-email\" data-e=\"aW5mb0BuaWNoZWF1dG9tb3RpdmUuY29tLmF1\" href=\"/pages/contact\" rel=\"nofollow\">Email us</a></p>"
           }
         }
       },

@@ -1,0 +1,12 @@
+{%- comment -%}
+  Obfuscated email link. The address is base64-encoded at render time; the real
+  mailto: href and visible text are assembled client-side by the decoder in
+  layout/theme.liquid, so scraper bots never find a plain address in the raw HTML.
+  Falls back to the contact page when JS is disabled.
+
+  Accepts:
+    email (required) - address to obfuscate
+    class (optional) - extra class(es) for the <a>
+    label (optional) - visible fallback text shown before JS runs (default: "Email us")
+{%- endcomment -%}
+{%- if email != blank -%}<a class="obf-email{% if class != blank %} {{ class }}{% endif %}" data-e="{{ email | strip | base64_encode }}" href="{{ pages.contact.url | default: '/pages/contact' }}" rel="nofollow">{{ label | default: 'Email us' }}</a>{%- endif -%}

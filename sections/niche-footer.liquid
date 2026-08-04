@@ -172,7 +172,7 @@
           {%- if section.settings.email != blank -%}
             <li>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
-              <a href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a>
+              {% render 'obf-email', email: section.settings.email %}
             </li>
           {%- endif -%}
           {%- if section.settings.hours != blank -%}

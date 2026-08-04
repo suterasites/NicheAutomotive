@@ -435,5 +435,20 @@
     {%- comment -%} Elfsight Google Reviews - floating widget (site-wide) {%- endcomment -%}
     <script src="https://elfsightcdn.com/platform.js" async></script>
     <div class="elfsight-app-4dad6755-a84e-46e7-a5a5-4945729586be"></div>
+
+    {%- comment -%} Assemble obfuscated email links client-side so scrapers can't harvest a plain address from the raw HTML. See snippets/obf-email.liquid {%- endcomment -%}
+    <script>
+      (function () {
+        var links = document.querySelectorAll('a.obf-email[data-e]');
+        for (var i = 0; i < links.length; i++) {
+          var a = links[i], email = '';
+          try { email = atob(a.getAttribute('data-e')); } catch (e) {}
+          if (!email) continue;
+          a.setAttribute('href', 'mailto:' + email);
+          if (!a.hasAttribute('data-label-keep')) { a.textContent = email; }
+          a.removeAttribute('data-e');
+        }
+      })();
+    </script>
   </body>
 </html>
