@@ -1,0 +1,198 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Performance Upgrades",
+        "heading": "Performance Upgrades in Deer Park",
+        "heading_accent": "",
+        "subtext": "Bolt-on upgrades and tuning for Deer Park drivers, built reliable, streetable and around your goals and budget.",
+        "min_height": 52
+      }
+    },
+    "detail": {
+      "type": "niche-service-detail",
+      "blocks": {
+        "h1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "gauge",
+            "title": "Built To Your Goals",
+            "text": "Daily driver with a bit more, or a weekend weapon - we tailor the build to how you actually use the car."
+          }
+        },
+        "h2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "shield",
+            "title": "Reliable & Streetable",
+            "text": "Power is easy; power that lasts is the point. We keep it drivable and dependable."
+          }
+        },
+        "h3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "wrench",
+            "title": "Supporting Mods Sorted",
+            "text": "Cooling, fuelling and tuning matched to the upgrades, so nothing gets left behind."
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "settings": {
+        "fallback_image": "niche-icon-performance.jpg",
+        "eyebrow": "Performance Upgrades",
+        "heading": "More Out Of Your Car in Deer Park",
+        "body1": "Performance upgrades near Deer Park, built at Niche Automotive in Sunshine West. Bolt-on parts, tuning and the supporting mods that make them last, matched to your goals and budget.",
+        "body2": "Deer Park is a short drive east to the workshop. Bring the car in and tell us what you are chasing, whether that is a daily driver with a bit more in it or something built for the weekend, and we will map out a package that gets you there without making it a handful to drive.",
+        "points": "Bolt-on upgrades & tuning | Intake, exhaust & cooling | Reliable, streetable setups | Built to your goals & budget",
+        "cta_label": "Enquire About Upgrades",
+        "cta_link": "/pages/contact",
+        "phone": "0411 019 935",
+        "highlights_eyebrow": "Why Niche",
+        "highlights_title": "How We Build It",
+        "highlights_lead": "A build is a package, not a parts list. Here is how we put one together so it still works as a car when it is finished.",
+        "show_related": true,
+        "related_title": "Explore Our Other Services",
+        "current_service": "performance-upgrades",
+        "show_breadcrumb": true,
+        "seo_service_name": "Performance Upgrades in Deer Park",
+        "seo_description": "Performance upgrades and tuning in Deer Park, VIC. Bolt-ons, intake, exhaust and cooling built reliable and streetable at Niche Automotive, Sunshine West.",
+        "show_strip": true,
+        "strip_title": "Got a Build In Mind in Deer Park?",
+        "strip_sub": "Tell us your car and your goals, and we'll map out a package that suits.",
+        "strip_btn_label": "Enquire About Upgrades",
+        "strip_btn_link": "/pages/contact",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 80
+      }
+    },
+    "faq": {
+      "type": "niche-faq-page",
+      "blocks": {
+        "cat": {
+          "type": "category",
+          "settings": {
+            "title": "Performance FAQ"
+          }
+        },
+        "q0": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you build performance cars from Deer Park?",
+            "answer": "Yes. Deer Park is about a 10 to 12 minute drive from our Sunshine West workshop. Come in with the car and what you are chasing, and we will talk through what makes sense for your goals and your budget."
+          }
+        },
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "What sort of performance upgrades do you do?",
+            "answer": "Bolt-on upgrades and tuning, along with the supporting mods that have to come with them: intake, exhaust, cooling and fuelling. We put them together as one package so the parts complement each other rather than fighting each other."
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "Will the car still be reliable to drive every day?",
+            "answer": "That is the whole point of how we build. Power is easy; power that lasts is what matters, so we keep the car drivable and dependable. If you want a daily driver with a bit more in it, we build for that rather than handing you something you have to nurse."
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you tune, or only fit parts?",
+            "answer": "Both. Tuning is part of the package, not an afterthought, and the cooling and fuelling get matched to the upgrades at the same time. Fitting parts without tuning to suit them is how builds end up disappointing or fragile."
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you work on all makes and models?",
+            "answer": "Yes. We work on all makes and models, and if you drive a Holden or Commodore you are in specialist hands, since parts and performance are what we are known for."
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "How much does a performance package cost?",
+            "answer": "It depends entirely on the car and what you want out of it, so we talk through your goals and your budget first and then map out a package that fits. Tell us the car and what you are chasing and we will give you a straight answer on what is realistic."
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "question": "What do you need from me to work out a build?",
+            "answer": "The car, how you actually use it, what you want out of it, and roughly what you want to spend. That is enough for us to put together a combination that suits, rather than guessing at a parts list."
+          }
+        },
+        "q7": {
+          "type": "faq",
+          "settings": {
+            "question": "Where are you and when are you open?",
+            "answer": "The workshop is at 4/94 Boundary Road, Sunshine West VIC 3020, open Monday to Friday 8:00am to 5:00pm and Saturday 8:00am to 12:00pm. Give us a call on 0411 019 935 to talk through a build."
+          }
+        }
+      },
+      "block_order": [
+        "cat",
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ],
+      "settings": {
+        "intro": "Common questions about performance upgrades and tuning at Niche Automotive. Can't find your answer? Give the workshop a call on 0411 019 935.",
+        "foot_title": "Still Have a Question?",
+        "foot_sub": "We're happy to help. Give the workshop a call or send an enquiry and we'll get back to you.",
+        "phone": "0411 019 935",
+        "foot_link": "/pages/contact",
+        "bg_color": "#F4F5F7",
+        "padding_top": 72,
+        "padding_bottom": 92
+      }
+    },
+    "areas": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"background:#ffffff;padding:64px 20px;\"><div style=\"max-width:1000px;margin:0 auto;text-align:center;\"><p style=\"color:#e11b22;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;font-size:0.78rem;margin:0 0 10px;\">Areas We Service</p><h2 style=\"font-family:var(--font-heading-family);text-transform:uppercase;font-size:2rem;margin:0 0 12px;color:#0f0f0f;\">Performance Upgrades Across Melbourne's West</h2><p style=\"color:#4a4a4e;max-width:640px;margin:0 auto 26px;line-height:1.7;\">Based in Sunshine West and building performance packages for drivers right across Melbourne's western suburbs. Find your local page below.</p><div class=\"niche-areas\"><a href=\"/pages/performance-upgrades-altona\">Altona</a><a href=\"/pages/performance-upgrades-deer-park\">Deer Park</a><a href=\"/pages/performance-upgrades-footscray\">Footscray</a><a href=\"/pages/performance-upgrades-keilor\">Keilor</a><a href=\"/pages/performance-upgrades-maribyrnong\">Maribyrnong</a><a href=\"/pages/performance-upgrades-newport\">Newport</a><a href=\"/pages/performance-upgrades-seddon\">Seddon</a><a href=\"/pages/performance-upgrades-st-albans\">St Albans</a><a href=\"/pages/performance-upgrades-sunshine\">Sunshine</a><a href=\"/pages/performance-upgrades-sydenham\">Sydenham</a><a href=\"/pages/performance-upgrades-taylors-lakes\">Taylors Lakes</a><a href=\"/pages/performance-upgrades-west-footscray\">West Footscray</a><a href=\"/pages/performance-upgrades-williamstown\">Williamstown</a><a href=\"/pages/performance-upgrades-yarraville\">Yarraville</a></div></div></div><style>.niche-areas{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}.niche-areas a{display:inline-block;padding:10px 18px;border:1px solid #d7d8dc;color:#0f0f0f;font-weight:600;font-size:0.9rem;text-decoration:none;transition:border-color .2s,color .2s;}.niche-areas a:hover{border-color:#e11b22;color:#e11b22;}</style>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "formspree_endpoint": "https://formspree.io/f/xwvgqgzr",
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": [
+    "header",
+    "detail",
+    "faq",
+    "areas",
+    "contact"
+  ]
+}
