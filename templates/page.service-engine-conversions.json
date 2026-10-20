@@ -13,11 +13,36 @@
     "detail": {
       "type": "niche-service-detail",
       "blocks": {
-        "h1": { "type": "highlight", "settings": { "icon": "wrench", "title": "End To End", "text": "Mounts, wiring, plumbing, cooling and tuning - the whole swap handled in-house." } },
-        "h2": { "type": "highlight", "settings": { "icon": "shield", "title": "Clean & Safe", "text": "Done properly so it's reliable and road-ready, not a headache down the track." } },
-        "h3": { "type": "highlight", "settings": { "icon": "gauge", "title": "Tuned To Suit", "text": "The new combination tuned so it runs right, drives well and stays dependable." } }
+        "h1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "wrench",
+            "title": "End To End",
+            "text": "Mounts, wiring, plumbing, cooling and tuning - the whole swap handled in-house."
+          }
+        },
+        "h2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "shield",
+            "title": "Clean & Safe",
+            "text": "Done properly so it's reliable and road-ready, not a headache down the track."
+          }
+        },
+        "h3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "gauge",
+            "title": "Tuned To Suit",
+            "text": "The new combination tuned so it runs right, drives well and stays dependable."
+          }
+        }
       },
-      "block_order": ["h1", "h2", "h3"],
+      "block_order": [
+        "h1",
+        "h2",
+        "h3"
+      ],
       "settings": {
         "fallback_image": "niche-svc-conversions.jpg",
         "eyebrow": "Engine Conversions",
@@ -62,7 +87,21 @@
         "padding_top": 88,
         "padding_bottom": 88
       }
+    },
+    "areas": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"background:#ffffff;padding:64px 20px;\"><div style=\"max-width:1000px;margin:0 auto;text-align:center;\"><p style=\"color:#e11b22;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;font-size:0.78rem;margin:0 0 10px;\">Areas We Service</p><h2 style=\"font-family:var(--font-heading-family);text-transform:uppercase;font-size:2rem;margin:0 0 12px;color:#0f0f0f;\">Engine Conversions Across Melbourne's West</h2><p style=\"color:#4a4a4e;max-width:640px;margin:0 auto 26px;line-height:1.7;\">Based in Sunshine West and handling engine swaps for drivers across Melbourne's western suburbs. Find your local page below.</p><div class=\"niche-areas\"><a href=\"/pages/engine-conversions-footscray\">Footscray</a><a href=\"/pages/engine-conversions-west-footscray\">West Footscray</a><a href=\"/pages/engine-conversions-yarraville\">Yarraville</a></div></div></div><style>.niche-areas{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}.niche-areas a{display:inline-block;padding:10px 18px;border:1px solid #d7d8dc;color:#0f0f0f;font-weight:600;font-size:0.9rem;text-decoration:none;transition:border-color .2s,color .2s;}.niche-areas a:hover{border-color:#e11b22;color:#e11b22;}.niche-also{color:#0f0f0f;font-weight:600;text-decoration:underline;text-underline-offset:3px;}.niche-also:hover{color:#e11b22;}</style>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
-  "order": ["header", "detail", "contact"]
+  "order": [
+    "header",
+    "detail",
+    "areas",
+    "contact"
+  ]
 }

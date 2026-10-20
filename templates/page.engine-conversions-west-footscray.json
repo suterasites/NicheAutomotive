@@ -1,0 +1,198 @@
+{
+  "sections": {
+    "header": {
+      "type": "niche-page-header",
+      "settings": {
+        "fallback_image": "niche-hero-workshop.jpg",
+        "eyebrow": "Engine Conversions",
+        "heading": "Engine Conversions in West Footscray",
+        "heading_accent": "",
+        "subtext": "Complete engine swaps for West Footscray drivers, handled end to end, from mounts and wiring to cooling and tuning.",
+        "min_height": 52
+      }
+    },
+    "detail": {
+      "type": "niche-service-detail",
+      "blocks": {
+        "h1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "wrench",
+            "title": "End To End",
+            "text": "Mounts, wiring, plumbing, cooling and tuning, the whole swap handled in-house."
+          }
+        },
+        "h2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "shield",
+            "title": "Done Properly",
+            "text": "Built clean and reliable, so it is a car you drive, not a headache down the track."
+          }
+        },
+        "h3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "gauge",
+            "title": "Tuned To Suit",
+            "text": "The new combination tuned so it runs right, drives well and stays dependable."
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "settings": {
+        "fallback_image": "niche-svc-conversions.jpg",
+        "eyebrow": "Engine Conversions",
+        "heading": "Swaps Done Properly for West Footscray Cars",
+        "body1": "For engine conversions near West Footscray, Niche Automotive is just up Ballarat Road in Sunshine West. Complete swaps, LS conversions included, with the mounts, wiring, plumbing and tune all sorted in one workshop.",
+        "body2": "West Footscray is one of the quickest trips in, about eight minutes from the workshop. Tell us the car and the engine you have in mind and we will go through what the swap involves, then do it start to finish ourselves, so you are not chasing one shop for the wiring and another for the tune.",
+        "points": "Complete engine swaps | Mounts, wiring & plumbing | Cooling & fuelling sorted | Tuned to suit the combination",
+        "cta_label": "Plan Your Conversion",
+        "cta_link": "/pages/contact",
+        "phone": "0411 019 935",
+        "highlights_eyebrow": "Why Niche",
+        "highlights_title": "How We Do It",
+        "highlights_lead": "A conversion is more than dropping a different motor in. Here is how we make sure the swap still works as a whole car when it is finished.",
+        "show_related": true,
+        "related_title": "Explore Our Other Services",
+        "current_service": "engine-conversions",
+        "show_breadcrumb": true,
+        "seo_service_name": "Engine Conversions in West Footscray",
+        "seo_description": "Engine conversions and swaps in West Footscray, VIC. Mounts, wiring, cooling, fuelling and tuning handled end to end at Niche Automotive, Sunshine West.",
+        "show_strip": true,
+        "strip_title": "Planning a Conversion in West Footscray?",
+        "strip_sub": "Tell us the car and the engine you want in it, and we'll map out the swap.",
+        "strip_btn_label": "Plan Your Conversion",
+        "strip_btn_link": "/pages/contact",
+        "bg_color": "#FFFFFF",
+        "padding_top": 88,
+        "padding_bottom": 80
+      }
+    },
+    "faq": {
+      "type": "niche-faq-page",
+      "blocks": {
+        "cat": {
+          "type": "category",
+          "settings": {
+            "title": "Engine Conversions FAQ"
+          }
+        },
+        "q0": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you do engine conversions for West Footscray cars?",
+            "answer": "Yes. West Footscray is about an 8 minute drive from our Sunshine West workshop. Bring the car in with the engine you have in mind and we will talk through what the swap involves."
+          }
+        },
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "What does an engine conversion at Niche include?",
+            "answer": "The whole swap, handled in-house: engine mounts, wiring, plumbing, cooling, fuelling and the tune for the new combination. Doing it all in one workshop means every part of the job is set up to work with the rest."
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you do LS swaps?",
+            "answer": "Yes. LS swaps are among the conversions that come through the workshop, along with engine swaps across all makes and models. The approach is the same whatever goes in: mounts, wiring, cooling and fuel sorted properly, then tuned to suit."
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "Why does the wiring matter so much in a swap?",
+            "answer": "Because a conversion is only as good as the wiring behind it. The loom, mounts, cooling, fuel, exhaust and tune all have to work together, or you end up with a car that runs but is never quite right. That is the part of the job we take the most care over."
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "Should I swap the engine or rebuild the one I have?",
+            "answer": "It depends on the car, the condition of the engine it has now and what you want the car to do. We do both, engine conversions and engine builds and rebuilds, so we can give you a straight answer on which makes more sense rather than steering you toward one."
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "How much does an engine conversion cost?",
+            "answer": "It depends on the car, the engine going in and what you want out of it, so there is no honest flat price. Tell us the car and the engine you want in it, and we will map out the swap and talk you through it before any work starts."
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you work on all makes and models?",
+            "answer": "Yes. We work on all makes and models, and as Holden and Commodore specialists we know those cars inside out."
+          }
+        },
+        "q7": {
+          "type": "faq",
+          "settings": {
+            "question": "Where are you and when are you open?",
+            "answer": "The workshop is at 4/94 Boundary Road, Sunshine West VIC 3020, open Monday to Friday 8:00am to 5:00pm and Saturday 8:00am to 12:00pm. Give us a call on 0411 019 935 to talk through a conversion."
+          }
+        }
+      },
+      "block_order": [
+        "cat",
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ],
+      "settings": {
+        "intro": "Common questions about engine conversions and swaps at Niche Automotive. Can't find your answer? Give the workshop a call on 0411 019 935.",
+        "foot_title": "Still Have a Question?",
+        "foot_sub": "We're happy to help. Give the workshop a call or send an enquiry and we'll get back to you.",
+        "phone": "0411 019 935",
+        "foot_link": "/pages/contact",
+        "bg_color": "#F4F5F7",
+        "padding_top": 72,
+        "padding_bottom": 92
+      }
+    },
+    "areas": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"background:#ffffff;padding:64px 20px;\"><div style=\"max-width:1000px;margin:0 auto;text-align:center;\"><p style=\"color:#e11b22;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;font-size:0.78rem;margin:0 0 10px;\">Areas We Service</p><h2 style=\"font-family:var(--font-heading-family);text-transform:uppercase;font-size:2rem;margin:0 0 12px;color:#0f0f0f;\">Engine Conversions Across Melbourne's West</h2><p style=\"color:#4a4a4e;max-width:640px;margin:0 auto 26px;line-height:1.7;\">Based in Sunshine West and handling engine swaps for drivers across Melbourne's western suburbs. Find your local page below.</p><div class=\"niche-areas\"><a href=\"/pages/engine-conversions-footscray\">Footscray</a><a href=\"/pages/engine-conversions-west-footscray\">West Footscray</a><a href=\"/pages/engine-conversions-yarraville\">Yarraville</a></div><p style=\"color:#4a4a4e;margin:28px auto 0;line-height:1.7;\">Also for West Footscray drivers: <a class=\"niche-also\" href=\"/pages/car-service-west-footscray\">Car servicing in West Footscray</a> &middot; <a class=\"niche-also\" href=\"/pages/performance-upgrades-west-footscray\">Performance upgrades in West Footscray</a></p></div></div><style>.niche-areas{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}.niche-areas a{display:inline-block;padding:10px 18px;border:1px solid #d7d8dc;color:#0f0f0f;font-weight:600;font-size:0.9rem;text-decoration:none;transition:border-color .2s,color .2s;}.niche-areas a:hover{border-color:#e11b22;color:#e11b22;}.niche-also{color:#0f0f0f;font-weight:600;text-decoration:underline;text-underline-offset:3px;}.niche-also:hover{color:#e11b22;}</style>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "contact": {
+      "type": "niche-contact",
+      "settings": {
+        "formspree_endpoint": "https://formspree.io/f/xwvgqgzr",
+        "eyebrow": "Get In Touch",
+        "title": "Book Your Car In",
+        "copy": "Send through your details and what you need, and we'll get back to you to book you in or track down a part.",
+        "phone": "0411 019 935",
+        "email": "info@nicheautomotive.com.au",
+        "address": "4/94 Boundary Road, Sunshine West VIC 3020",
+        "hours": "Mon - Fri 8:00am - 5:00pm, Sat 8:00am - 12:00pm",
+        "button_label": "Send Enquiry",
+        "bg_color": "#101114",
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    }
+  },
+  "order": [
+    "header",
+    "detail",
+    "faq",
+    "areas",
+    "contact"
+  ]
+}
